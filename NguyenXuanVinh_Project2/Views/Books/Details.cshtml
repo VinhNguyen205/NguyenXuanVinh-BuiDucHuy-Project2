@@ -1,0 +1,43 @@
+﻿@model NguyenXuanVinh_Project2.Models.Book
+
+@{
+    ViewData["Title"] = "Chi tiết Truyện";
+}
+
+<h1>Chi tiết Truyện</h1>
+
+<div>
+    <h4>@Model.Title</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Mã</dt>
+        <dd class="col-sm-10">@Model.BookId</dd>
+
+        <dt class="col-sm-2">Tác giả</dt>
+        <dd class="col-sm-10">@Model.Author</dd>
+
+        <dt class="col-sm-2">Ngày phát hành</dt>
+        <dd class="col-sm-10">
+            @(Model.Release.HasValue ? Model.Release.Value.ToString() : "Chưa rõ")
+        </dd>
+
+        <dt class="col-sm-2">Giá</dt>
+        <dd class="col-sm-10">
+            @(Model.Price.HasValue ? Model.Price.Value.ToString("N0") : "Chưa rõ") VNĐ
+        </dd>
+
+        <dt class="col-sm-2">Thể loại</dt>
+        <dd class="col-sm-10">@Model.Category?.CategoryName</dd>
+
+        <dt class="col-sm-2">Nhà xuất bản</dt>
+        <dd class="col-sm-10">@Model.Publisher?.PublisherName</dd>
+
+        <dt class="col-sm-2">Mô tả</dt>
+        <dd class="col-sm-10">@Model.Description</dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.BookId" class="btn btn-primary">Sửa</a>
+    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+</div>

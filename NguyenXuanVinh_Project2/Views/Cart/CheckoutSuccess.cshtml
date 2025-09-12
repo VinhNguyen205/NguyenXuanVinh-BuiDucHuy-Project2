@@ -1,0 +1,34 @@
+﻿@model NguyenXuanVinh_Project2.Models.CheckoutResult
+
+<h2 class="text-success mb-4">Thanh toán thành công 🎉</h2>
+
+<p>Cảm ơn <strong>@Model.CustomerName</strong> đã mua hàng!</p>
+<p>Email: <strong>@Model.Email</strong></p>
+<p>Địa chỉ: <strong>@Model.Address</strong></p>
+
+<h4 class="mt-4">Danh sách sản phẩm:</h4>
+<table class="table table-bordered">
+    <thead class="table-success">
+        <tr>
+            <th>Sách</th>
+            <th>Số lượng</th>
+            <th>Giá</th>
+            <th>Tổng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>@item.Book.Title</td>
+                <td>@item.Quantity</td>
+                <td>@item.Book.Price?.ToString("N0") đ</td>
+                <td>@((item.Book.Price ?? 0) * item.Quantity).ToString("N0") đ</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h4 class="text-end text-success">Tổng cộng: @Model.Total.ToString("N0") đ</h4>
+
+<a href="@Url.Action("Index","Books")" class="btn btn-primary">Tiếp tục mua sắm</a>

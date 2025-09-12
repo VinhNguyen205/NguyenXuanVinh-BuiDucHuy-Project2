@@ -1,0 +1,121 @@
+﻿@model IEnumerable<NguyenXuanVinh_Project2.Models.Book>
+@using System.Net
+
+<div class="container">
+    <h2 class="fw-bold text-success mb-4">Danh sách sách</h2>
+
+    <div class="table-responsive">
+        <table class="table table-bordered align-middle text-center shadow-sm">
+            <thead class="table-success">
+                <tr>
+                    <th>Ảnh bìa</th>
+                    <th>Mã</th>
+                    <th>Tiêu đề</th>
+                    <th>Tác giả</th>
+                    <th>Năm</th>
+                    <th>Giá</th>
+                    <th>Thể loại</th>
+                    <th>NXB</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <!-- Ảnh bìa -->
+                        <td>
+                            @{
+                                var imgSrc = !string.IsNullOrEmpty(item.Picture) &&
+                                (item.Picture.StartsWith("http://") || item.Picture.StartsWith("https://"))
+                                ? item.Picture
+                                : Url.Content("~/images/books/" + (item.Picture ?? "no-cover.jpg"));
+                            }
+                            <img src="@imgSrc"
+                                 alt="@Html.Raw(WebUtility.HtmlDecode(item.Title ?? "Không rõ"))"
+                                 width="80" height="100"
+                                 class="rounded shadow-sm"
+                                 style="object-fit:cover;"
+                                 onerror="this.onerror=null; this.src='/images/books/no-cover.jpg';" />
+                        </td>
+
+                        <!-- Mã sách -->
+                        <td>@item.BookId</td>
+
+                        <!-- Tiêu đề sách -->
+                        <td class="book-title" title="@Html.Raw(WebUtility.HtmlDecode(item.Title ?? "Không rõ"))">
+                            @Html.Raw(WebUtility.HtmlDecode(item.Title ?? "Không rõ"))
+                        </td>
+
+                        <!-- Tác giả -->
+                        <td title="@Html.Raw(WebUtility.HtmlDecode(item.Author ?? "Không rõ"))">
+                            @Html.Raw(WebUtility.HtmlDecode(item.Author ?? "Không rõ"))
+                        </td>
+
+                        <!-- Năm phát hành -->
+                        <td>@item.ReleaseYear</td>
+
+                        <!-- Giá -->
+                        <td class="text-success fw-bold">
+                            @(item.Price?.ToString("N0") ?? "0") đ
+                        </td>
+
+                        <!-- Thể loại -->
+                        <td title="@Html.Raw(WebUtility.HtmlDecode(item.Genre ?? "Không rõ"))">
+                            @Html.Raw(WebUtility.HtmlDecode(item.Genre ?? "Không rõ"))
+                        </td>
+
+                        <!-- Nhà xuất bản -->
+                        <td title="@Html.Raw(WebUtility.HtmlDecode(item.Publisher?.PublisherName ?? "Không rõ"))">
+                            @Html.Raw(WebUtility.HtmlDecode(item.Publisher?.PublisherName ?? "Không rõ"))
+                        </td>
+
+                        <!-- Hành động -->
+                        <td>
+                            <div class="action-buttons">
+                                <a href="@Url.Action("Edit", new { id = item.BookId })" class="btn btn-edit" title="Sửa">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                                <a href="@Url.Action("Details", new { id = item.BookId })" class="btn btn-details" title="Chi tiết">
+                                    <i class="bi bi-info-circle"></i>
+                                </a>
+                                <a href="@Url.Action("Delete", new { id = item.BookId })" class="btn btn-delete" title="Xóa">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                                <button type="button"
+                                        class="btn btn-add add-to-cart"
+                                        data-id="@item.BookId"
+                                        title="Thêm vào giỏ">
+                                    <i class="bi bi-cart-plus"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $(".add-to-cart").click(function () {
+                var bookId = $(this).data("id");
+                $.post("/Cart/AddToCart", { id: bookId }, function (res) {
+                    if (res.count !== undefined) {
+                        $(".bi-cart").next("span").remove();
+                        if (res.count > 0) {
+                            $(".bi-cart").after(`
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    ${res.count}
+                                </span>
+                            `);
+                        }
+                        alert("✅ Đã thêm vào giỏ hàng!");
+                    }
+                });
+            });
+        });
+    </script>
+}

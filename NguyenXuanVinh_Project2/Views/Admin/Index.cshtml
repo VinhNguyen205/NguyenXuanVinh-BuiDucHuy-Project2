@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Trang quản trị";
+}
+
+<div class="container mt-4">
+    <h2 class="text-success">Xin chào Admin, @ViewBag.Username!</h2>
+    <p>Chào mừng bạn đến với khu vực quản trị.</p>
+
+    <ul class="list-group mt-3">
+        <li class="list-group-item">
+            <a href="@Url.Action("Index", "Books")">📚 Quản lý Sách</a>
+        </li>
+        <li class="list-group-item">
+            <a href="@Url.Action("Index", "Category")">📂 Quản lý Danh mục</a>
+        </li>
+        <li class="list-group-item">
+            <a href="@Url.Action("Index", "Publisher")">🏢 Quản lý Nhà xuất bản</a>
+        </li>
+        <li class="list-group-item">
+            <a href="@Url.Action("Logout", "Account")" class="text-danger">🚪 Đăng xuất</a>
+        </li>
+    </ul>
+</div>

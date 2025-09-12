@@ -1,0 +1,101 @@
+﻿@model List<NguyenXuanVinh_Project2.Models.CartItem>
+
+@{
+    ViewData["Title"] = "Giỏ hàng";
+    var total = Model.Sum(i => (i.Book?.Price ?? 0) * i.Quantity);
+}
+
+<!-- Đảm bảo meta charset UTF-8 nếu chưa có ở _Layout.cshtml -->
+<head>
+    <meta charset="utf-8" />
+</head>
+
+<h2 class="mb-4 text-success">🛒 Giỏ hàng của bạn</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">Giỏ hàng trống. Hãy thêm sản phẩm vào giỏ!</div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-bordered align-middle text-center shadow-sm">
+            <thead class="table-success">
+                <tr>
+                    <th style="width:100px;">Ảnh</th>
+                    <th style="min-width:200px;">Tên sách</th>
+                    <th>Giá</th>
+                    <th style="width:160px;">Số Lượng</th>
+                    <th>Tổng</th>
+                    <th style="width:100px;">Hành Động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @{
+                                string imgSrc;
+                                if (!string.IsNullOrEmpty(item.Book?.Picture) &&
+                                (item.Book!.Picture.StartsWith("http://") || item.Book.Picture.StartsWith("https://")))
+                                {
+                                    imgSrc = item.Book.Picture;
+                                }
+                                else
+                                {
+                                    imgSrc = Url.Content("~/images/books/" + (item.Book?.Picture ?? "no-cover.jpg"));
+                                }
+                            }
+
+                            <img src="@imgSrc" alt="@(item.Book?.Title ?? "Không rõ tiêu đề")"
+                                 style="height:80px; object-fit:cover;" class="rounded shadow-sm"
+                                 onerror="this.onerror=null; this.src='/images/books/no-cover.jpg';" />
+                        </td>
+                        <td class="book-title fw-bold" title="@Html.Raw(item.Book?.Title ?? "Không rõ")">
+                            @{
+                                string displayTitle = item.Book?.Title ?? "Không rõ";
+                                // Nếu data bị encode sẵn, decode trước (thử nếu Raw chưa đủ)
+                                displayTitle = System.Net.WebUtility.HtmlDecode(displayTitle);
+                            }
+                            @Html.Raw(displayTitle)
+                        </td>
+                        <td>@((item.Book?.Price ?? 0).ToString("N0")) đ</td>
+                        <td>
+                            <form asp-action="UpdateQuantity" asp-controller="Cart" method="post" class="d-flex justify-content-center">
+                                <input type="hidden" name="id" value="@item.Book?.BookId" />
+                                <input type="number" name="quantity" value="@item.Quantity" min="1" class="form-control w-50 text-center me-2" />
+                                <button type="submit" class="btn btn-sm btn-outline-primary">Cập nhật</button>
+                            </form>
+                        </td>
+                        <td class="text-success fw-bold">
+                            @(((item.Book?.Price ?? 0) * item.Quantity).ToString("N0")) đ
+                        </td>
+                        <td>
+                            <form asp-action="Remove" asp-controller="Cart" method="post">
+                                <input type="hidden" name="id" value="@item.Book?.BookId" />
+                                <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr class="table-light">
+                    <td colspan="4" class="text-end fw-bold">Tổng cộng:</td>
+                    <td colspan="2" class="text-danger fw-bold fs-5">
+                        @(total.ToString("N0")) đ
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="text-end mt-3">
+        <a href="@Url.Action("Checkout", "Cart")" class="btn btn-success btn-lg">
+            <i class="bi bi-cash-coin"></i> Thanh toán
+        </a>
+    </div>
+}
+
+<!-- Debug info (xóa sau): @ViewBag.DebugTitle -->
