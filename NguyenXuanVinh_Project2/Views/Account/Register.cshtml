@@ -1,0 +1,45 @@
+﻿@model NguyenXuanVinh_Project2.Models.RegisterViewModel
+@{
+    ViewData["Title"] = "Đăng ký";
+}
+
+<div class="auth-background">
+    <div class="auth-card">
+        <h3 class="auth-title">📝 Đăng ký tài khoản</h3>
+
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success text-center">@TempData["Success"]</div>
+        }
+
+        <form asp-action="Register" method="post">
+            <div class="mb-3">
+                <input asp-for="Username" class="form-control" placeholder="Tên đăng nhập" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <input asp-for="Email" type="email" class="form-control" placeholder="Email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <input asp-for="Password" type="password" class="form-control" placeholder="Mật khẩu" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Xác nhận mật khẩu" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-auth w-100">Đăng ký</button>
+        </form>
+
+        <div class="auth-footer">
+            <a asp-action="Login">← Quay lại đăng nhập</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

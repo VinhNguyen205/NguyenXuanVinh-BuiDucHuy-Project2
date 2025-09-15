@@ -12,7 +12,8 @@ public partial class Account
     [Key]
     [StringLength(36)]
     [Unicode(false)]
-    public string AccountId { get; set; } = null!;
+    [DatabaseGenerated(DatabaseGeneratedOption.None)] // không để Identity vì string không auto tăng
+    public string AccountId { get; set; } = Guid.NewGuid().ToString();
 
     [StringLength(64)]
     [Unicode(false)]
@@ -40,9 +41,12 @@ public partial class Account
     [Unicode(false)]
     public string? Phone { get; set; }
 
-    public bool? IsAdmin { get; set; }
+    public bool? Active { get; set; } = true;
 
-    public bool? Active { get; set; }
+    // 🔑 Role: "Admin", "Member", "Guest"
+    [StringLength(20)]
+    [Unicode(false)]
+    public string Role { get; set; } = "Member";
 
     [InverseProperty("Account")]
     public virtual ICollection<OrderBook> OrderBooks { get; set; } = new List<OrderBook>();

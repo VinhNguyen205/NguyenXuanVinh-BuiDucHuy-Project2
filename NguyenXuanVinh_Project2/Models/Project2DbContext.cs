@@ -146,61 +146,75 @@ namespace Project2.Models
                     PublisherId = 1, // Kim Đồng
                     Picture = "dbs.jpg"
                 },
-            new Book
-            {
-                BookId = "M00006",
-                Title = "Tokyo Revengers",
-                Author = "Ken Wakui",
-                Release = 2023,
-                Price = 125000,
-                CategoryId = 3, // Seinen
-                PublisherId = 4, // Trẻ
-                Picture = "tokyorevengers.webp"
-            },
-             new Book
-             {
-                 BookId = "M00007",
-                 Title = "Demon Slayer: Kimetsu no Yaiba",
-                 Author = "Koyoharu Gotouge",
-                 Release = 2023,
-                 Price = 120000,
-                 CategoryId = 1, // Shounen
-                 PublisherId = 1, // Kim Đồng
-                 Picture = "kimet.jpg"
-             },
-             new Book
-             {
-                 BookId = "M00008",
-                 Title = "My Hero Academia",
-                 Author = "Kohei Horikoshi",
-                 Release = 2023,
-                 Price = 115000,
-                 CategoryId = 1, // Shounen
-                 PublisherId = 1, // Kim Đồng
-                 Picture = "mha.jpg"
-             },
-             new Book
-             {
-                 BookId = "M00009",
-                 Title = "Attack on Titan",
-                 Author = "Hajime Isayama",
-                 Release = 2023,
-                 Price = 135000,
-                 CategoryId = 3, // Seinen
-                 PublisherId = 4, // Trẻ
-                 Picture = "titan.jpg"
-             },
-              new Book
-              {
-                  BookId = "M00010",
-                  Title = "Blue Lock",
-                  Author = "Muneyuki Kaneshiro & Yusuke Nomura",
-                  Release = 2023,
-                  Price = 110000,
-                  CategoryId = 1, // Shounen
-                  PublisherId = 1, // Kim Đồng
-                  Picture = "bluelock.png"
-              }
+                new Book
+                {
+                    BookId = "M00006",
+                    Title = "Tokyo Revengers",
+                    Author = "Ken Wakui",
+                    Release = 2023,
+                    Price = 125000,
+                    CategoryId = 3, // Seinen
+                    PublisherId = 4, // Trẻ
+                    Picture = "tokyorevengers.webp"
+                },
+                new Book
+                {
+                    BookId = "M00007",
+                    Title = "Demon Slayer: Kimetsu no Yaiba",
+                    Author = "Koyoharu Gotouge",
+                    Release = 2023,
+                    Price = 120000,
+                    CategoryId = 1, // Shounen
+                    PublisherId = 1, // Kim Đồng
+                    Picture = "kimet.jpg"
+                },
+                new Book
+                {
+                    BookId = "M00008",
+                    Title = "My Hero Academia",
+                    Author = "Kohei Horikoshi",
+                    Release = 2023,
+                    Price = 115000,
+                    CategoryId = 1, // Shounen
+                    PublisherId = 1, // Kim Đồng
+                    Picture = "mha.jpg"
+                },
+                new Book
+                {
+                    BookId = "M00009",
+                    Title = "Attack on Titan",
+                    Author = "Hajime Isayama",
+                    Release = 2023,
+                    Price = 135000,
+                    CategoryId = 3, // Seinen
+                    PublisherId = 4, // Trẻ
+                    Picture = "titan.jpg"
+                },
+                new Book
+                {
+                    BookId = "M00010",
+                    Title = "Blue Lock",
+                    Author = "Muneyuki Kaneshiro & Yusuke Nomura",
+                    Release = 2023,
+                    Price = 110000,
+                    CategoryId = 1, // Shounen
+                    PublisherId = 1, // Kim Đồng
+                    Picture = "bluelock.png"
+                }
+            );
+
+            // Account (Admin)
+            modelBuilder.Entity<Account>().HasData(
+                new Account
+                {
+                    AccountId = Guid.NewGuid().ToString(),
+                    Username = "vinh",
+                    Password = "30062005", // nên mã hóa trước khi dùng thật
+                    FullName = "Administrator",
+                    Email = "realsteelworld2k5@gmail.com",
+                    Role = "Admin",
+                    Picture = "admin.jpg"
+                }
             );
         }
     }

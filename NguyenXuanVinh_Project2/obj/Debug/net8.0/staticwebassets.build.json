@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "kaomGRY4ElwXopzRxcp3/KtXdymB8Z8rQaA8xN2CtJg=",
+  "Hash": "ZZ9CZ5h+Y3EHquBnReEHwNxCOmNseq7ZXq2VPYORBZc=",
   "Source": "NguyenXuanVinh_Project2",
   "BasePath": "_content/NguyenXuanVinh_Project2",
   "Mode": "Default",
@@ -1333,8 +1333,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "hivdf1eutc",
-      "Integrity": "yVPg7AsadFtAv5R7M17JJHG9kgIY7mf7WuC5V7vGi54=",
+      "Fingerprint": "uto5zuokby",
+      "Integrity": "8sf9kqAY43RGu06mdx1sDwE8+1B2CN59GPcgadXNPoE=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -1359,6 +1359,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\admin.jpg",
+      "SourceId": "NguyenXuanVinh_Project2",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\",
+      "BasePath": "_content/NguyenXuanVinh_Project2",
+      "RelativePath": "images/books/admin#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "tg2c6uiu5r",
+      "Integrity": "g8rCA/lcjzeICLlhnWVyUHYswwljl/kRTMJSKKXpplI=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\books\\admin.jpg"
     },
     {
       "Identity": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\bluelock.png",
@@ -2906,7 +2927,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6360"
+          "Value": "8779"
         },
         {
           "Name": "Content-Type",
@@ -2914,11 +2935,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"yVPg7AsadFtAv5R7M17JJHG9kgIY7mf7WuC5V7vGi54=\""
+          "Value": "\"8sf9kqAY43RGu06mdx1sDwE8+1B2CN59GPcgadXNPoE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 12 Sep 2025 10:38:59 GMT"
+          "Value": "Mon, 15 Sep 2025 01:27:38 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2928,12 +2949,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-yVPg7AsadFtAv5R7M17JJHG9kgIY7mf7WuC5V7vGi54="
+          "Value": "sha256-8sf9kqAY43RGu06mdx1sDwE8+1B2CN59GPcgadXNPoE="
         }
       ]
     },
     {
-      "Route": "css/site.hivdf1eutc.css",
+      "Route": "css/site.uto5zuokby.css",
       "AssetFile": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\css\\site.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -2943,7 +2964,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6360"
+          "Value": "8779"
         },
         {
           "Name": "Content-Type",
@@ -2951,11 +2972,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"yVPg7AsadFtAv5R7M17JJHG9kgIY7mf7WuC5V7vGi54=\""
+          "Value": "\"8sf9kqAY43RGu06mdx1sDwE8+1B2CN59GPcgadXNPoE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 12 Sep 2025 10:38:59 GMT"
+          "Value": "Mon, 15 Sep 2025 01:27:38 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2965,7 +2986,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "hivdf1eutc"
+          "Value": "uto5zuokby"
         },
         {
           "Name": "label",
@@ -2973,7 +2994,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-yVPg7AsadFtAv5R7M17JJHG9kgIY7mf7WuC5V7vGi54="
+          "Value": "sha256-8sf9kqAY43RGu06mdx1sDwE8+1B2CN59GPcgadXNPoE="
         }
       ]
     },
@@ -5276,6 +5297,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-16aFlqtpsG9RyieKZUUUjkJpqTgcJtWXwT312I4Iz1s="
+        }
+      ]
+    },
+    {
+      "Route": "images/books/admin.jpg",
+      "AssetFile": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\admin.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "8046"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"g8rCA/lcjzeICLlhnWVyUHYswwljl/kRTMJSKKXpplI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 15 Sep 2025 00:49:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-g8rCA/lcjzeICLlhnWVyUHYswwljl/kRTMJSKKXpplI="
+        }
+      ]
+    },
+    {
+      "Route": "images/books/admin.tg2c6uiu5r.jpg",
+      "AssetFile": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\admin.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "8046"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"g8rCA/lcjzeICLlhnWVyUHYswwljl/kRTMJSKKXpplI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 15 Sep 2025 00:49:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "tg2c6uiu5r"
+        },
+        {
+          "Name": "label",
+          "Value": "images/books/admin.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-g8rCA/lcjzeICLlhnWVyUHYswwljl/kRTMJSKKXpplI="
         }
       ]
     },

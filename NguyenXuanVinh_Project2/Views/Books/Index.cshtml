@@ -72,18 +72,24 @@
 
                         <!-- Hành động -->
                         <td>
-                            <div class="action-buttons">
-                                <a href="@Url.Action("Edit", new { id = item.BookId })" class="btn btn-edit" title="Sửa">
+                            <div class="d-flex justify-content-center gap-1">
+                                <a href="@Url.Action("Edit", new { id = item.BookId })"
+                                   class="btn btn-sm btn-primary"
+                                   title="Sửa">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
-                                <a href="@Url.Action("Details", new { id = item.BookId })" class="btn btn-details" title="Chi tiết">
+                                <a href="@Url.Action("Details", new { id = item.BookId })"
+                                   class="btn btn-sm btn-info"
+                                   title="Chi tiết">
                                     <i class="bi bi-info-circle"></i>
                                 </a>
-                                <a href="@Url.Action("Delete", new { id = item.BookId })" class="btn btn-delete" title="Xóa">
+                                <a href="@Url.Action("Delete", new { id = item.BookId })"
+                                   class="btn btn-sm btn-danger"
+                                   title="Xóa">
                                     <i class="bi bi-trash"></i>
                                 </a>
                                 <button type="button"
-                                        class="btn btn-add add-to-cart"
+                                        class="btn btn-sm btn-success add-to-cart"
                                         data-id="@item.BookId"
                                         title="Thêm vào giỏ">
                                     <i class="bi bi-cart-plus"></i>

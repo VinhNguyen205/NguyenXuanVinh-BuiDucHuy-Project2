@@ -1,5 +1,6 @@
 wwwroot\css\site.css
 wwwroot\favicon.ico
+wwwroot\images\books\admin.jpg
 wwwroot\images\books\bluelock.png
 wwwroot\images\books\chainsawman.jpg
 wwwroot\images\books\dbs.jpg

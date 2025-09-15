@@ -1,40 +1,40 @@
 ﻿@{
     ViewData["Title"] = "Đăng nhập";
+    var role = Context.Session.GetString("Role");
 }
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card shadow-sm border-0">
-                <div class="card-header bg-success text-white text-center">
-                    <h4>Đăng nhập</h4>
-                </div>
-                <div class="card-body">
-                    @if (ViewBag.Error != null)
-                    {
-                        <div class="alert alert-danger">@ViewBag.Error</div>
-                    }
+<div class="auth-background">
+    <div class="auth-card">
+        <h3 class="auth-title">🔐 Đăng nhập</h3>
 
-                    <form asp-action="Login" method="post">
-                        <div class="form-group mb-3">
-                            <label for="username">Tên đăng nhập</label>
-                            <input type="text" class="form-control" id="username" name="username" placeholder="Nhập tài khoản" required />
-                        </div>
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success text-center">@TempData["Success"]</div>
+        }
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger text-center">@ViewBag.Error</div>
+        }
 
-                        <div class="form-group mb-3">
-                            <label for="password">Mật khẩu</label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Nhập mật khẩu" required />
-                        </div>
-
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-success">Đăng nhập</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="card-footer text-center">
-                    <small>Chưa có tài khoản? <a href="#">Đăng ký</a></small>
-                </div>
+        <form asp-action="Login" method="post">
+            <div class="mb-3">
+                <input type="text" class="form-control" id="username" name="username" placeholder="Tên đăng nhập" required />
             </div>
+            <div class="mb-3">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Mật khẩu" required />
+            </div>
+            <button type="submit" class="btn btn-auth w-100">Đăng nhập</button>
+        </form>
+
+        <div class="auth-footer">
+            <p>
+                Chưa có tài khoản?
+                <a asp-controller="Account" asp-action="Register">Đăng ký</a>
+            </p>
+            @if (role == "Admin")
+            {
+                <p>👑 <a asp-controller="Account" asp-action="RegisterAdmin" class="text-danger">Tạo Admin</a></p>
+            }
         </div>
     </div>
 </div>

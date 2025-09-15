@@ -545,3 +545,4 @@ D:\NguyenXuanVinh_Project2\NguyenXuanVinh_Project2\obj\Debug\net8.0\refint\Nguye
 D:\NguyenXuanVinh_Project2\NguyenXuanVinh_Project2\obj\Debug\net8.0\NguyenXuanVinh_Project2.pdb
 D:\NguyenXuanVinh_Project2\NguyenXuanVinh_Project2\obj\Debug\net8.0\NguyenXuanVinh_Project2.genruntimeconfig.cache
 D:\NguyenXuanVinh_Project2\NguyenXuanVinh_Project2\obj\Debug\net8.0\ref\NguyenXuanVinh_Project2.dll
+D:\NguyenXuanVinh_Project2\NguyenXuanVinh_Project2\obj\Debug\net8.0\NguyenXuanVinh_Project2.sourcelink.json

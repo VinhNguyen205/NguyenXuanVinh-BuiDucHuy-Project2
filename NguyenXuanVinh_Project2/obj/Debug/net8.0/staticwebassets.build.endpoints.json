@@ -2319,7 +2319,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6360"
+          "Value": "8779"
         },
         {
           "Name": "Content-Type",
@@ -2327,22 +2327,22 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"yVPg7AsadFtAv5R7M17JJHG9kgIY7mf7WuC5V7vGi54=\""
+          "Value": "\"8sf9kqAY43RGu06mdx1sDwE8+1B2CN59GPcgadXNPoE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 12 Sep 2025 10:38:59 GMT"
+          "Value": "Mon, 15 Sep 2025 01:27:38 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-yVPg7AsadFtAv5R7M17JJHG9kgIY7mf7WuC5V7vGi54="
+          "Value": "sha256-8sf9kqAY43RGu06mdx1sDwE8+1B2CN59GPcgadXNPoE="
         }
       ]
     },
     {
-      "Route": "css/site.hivdf1eutc.css",
+      "Route": "css/site.uto5zuokby.css",
       "AssetFile": "css/site.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -2356,7 +2356,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6360"
+          "Value": "8779"
         },
         {
           "Name": "Content-Type",
@@ -2364,21 +2364,21 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"yVPg7AsadFtAv5R7M17JJHG9kgIY7mf7WuC5V7vGi54=\""
+          "Value": "\"8sf9kqAY43RGu06mdx1sDwE8+1B2CN59GPcgadXNPoE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 12 Sep 2025 10:38:59 GMT"
+          "Value": "Mon, 15 Sep 2025 01:27:38 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "hivdf1eutc"
+          "Value": "uto5zuokby"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-yVPg7AsadFtAv5R7M17JJHG9kgIY7mf7WuC5V7vGi54="
+          "Value": "sha256-8sf9kqAY43RGu06mdx1sDwE8+1B2CN59GPcgadXNPoE="
         },
         {
           "Name": "label",
@@ -2465,6 +2465,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-Jtxf9L+5ITKRc1gIRl4VbUpGkRNfOBXjYTdhJD4facM="
+        }
+      ]
+    },
+    {
+      "Route": "images/books/admin.jpg",
+      "AssetFile": "images/books/admin.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "8046"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"g8rCA/lcjzeICLlhnWVyUHYswwljl/kRTMJSKKXpplI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 15 Sep 2025 00:49:23 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-g8rCA/lcjzeICLlhnWVyUHYswwljl/kRTMJSKKXpplI="
+        }
+      ]
+    },
+    {
+      "Route": "images/books/admin.tg2c6uiu5r.jpg",
+      "AssetFile": "images/books/admin.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "8046"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"g8rCA/lcjzeICLlhnWVyUHYswwljl/kRTMJSKKXpplI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 15 Sep 2025 00:49:23 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "tg2c6uiu5r"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-g8rCA/lcjzeICLlhnWVyUHYswwljl/kRTMJSKKXpplI="
+        },
+        {
+          "Name": "label",
+          "Value": "images/books/admin.jpg"
         }
       ]
     },

@@ -305,3 +305,122 @@
         max-width: 120px; /* responsive ellipsis */
     }
 }
+/* ====== NAVBAR CUSTOM ====== */
+.navbar {
+    font-weight: 500;
+}
+
+    .navbar .nav-link {
+        color: #333;
+        transition: color 0.25s ease;
+        padding: 8px 14px;
+    }
+
+        .navbar .nav-link:hover,
+        .navbar .nav-link:focus {
+            color: #28a745;
+        }
+
+    .navbar .dropdown-menu {
+        border-radius: 8px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+
+    .navbar .dropdown-item:hover {
+        background: #f8f9fa;
+        color: #28a745;
+    }
+
+/* Search box hiệu ứng mở rộng */
+.search-box input {
+    width: 160px;
+    transition: width 0.3s ease;
+}
+
+    .search-box input:focus {
+        width: 240px;
+    }
+/* Nền gradient nhẹ */
+.auth-background {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #e8f5e9, #ffffff); /* xanh nhạt pha trắng */
+}
+
+/* Card */
+.auth-card {
+    width: 380px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    padding: 2rem;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Tiêu đề */
+.auth-title {
+    font-weight: 700;
+    color: #2e7d32;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Input */
+.auth-card .form-control {
+    border-radius: 10px;
+    padding: 12px;
+    border: 1px solid #dcdcdc;
+    transition: 0.3s;
+}
+
+    .auth-card .form-control:focus {
+        border-color: #43a047;
+        box-shadow: 0 0 6px rgba(67, 160, 71, 0.3);
+    }
+
+/* Nút */
+.btn-auth {
+    background: linear-gradient(90deg, #43a047, #66bb6a);
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    padding: 12px;
+    transition: 0.3s;
+}
+
+    .btn-auth:hover {
+        background: linear-gradient(90deg, #388e3c, #4caf50);
+        transform: translateY(-1px);
+    }
+
+/* Link nhỏ */
+.auth-footer {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+    .auth-footer a {
+        color: #388e3c;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+
+/* Hiệu ứng vào */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
