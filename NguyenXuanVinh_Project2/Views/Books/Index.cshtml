@@ -1,30 +1,92 @@
 ﻿@model IEnumerable<NguyenXuanVinh_Project2.Models.Book>
 @using System.Net
+@using Microsoft.AspNetCore.Http
 
-<div class="container">
-    <h2 class="fw-bold text-success mb-4">Danh sách sách</h2>
+@{
+    ViewData["Title"] = "Danh sách sách";
+    var role = Context.Session.GetString("Role");
+    var username = Context.Session.GetString("Username");
+}
 
-    <div class="table-responsive">
-        <table class="table table-bordered align-middle text-center shadow-sm">
-            <thead class="table-success">
-                <tr>
-                    <th>Ảnh bìa</th>
-                    <th>Mã</th>
-                    <th>Tiêu đề</th>
-                    <th>Tác giả</th>
-                    <th>Năm</th>
-                    <th>Giá</th>
-                    <th>Thể loại</th>
-                    <th>NXB</th>
-                    <th>Hành động</th>
-                </tr>
-            </thead>
-            <tbody>
+<div class="container my-4">
+    <div class="row g-4">
+        <!-- Sidebar -->
+        <div class="col-md-3">
+            <div class="sidebar shadow-sm p-3 bg-white rounded">
+                <h5 class="fw-bold text-success mb-3">📂 Danh mục sản phẩm</h5>
+                <ul class="list-group mb-4">
+                    <li class="list-group-item">
+                        <a href="@Url.Action("Index", "Books")">Tất cả</a>
+                    <li class="list-group-item">
+                        <a href="@Url.Action("Index", "Books", new { category = "Shounen" })">Shounen</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="@Url.Action("Index", "Books", new { category = "Seinen" })">Seinen</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="@Url.Action("Index", "Books", new { category = "Truyện Tranh" })">Truyện Tranh</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="@Url.Action("Index", "Books", new { category = "Truyện Chữ" })">Truyện Chữ</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="@Url.Action("Index", "Books", new { category = "Light Novel" })">Light Novel</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="@Url.Action("Index", "Books", new { category = "Drama" })">Drama</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="@Url.Action("Index", "Books", new { category = "Tình cảm" })">Tình cảm</a>
+                    </li>
+                </ul>
+
+                <h5 class="fw-bold text-success mb-3">🔍 Bộ lọc sản phẩm</h5>
+                <form method="get" asp-action="Index" class="mb-3">
+                    <p class="fw-semibold mb-2">Giá</p>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="price" value="1" id="p1" onchange="this.form.submit()">
+                        <label class="form-check-label" for="p1">Nhỏ hơn 50,000đ</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="price" value="2" id="p2" onchange="this.form.submit()">
+                        <label class="form-check-label" for="p2">50,000đ - 100,000đ</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="price" value="3" id="p3" onchange="this.form.submit()">
+                        <label class="form-check-label" for="p3">100,000đ - 200,000đ</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="price" value="4" id="p4" onchange="this.form.submit()">
+                        <label class="form-check-label" for="p4">200,000đ - 300,000đ</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="price" value="5" id="p5" onchange="this.form.submit()">
+                        <label class="form-check-label" for="p5">Lớn hơn 300,000đ</label>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Content -->
+        <div class="col-md-9">
+            <h2 class="fw-bold text-success mb-4">📚 Danh sách sách</h2>
+
+            @if (role == "Admin")
+            {
+                <div class="mb-3">
+                    <a href="@Url.Action("Create", "Books")" class="btn btn-success shadow-sm">
+                        <i class="bi bi-plus-circle"></i> Thêm sách mới
+                    </a>
+                    <a href="@Url.Action("Index", "Admin")" class="btn btn-warning shadow-sm">
+                        <i class="bi bi-gear-fill"></i> Quản trị
+                    </a>
+                </div>
+            }
+
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <!-- Ảnh bìa -->
-                        <td>
+                    <div class="col">
+                        <div class="card h-100 shadow-sm border-0 product-card">
                             @{
                                 var imgSrc = !string.IsNullOrEmpty(item.Picture) &&
                                 (item.Picture.StartsWith("http://") || item.Picture.StartsWith("https://"))
@@ -33,95 +95,93 @@
                             }
                             <img src="@imgSrc"
                                  alt="@Html.Raw(WebUtility.HtmlDecode(item.Title ?? "Không rõ"))"
-                                 width="80" height="100"
-                                 class="rounded shadow-sm"
-                                 style="object-fit:cover;"
+                                 class="card-img-top book-img"
                                  onerror="this.onerror=null; this.src='/images/books/no-cover.jpg';" />
-                        </td>
 
-                        <!-- Mã sách -->
-                        <td>@item.BookId</td>
+                            <div class="card-body text-center">
+                                <h6 class="card-title book-title text-truncate"
+                                    title="@Html.Raw(WebUtility.HtmlDecode(item.Title ?? "Không rõ"))">
+                                    @Html.Raw(WebUtility.HtmlDecode(item.Title ?? "Không rõ"))
+                                </h6>
+                                <p class="author text-muted small mb-1">
+                                    <i class="bi bi-person"></i>
+                                    @Html.Raw(WebUtility.HtmlDecode(item.Author ?? "Không rõ"))
+                                </p>
+                                <p class="price text-success fw-bold mb-2">
+                                    <i class="bi bi-cash-stack"></i>
+                                    @(item.Price?.ToString("N0") ?? "0") đ
+                                </p>
+                            </div>
 
-                        <!-- Tiêu đề sách -->
-                        <td class="book-title" title="@Html.Raw(WebUtility.HtmlDecode(item.Title ?? "Không rõ"))">
-                            @Html.Raw(WebUtility.HtmlDecode(item.Title ?? "Không rõ"))
-                        </td>
+                            <div class="card-footer bg-white border-0 d-flex justify-content-center gap-1">
+                                @if (role == "Admin")
+                                {
+                                    <a href="@Url.Action("Edit", new { id = item.BookId })"
+                                       class="btn btn-sm btn-outline-primary" title="Sửa">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <a href="@Url.Action("Delete", new { id = item.BookId })"
+                                       class="btn btn-sm btn-outline-danger" title="Xóa">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                }
 
-                        <!-- Tác giả -->
-                        <td title="@Html.Raw(WebUtility.HtmlDecode(item.Author ?? "Không rõ"))">
-                            @Html.Raw(WebUtility.HtmlDecode(item.Author ?? "Không rõ"))
-                        </td>
-
-                        <!-- Năm phát hành -->
-                        <td>@item.ReleaseYear</td>
-
-                        <!-- Giá -->
-                        <td class="text-success fw-bold">
-                            @(item.Price?.ToString("N0") ?? "0") đ
-                        </td>
-
-                        <!-- Thể loại -->
-                        <td title="@Html.Raw(WebUtility.HtmlDecode(item.Genre ?? "Không rõ"))">
-                            @Html.Raw(WebUtility.HtmlDecode(item.Genre ?? "Không rõ"))
-                        </td>
-
-                        <!-- Nhà xuất bản -->
-                        <td title="@Html.Raw(WebUtility.HtmlDecode(item.Publisher?.PublisherName ?? "Không rõ"))">
-                            @Html.Raw(WebUtility.HtmlDecode(item.Publisher?.PublisherName ?? "Không rõ"))
-                        </td>
-
-                        <!-- Hành động -->
-                        <td>
-                            <div class="d-flex justify-content-center gap-1">
-                                <a href="@Url.Action("Edit", new { id = item.BookId })"
-                                   class="btn btn-sm btn-primary"
-                                   title="Sửa">
-                                    <i class="bi bi-pencil-square"></i>
-                                </a>
                                 <a href="@Url.Action("Details", new { id = item.BookId })"
-                                   class="btn btn-sm btn-info"
-                                   title="Chi tiết">
+                                   class="btn btn-sm btn-outline-info" title="Chi tiết">
                                     <i class="bi bi-info-circle"></i>
                                 </a>
-                                <a href="@Url.Action("Delete", new { id = item.BookId })"
-                                   class="btn btn-sm btn-danger"
-                                   title="Xóa">
-                                    <i class="bi bi-trash"></i>
-                                </a>
-                                <button type="button"
-                                        class="btn btn-sm btn-success add-to-cart"
-                                        data-id="@item.BookId"
-                                        title="Thêm vào giỏ">
+                                <button type="button" class="btn btn-sm btn-outline-success add-to-cart"
+                                        data-id="@item.BookId" title="Thêm vào giỏ">
                                     <i class="bi bi-cart-plus"></i>
                                 </button>
                             </div>
-                        </td>
-                    </tr>
+                        </div>
+                    </div>
                 }
-            </tbody>
-        </table>
+            </div>
+        </div>
     </div>
 </div>
 
-@section Scripts {
-    <script>
-        $(document).ready(function () {
-            $(".add-to-cart").click(function () {
-                var bookId = $(this).data("id");
-                $.post("/Cart/AddToCart", { id: bookId }, function (res) {
-                    if (res.count !== undefined) {
-                        $(".bi-cart").next("span").remove();
-                        if (res.count > 0) {
-                            $(".bi-cart").after(`
-                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                    ${res.count}
-                                </span>
-                            `);
-                        }
-                        alert("✅ Đã thêm vào giỏ hàng!");
-                    }
-                });
-            });
-        });
-    </script>
-}
+<style>
+    /* Sidebar */
+    .sidebar h5 {
+        font-size: 16px;
+    }
+
+    .list-group-item {
+        border: none;
+        padding: 8px 12px;
+    }
+
+        .list-group-item a {
+            text-decoration: none;
+            color: #333;
+            display: block;
+        }
+
+            .list-group-item a:hover {
+                color: #198754;
+                font-weight: 500;
+            }
+
+    /* Book card */
+    .book-img {
+        height: 250px;
+        object-fit: cover;
+    }
+
+    .book-title {
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 1.3;
+    }
+
+    .product-card {
+        transition: transform 0.2s ease-in-out;
+    }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+        }
+</style>

@@ -33,6 +33,8 @@ namespace Project2.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Book>(entity =>
             {
                 entity.Property(e => e.BookId)
@@ -78,7 +80,12 @@ namespace Project2.Models
             modelBuilder.Entity<Category>().HasData(
                 new Category { CategoryId = 1, CategoryName = "Shounen" },
                 new Category { CategoryId = 2, CategoryName = "Shoujo" },
-                new Category { CategoryId = 3, CategoryName = "Seinen" }
+                new Category { CategoryId = 3, CategoryName = "Seinen" },
+                new Category { CategoryId = 4, CategoryName = "Drama" },
+                new Category { CategoryId = 5, CategoryName = "Tình cảm" },
+                new Category { CategoryId = 6, CategoryName = "Hành động" },
+                new Category { CategoryId = 7, CategoryName = "Phiêu lưu" },
+                new Category { CategoryId = 8, CategoryName = "Truyện chữ" }
             );
 
             // Publisher
@@ -89,118 +96,18 @@ namespace Project2.Models
                 new Publisher { PublisherId = 4, PublisherName = "Nhà xuất bản Trẻ" }
             );
 
-            // Book
+            // Book (mẫu)
             modelBuilder.Entity<Book>().HasData(
-                new Book
-                {
-                    BookId = "M00001",
-                    Title = "One Piece",
-                    Author = "Eiichiro Oda",
-                    Release = 2023,
-                    Price = 120000,
-                    CategoryId = 1, // Shounen
-                    PublisherId = 1, // Kim Đồng
-                    Picture = "onepiece.jpg"
-                },
-                new Book
-                {
-                    BookId = "M00002",
-                    Title = "Jujutsu Kaisen",
-                    Author = "Gege Akutami",
-                    Release = 2023,
-                    Price = 110000,
-                    CategoryId = 1, // Shounen
-                    PublisherId = 2, // Shueisha
-                    Picture = "jujutsukaisen.jpg"
-                },
-                new Book
-                {
-                    BookId = "M00003",
-                    Title = "Spy x Family",
-                    Author = "Tatsuya Endo",
-                    Release = 2023,
-                    Price = 105000,
-                    CategoryId = 2, // Shoujo
-                    PublisherId = 3, // Shogakukan
-                    Picture = "spyxfamily.webp"
-                },
-                new Book
-                {
-                    BookId = "M00004",
-                    Title = "Chainsaw Man",
-                    Author = "Tatsuki Fujimoto",
-                    Release = 2023,
-                    Price = 115000,
-                    CategoryId = 3, // Seinen
-                    PublisherId = 4, // Trẻ
-                    Picture = "chainsawman.jpg"
-                },
-                new Book
-                {
-                    BookId = "M00005",
-                    Title = "Dragon Ball Super",
-                    Author = "Akira Toriyama",
-                    Release = 2023,
-                    Price = 130000,
-                    CategoryId = 1, // Shounen
-                    PublisherId = 1, // Kim Đồng
-                    Picture = "dbs.jpg"
-                },
-                new Book
-                {
-                    BookId = "M00006",
-                    Title = "Tokyo Revengers",
-                    Author = "Ken Wakui",
-                    Release = 2023,
-                    Price = 125000,
-                    CategoryId = 3, // Seinen
-                    PublisherId = 4, // Trẻ
-                    Picture = "tokyorevengers.webp"
-                },
-                new Book
-                {
-                    BookId = "M00007",
-                    Title = "Demon Slayer: Kimetsu no Yaiba",
-                    Author = "Koyoharu Gotouge",
-                    Release = 2023,
-                    Price = 120000,
-                    CategoryId = 1, // Shounen
-                    PublisherId = 1, // Kim Đồng
-                    Picture = "kimet.jpg"
-                },
-                new Book
-                {
-                    BookId = "M00008",
-                    Title = "My Hero Academia",
-                    Author = "Kohei Horikoshi",
-                    Release = 2023,
-                    Price = 115000,
-                    CategoryId = 1, // Shounen
-                    PublisherId = 1, // Kim Đồng
-                    Picture = "mha.jpg"
-                },
-                new Book
-                {
-                    BookId = "M00009",
-                    Title = "Attack on Titan",
-                    Author = "Hajime Isayama",
-                    Release = 2023,
-                    Price = 135000,
-                    CategoryId = 3, // Seinen
-                    PublisherId = 4, // Trẻ
-                    Picture = "titan.jpg"
-                },
-                new Book
-                {
-                    BookId = "M00010",
-                    Title = "Blue Lock",
-                    Author = "Muneyuki Kaneshiro & Yusuke Nomura",
-                    Release = 2023,
-                    Price = 110000,
-                    CategoryId = 1, // Shounen
-                    PublisherId = 1, // Kim Đồng
-                    Picture = "bluelock.png"
-                }
+                new Book { BookId = "M00001", Title = "One Piece", Author = "Eiichiro Oda", Release = 2023, Price = 120000, CategoryId = 1, PublisherId = 1, Picture = "onepiece.jpg" },
+                new Book { BookId = "M00002", Title = "Jujutsu Kaisen", Author = "Gege Akutami", Release = 2023, Price = 110000, CategoryId = 1, PublisherId = 2, Picture = "jujutsukaisen.jpg" },
+                new Book { BookId = "M00003", Title = "Spy x Family", Author = "Tatsuya Endo", Release = 2023, Price = 105000, CategoryId = 2, PublisherId = 3, Picture = "spyxfamily.webp" },
+                new Book { BookId = "M00004", Title = "Chainsaw Man", Author = "Tatsuki Fujimoto", Release = 2023, Price = 115000, CategoryId = 3, PublisherId = 4, Picture = "chainsawman.jpg" },
+                new Book { BookId = "M00005", Title = "Dragon Ball Super", Author = "Akira Toriyama", Release = 2023, Price = 130000, CategoryId = 1, PublisherId = 1, Picture = "dbs.jpg" },
+                new Book { BookId = "M00006", Title = "Tokyo Revengers", Author = "Ken Wakui", Release = 2023, Price = 125000, CategoryId = 3, PublisherId = 4, Picture = "tokyorevengers.webp" },
+                new Book { BookId = "M00007", Title = "Demon Slayer: Kimetsu no Yaiba", Author = "Koyoharu Gotouge", Release = 2023, Price = 120000, CategoryId = 1, PublisherId = 1, Picture = "kimet.jpg" },
+                new Book { BookId = "M00008", Title = "My Hero Academia", Author = "Kohei Horikoshi", Release = 2023, Price = 115000, CategoryId = 1, PublisherId = 1, Picture = "mha.jpg" },
+                new Book { BookId = "M00009", Title = "Attack on Titan", Author = "Hajime Isayama", Release = 2023, Price = 135000, CategoryId = 3, PublisherId = 4, Picture = "titan.jpg" },
+                new Book { BookId = "M00010", Title = "Blue Lock", Author = "Muneyuki Kaneshiro & Yusuke Nomura", Release = 2023, Price = 110000, CategoryId = 1, PublisherId = 1, Picture = "bluelock.png" }
             );
 
             // Account (Admin)
@@ -209,7 +116,7 @@ namespace Project2.Models
                 {
                     AccountId = Guid.NewGuid().ToString(),
                     Username = "vinh",
-                    Password = "30062005", // nên mã hóa trước khi dùng thật
+                    Password = "30062005", // chú ý: nên mã hóa khi dùng thật
                     FullName = "Administrator",
                     Email = "realsteelworld2k5@gmail.com",
                     Role = "Admin",

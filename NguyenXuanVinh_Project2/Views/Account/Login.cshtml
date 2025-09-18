@@ -3,38 +3,77 @@
     var role = Context.Session.GetString("Role");
 }
 
-<div class="auth-background">
-    <div class="auth-card">
-        <h3 class="auth-title">🔐 Đăng nhập</h3>
-
-        @if (TempData["Success"] != null)
-        {
-            <div class="alert alert-success text-center">@TempData["Success"]</div>
-        }
-        @if (ViewBag.Error != null)
-        {
-            <div class="alert alert-danger text-center">@ViewBag.Error</div>
-        }
-
-        <form asp-action="Login" method="post">
-            <div class="mb-3">
-                <input type="text" class="form-control" id="username" name="username" placeholder="Tên đăng nhập" required />
+<div class="d-flex align-items-center justify-content-center vh-100 bg-light">
+    <div class="card shadow-lg border-0 rounded-4 login-card" style="width: 400px;">
+        <div class="text-center mt-4">
+            <div class="login-icon bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center">
+                <i class="bi bi-box-arrow-in-right fs-2"></i>
             </div>
-            <div class="mb-3">
-                <input type="password" class="form-control" id="password" name="password" placeholder="Mật khẩu" required />
-            </div>
-            <button type="submit" class="btn btn-auth w-100">Đăng nhập</button>
-        </form>
+            <h3 class="fw-bold text-success mt-2">Đăng nhập</h3>
+            <p class="text-muted small">Vui lòng nhập thông tin để tiếp tục</p>
+        </div>
 
-        <div class="auth-footer">
-            <p>
-                Chưa có tài khoản?
-                <a asp-controller="Account" asp-action="Register">Đăng ký</a>
-            </p>
+        <div class="card-body px-4 pb-4">
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success text-center rounded-3 shadow-sm">@TempData["Success"]</div>
+            }
+            @if (ViewBag.Error != null)
+            {
+                <div class="alert alert-danger text-center rounded-3 shadow-sm">@ViewBag.Error</div>
+            }
+
+            <form asp-action="Login" method="post">
+                <div class="mb-3">
+                    <label for="username" class="form-label fw-semibold">Tên đăng nhập</label>
+                    <input type="text" class="form-control rounded-3 shadow-sm" id="username" name="username" placeholder="Nhập tên đăng nhập" required />
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label fw-semibold">Mật khẩu</label>
+                    <input type="password" class="form-control rounded-3 shadow-sm" id="password" name="password" placeholder="••••••••" required />
+                </div>
+                <button type="submit" class="btn btn-success w-100 rounded-3 fw-bold shadow-sm">
+                    <i class="bi bi-box-arrow-in-right"></i> Đăng nhập
+                </button>
+            </form>
+
+            <div class="text-center mt-3">
+                <span class="text-muted">Chưa có tài khoản?</span>
+                <a asp-controller="Account" asp-action="Register" class="text-success fw-semibold">Đăng ký</a>
+            </div>
+
             @if (role == "Admin")
             {
-                <p>👑 <a asp-controller="Account" asp-action="RegisterAdmin" class="text-danger">Tạo Admin</a></p>
+                <div class="text-center mt-2">
+                    👑 <a asp-controller="Account" asp-action="RegisterAdmin" class="text-danger fw-bold">Tạo Admin</a>
+                </div>
             }
         </div>
     </div>
 </div>
+
+<style>
+    .login-card {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+        .login-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+    .login-icon {
+        width: 70px;
+        height: 70px;
+        box-shadow: 0 4px 10px rgba(25, 135, 84, 0.4);
+    }
+
+    input.form-control {
+        padding: 10px 14px;
+    }
+
+    button.btn-success {
+        padding: 10px;
+        font-size: 16px;
+    }
+</style>

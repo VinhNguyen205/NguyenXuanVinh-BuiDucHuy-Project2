@@ -16,13 +16,14 @@
     <link rel="stylesheet" href="~/NguyenXuanVinh_Project2.styles.css" asp-append-version="true" />
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
+
     <!-- Navbar -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
             <div class="container">
                 <!-- Logo -->
                 <a class="navbar-brand fw-bold text-success d-flex align-items-center gap-2" asp-controller="Home" asp-action="Index">
-                    📚 <span>Truyện Tranh Online</span>
+                    <i class="bi bi-book-half"></i> <span>Truyện Tranh Online</span>
                 </a>
 
                 <!-- Nút toggle -->
@@ -35,40 +36,40 @@
                 <div class="collapse navbar-collapse" id="mainNavbar">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Home" asp-action="Index">Trang chủ</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="Index"><i class="bi bi-house-door"></i> Trang chủ</a>
                         </li>
 
                         <!-- Dropdown Danh mục -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-bs-toggle="dropdown">
-                                Danh mục
+                                <i class="bi bi-grid"></i> Danh mục
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
-                                <li><a class="dropdown-item" asp-controller="Books" asp-action="Index" asp-route-category="manga">Truyện tranh</a></li>
-                                <li><a class="dropdown-item" asp-controller="Books" asp-action="Index" asp-route-category="ln">Light Novel</a></li>
-                                <li><a class="dropdown-item" asp-controller="Books" asp-action="Index" asp-route-category="gift">Quà tặng</a></li>
+                            <ul class="dropdown-menu shadow" aria-labelledby="categoryDropdown">
+                                <li><a class="dropdown-item" asp-controller="Books" asp-action="Index" asp-route-category="manga"><i class="bi bi-book"></i> Truyện tranh</a></li>
+                                <li><a class="dropdown-item" asp-controller="Books" asp-action="Index" asp-route-category="ln"><i class="bi bi-journal-bookmark"></i> Light Novel</a></li>
+                                <li><a class="dropdown-item" asp-controller="Books" asp-action="Index" asp-route-category="gift"><i class="bi bi-gift"></i> Quà tặng</a></li>
                             </ul>
                         </li>
 
                         <!-- Dropdown Thông tin -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="infoDropdown" role="button" data-bs-toggle="dropdown">
-                                Thông tin
+                                <i class="bi bi-info-circle"></i> Thông tin
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="infoDropdown">
-                                <li><a class="dropdown-item" asp-controller="Release" asp-action="Index">Lịch phát hành</a></li>
-                                <li><a class="dropdown-item" asp-controller="News" asp-action="Index">Tin tức</a></li>
-                                <li><a class="dropdown-item" asp-controller="Promotion" asp-action="Index">Khuyến mãi</a></li>
-                                <li><a class="dropdown-item" asp-controller="Guide" asp-action="Index">Hướng dẫn mua hàng</a></li>
-                                <li><a class="dropdown-item" asp-controller="Contact" asp-action="Index">Liên hệ</a></li>
+                            <ul class="dropdown-menu shadow" aria-labelledby="infoDropdown">
+                                <li><a class="dropdown-item" asp-controller="Release" asp-action="Index"><i class="bi bi-calendar-event"></i> Lịch phát hành</a></li>
+                                <li><a class="dropdown-item" asp-controller="News" asp-action="Index"><i class="bi bi-newspaper"></i> Tin tức</a></li>
+                                <li><a class="dropdown-item" asp-controller="Promotion" asp-action="Index"><i class="bi bi-tags"></i> Khuyến mãi</a></li>
+                                <li><a class="dropdown-item" asp-controller="Guide" asp-action="Index"><i class="bi bi-question-circle"></i> Hướng dẫn mua hàng</a></li>
+                                <li><a class="dropdown-item" asp-controller="Contact" asp-action="Index"><i class="bi bi-envelope"></i> Liên hệ</a></li>
                             </ul>
                         </li>
                     </ul>
 
                     <!-- Search -->
-                    <form class="search-box d-flex me-3" asp-controller="Books" asp-action="Search" method="get">
+                    <form class="d-flex me-3" asp-controller="Books" asp-action="Search" method="get">
                         <input class="form-control me-2" type="search" name="query" placeholder="Tìm kiếm..." aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
+                        <button class="btn btn-success" type="submit"><i class="bi bi-search"></i></button>
                     </form>
 
                     <!-- Account + Cart -->
@@ -98,7 +99,7 @@
                         {
                             <!-- Nếu login rồi thì hiện tên -->
                             <div class="dropdown">
-                                <a class="btn btn-outline-dark dropdown-toggle" href="#" id="accountMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="btn btn-outline-dark dropdown-toggle d-flex align-items-center gap-2" href="#" id="accountMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="bi bi-person-circle"></i> @Context.Session.GetString("Username")
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="accountMenu">
@@ -120,13 +121,12 @@
                             </div>
                         }
 
-
                         <!-- Giỏ hàng -->
                         @{
                             var cartCount = Context.Session.GetInt32("CartCount") ?? 0;
                         }
                         <a asp-controller="Cart" asp-action="Index" class="btn btn-outline-success position-relative">
-                            <i class="bi bi-cart"></i>
+                            <i class="bi bi-cart3"></i>
                             @if (cartCount > 0)
                             {
                                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -149,7 +149,9 @@
 
     <!-- Footer -->
     <footer class="bg-white text-center py-3 border-top mt-auto">
-        <span class="text-muted">© 2025 - Truyện Tranh Online</span>
+        <div class="container">
+            <span class="text-muted">© 2025 - Truyện Tranh Online | Made with ❤️</span>
+        </div>
     </footer>
 
     <!-- Scripts -->
@@ -159,3 +161,4 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+    

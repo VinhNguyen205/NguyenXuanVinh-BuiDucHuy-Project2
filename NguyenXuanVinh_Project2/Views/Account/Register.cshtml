@@ -3,37 +3,51 @@
     ViewData["Title"] = "Đăng ký";
 }
 
-<div class="auth-background">
-    <div class="auth-card">
-        <h3 class="auth-title">📝 Đăng ký tài khoản</h3>
+<div class="d-flex align-items-center justify-content-center vh-100 bg-light">
+    <div class="card shadow-lg border-0 rounded-4 register-card" style="width: 400px;">
+        <div class="text-center mt-4">
+            <div class="register-icon bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center">
+                <i class="bi bi-pencil-square fs-2"></i>
+            </div>
+            <h3 class="fw-bold text-success mt-2">Đăng ký</h3>
+            <p class="text-muted small">Tạo tài khoản mới để trải nghiệm website</p>
+        </div>
 
-        @if (TempData["Success"] != null)
-        {
-            <div class="alert alert-success text-center">@TempData["Success"]</div>
-        }
+        <div class="card-body px-4 pb-4">
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success text-center rounded-3 shadow-sm">@TempData["Success"]</div>
+            }
 
-        <form asp-action="Register" method="post">
-            <div class="mb-3">
-                <input asp-for="Username" class="form-control" placeholder="Tên đăng nhập" />
-                <span asp-validation-for="Username" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <input asp-for="Email" type="email" class="form-control" placeholder="Email" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <input asp-for="Password" type="password" class="form-control" placeholder="Mật khẩu" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Xác nhận mật khẩu" />
-                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-            </div>
-            <button type="submit" class="btn btn-auth w-100">Đăng ký</button>
-        </form>
+            <form asp-action="Register" method="post">
+                <div class="mb-3">
+                    <label asp-for="Username" class="form-label fw-semibold"></label>
+                    <input asp-for="Username" class="form-control rounded-3 shadow-sm" placeholder="Nhập tên đăng nhập" />
+                    <span asp-validation-for="Username" class="text-danger small"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label fw-semibold"></label>
+                    <input asp-for="Email" type="email" class="form-control rounded-3 shadow-sm" placeholder="Nhập email" />
+                    <span asp-validation-for="Email" class="text-danger small"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Password" class="form-label fw-semibold"></label>
+                    <input asp-for="Password" type="password" class="form-control rounded-3 shadow-sm" placeholder="••••••••" />
+                    <span asp-validation-for="Password" class="text-danger small"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="ConfirmPassword" class="form-label fw-semibold"></label>
+                    <input asp-for="ConfirmPassword" type="password" class="form-control rounded-3 shadow-sm" placeholder="Xác nhận mật khẩu" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+                </div>
+                <button type="submit" class="btn btn-success w-100 rounded-3 fw-bold shadow-sm">
+                    <i class="bi bi-person-plus"></i> Đăng ký
+                </button>
+            </form>
 
-        <div class="auth-footer">
-            <a asp-action="Login">← Quay lại đăng nhập</a>
+            <div class="text-center mt-3">
+                <a asp-action="Login" class="text-success fw-semibold">← Quay lại đăng nhập</a>
+            </div>
         </div>
     </div>
 </div>
@@ -43,3 +57,29 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+
+<style>
+    .register-card {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+        .register-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+    .register-icon {
+        width: 70px;
+        height: 70px;
+        box-shadow: 0 4px 10px rgba(25, 135, 84, 0.4);
+    }
+
+    input.form-control {
+        padding: 10px 14px;
+    }
+
+    button.btn-success {
+        padding: 10px;
+        font-size: 16px;
+    }
+</style>

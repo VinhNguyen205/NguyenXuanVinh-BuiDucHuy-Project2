@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ZZ9CZ5h+Y3EHquBnReEHwNxCOmNseq7ZXq2VPYORBZc=",
+  "Hash": "XJNQOS8PPN+tzKO/s8ZpZpsSeJPwIYJZJ7gutuNxLY4=",
   "Source": "NguyenXuanVinh_Project2",
   "BasePath": "_content/NguyenXuanVinh_Project2",
   "Mode": "Default",
@@ -1333,8 +1333,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "uto5zuokby",
-      "Integrity": "8sf9kqAY43RGu06mdx1sDwE8+1B2CN59GPcgadXNPoE=",
+      "Fingerprint": "9ya75bjvbw",
+      "Integrity": "z6sys/7SchrCyowuklqAjK1RZLHuSKc2SskOlJZ6euY=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -2917,6 +2917,51 @@
   ],
   "Endpoints": [
     {
+      "Route": "css/site.9ya75bjvbw.css",
+      "AssetFile": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\css\\site.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3979"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"z6sys/7SchrCyowuklqAjK1RZLHuSKc2SskOlJZ6euY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 18 Sep 2025 13:49:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "9ya75bjvbw"
+        },
+        {
+          "Name": "label",
+          "Value": "css/site.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-z6sys/7SchrCyowuklqAjK1RZLHuSKc2SskOlJZ6euY="
+        }
+      ]
+    },
+    {
       "Route": "css/site.css",
       "AssetFile": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\css\\site.css",
       "Selectors": [],
@@ -2927,7 +2972,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "8779"
+          "Value": "3979"
         },
         {
           "Name": "Content-Type",
@@ -2935,11 +2980,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"8sf9kqAY43RGu06mdx1sDwE8+1B2CN59GPcgadXNPoE=\""
+          "Value": "\"z6sys/7SchrCyowuklqAjK1RZLHuSKc2SskOlJZ6euY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 15 Sep 2025 01:27:38 GMT"
+          "Value": "Thu, 18 Sep 2025 13:49:16 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2949,52 +2994,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-8sf9kqAY43RGu06mdx1sDwE8+1B2CN59GPcgadXNPoE="
-        }
-      ]
-    },
-    {
-      "Route": "css/site.uto5zuokby.css",
-      "AssetFile": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\css\\site.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "8779"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"8sf9kqAY43RGu06mdx1sDwE8+1B2CN59GPcgadXNPoE=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 15 Sep 2025 01:27:38 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "uto5zuokby"
-        },
-        {
-          "Name": "label",
-          "Value": "css/site.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-8sf9kqAY43RGu06mdx1sDwE8+1B2CN59GPcgadXNPoE="
+          "Value": "sha256-z6sys/7SchrCyowuklqAjK1RZLHuSKc2SskOlJZ6euY="
         }
       ]
     },

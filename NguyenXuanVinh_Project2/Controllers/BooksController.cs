@@ -7,8 +7,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NguyenXuanVinh_Project2.Models;
 using Project2.Models;
-using NguyenXuanVinh_Project2.Helpers;
-
 
 namespace NguyenXuanVinh_Project2.Controllers
 {
@@ -22,31 +20,57 @@ namespace NguyenXuanVinh_Project2.Controllers
         }
 
         // GET: Books
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string? category, int? price)
         {
-            var project2Context = _context.Books
+            var books = _context.Books
                 .Include(b => b.Category)
-                .Include(b => b.Publisher);
-            return View(await project2Context.ToListAsync());
+                .Include(b => b.Publisher)
+                .AsQueryable();
+
+            // Lọc theo Category (chỉ lọc nếu category khớp với CategoryName trong DB)
+            if (!string.IsNullOrEmpty(category) && _context.Categories.Any(c => c.CategoryName == category))
+            {
+                books = books.Where(b => b.Category != null && b.Category.CategoryName == category);
+
+            }
+
+            // Lọc theo Price (theo mức)
+            if (price.HasValue)
+            {
+                switch (price.Value)
+                {
+                    case 1: // < 50,000
+                        books = books.Where(b => b.Price < 50000);
+                        break;
+                    case 2: // 50,000 - 100,000
+                        books = books.Where(b => b.Price >= 50000 && b.Price <= 100000);
+                        break;
+                    case 3: // 100,000 - 200,000
+                        books = books.Where(b => b.Price >= 100000 && b.Price <= 200000);
+                        break;
+                    case 4: // 200,000 - 300,000
+                        books = books.Where(b => b.Price >= 200000 && b.Price <= 300000);
+                        break;
+                    case 5: // > 300,000
+                        books = books.Where(b => b.Price > 300000);
+                        break;
+                }
+            }
+            return View(await books.ToListAsync());
         }
+
 
         // GET: Books/Details/5
         public async Task<IActionResult> Details(string id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             var book = await _context.Books
                 .Include(b => b.Category)
                 .Include(b => b.Publisher)
                 .FirstOrDefaultAsync(m => m.BookId == id);
 
-            if (book == null)
-            {
-                return NotFound();
-            }
+            if (book == null) return NotFound();
 
             return View(book);
         }
@@ -78,16 +102,10 @@ namespace NguyenXuanVinh_Project2.Controllers
         // GET: Books/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             var book = await _context.Books.FindAsync(id);
-            if (book == null)
-            {
-                return NotFound();
-            }
+            if (book == null) return NotFound();
 
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", book.CategoryId);
             ViewData["PublisherId"] = new SelectList(_context.Publishers, "PublisherId", "PublisherName", book.PublisherId);
@@ -99,10 +117,7 @@ namespace NguyenXuanVinh_Project2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("BookId,Title,Author,Release,Price,Description,Picture,PublisherId,CategoryId")] Book book)
         {
-            if (id != book.BookId)
-            {
-                return NotFound();
-            }
+            if (id != book.BookId) return NotFound();
 
             if (ModelState.IsValid)
             {
@@ -113,14 +128,8 @@ namespace NguyenXuanVinh_Project2.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!BookExists(book.BookId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    if (!BookExists(book.BookId)) return NotFound();
+                    else throw;
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -133,20 +142,14 @@ namespace NguyenXuanVinh_Project2.Controllers
         // GET: Books/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             var book = await _context.Books
                 .Include(b => b.Category)
                 .Include(b => b.Publisher)
                 .FirstOrDefaultAsync(m => m.BookId == id);
 
-            if (book == null)
-            {
-                return NotFound();
-            }
+            if (book == null) return NotFound();
 
             return View(book);
         }

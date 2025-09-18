@@ -1,426 +1,184 @@
-﻿/* ====== HÀNH ĐỘNG ====== */
+﻿/* ===== RESET + FONT ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', 'Roboto', sans-serif;
+    background-color: #f6f9f7;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* ===== BUTTONS ===== */
 .action-buttons {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
     flex-wrap: wrap;
+    margin: 1rem 0;
 }
 
     .action-buttons .btn {
-        padding: 8px 14px;
-        border-radius: 8px;
-        font-size: 13px;
-        font-weight: 500;
-        color: #fff !important;
-        text-decoration: none !important;
-        transition: all 0.3s ease-in-out;
-        border: none !important;
+        padding: 10px 20px;
+        border-radius: 25px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #fff;
+        text-decoration: none;
+        transition: all 0.25s ease;
         cursor: pointer;
         display: inline-flex;
         align-items: center;
         justify-content: center;
         gap: 6px;
+        border: none;
     }
 
-/* ====== NÚT THÊM VÀO GIỎ / CẬP NHẬT / XÓA ====== */
 .btn-add {
-    background: linear-gradient(135deg, #38b000, #57d26d);
-    border: none;
-    color: #fff;
-    font-weight: 600;
-    padding: 10px 18px;
-    border-radius: 12px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease-in-out;
+    background: linear-gradient(135deg, #66bb6a, #43a047);
+    box-shadow: 0 4px 10px rgba(67, 160, 71, 0.2);
 }
 
     .btn-add:hover {
-        background: linear-gradient(135deg, #2d8f00, #3db34a);
-        transform: translateY(-2px) scale(1.05);
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        background: linear-gradient(135deg, #57c268, #388e3c);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 14px rgba(56, 142, 60, 0.25);
     }
 
     .btn-add:active {
-        transform: scale(0.98);
-        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+        transform: scale(0.96);
     }
 
-/* ====== BẢNG GIỎ HÀNG ====== */
+/* ===== TABLE ===== */
 .table {
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.05);
     background: #fff;
 }
-
-    .table th,
-    .table td {
-        vertical-align: middle !important;
-    }
 
     .table th {
-        background-color: #d4edda;
-        color: #155724;
+        background: #e8f5e9;
+        color: #2e7d32;
         font-weight: 600;
+        text-align: center;
     }
 
-    .table tbody tr {
-        transition: background 0.3s, transform 0.3s;
+    .table td {
+        text-align: center;
+        vertical-align: middle;
     }
 
-        .table tbody tr:hover {
-            background-color: #f1f8f3;
-            transform: translateY(-2px);
-        }
-
-/* ====== TÊN SÁCH ====== */
-.book-title {
-    font-weight: 600;
-    font-size: 0.95rem;
-    color: #212529;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 200px; /* giới hạn width để hiển thị ellipsis */
-}
-
-/* Nếu muốn wrap xuống dòng thay vì ellipsis, dùng: */
-/*
-.book-title {
-    white-space: normal;
-    word-break: break-word;
-    max-width: none;
-}
-*/
-
-/* ====== HERO SECTION ====== */
-.hero-section {
-    background: linear-gradient(135deg, #28a745, #20c997);
-    border-radius: 0 0 50px 50px;
-    color: #fff;
-    padding: 60px 20px;
-    text-align: center;
-}
-
-    .hero-section h1 {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 15px;
+    .table tbody tr:hover {
+        background-color: #f9fcfa;
     }
 
-    .hero-section p {
-        font-size: 1.2rem;
-        color: rgba(255, 255, 255, 0.9);
-    }
-
-/* ====== SECTION TITLE ====== */
-.section-title {
-    font-size: 28px;
-    font-weight: 600;
-    position: relative;
-    display: inline-block;
-    margin-bottom: 20px;
-}
-
-    .section-title::after {
-        content: "";
-        width: 60px;
-        height: 4px;
-        background: #28a745;
-        display: block;
-        margin: 10px auto 0;
-        border-radius: 2px;
-    }
-
-/* ====== CATEGORY & BOOK GRID ====== */
-.grid-container {
-    display: grid;
-    gap: 20px;
-    width: 100%;
-    margin: 0 auto;
-}
-
-.category-grid,
-.book-grid {
-    grid-template-columns: repeat(4, 1fr);
-}
-
-/* ====== CATEGORY CARD ====== */
-.category-card {
-    padding: 25px 15px;
-    border-radius: 15px;
-    background: #fff;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-    text-align: center;
-}
-
-    .category-card img {
-        height: 100px;
-        object-fit: contain;
-        margin-bottom: 15px;
-        max-width: 100%;
-    }
-
-    .category-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-    }
-
-/* ====== BOOK CARD ====== */
+/* ===== BOOK CARD ===== */
 .book-card {
-    border-radius: 12px;
+    border-radius: 14px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
+    background: #fff;
     display: flex;
     flex-direction: column;
-    height: 100%;
-    background: #fff;
+    height: 100%; /* 🔑 giúp card bằng nhau */
 }
 
     .book-card img {
         width: 100%;
-        height: 280px;
+        height: 240px; /* đồng bộ ảnh */
         object-fit: cover;
     }
 
     .book-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        transform: translateY(-6px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
 
 .book-card-body {
+    flex: 1; /* 🔑 ép body chiếm hết chiều cao */
     padding: 15px;
     text-align: center;
-    flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-between; /* giữ nút luôn ở đáy */
 }
 
     .book-card-body h6 {
         font-weight: 600;
-        min-height: 40px;
-        margin-bottom: 10px;
+        font-size: 1rem;
+        margin-bottom: 6px;
+        color: #222;
+        min-height: 40px; /* 🔑 giữ tiêu đề gọn, không lệch */
+    }
+
+    .book-card-body p {
+        font-size: 0.9rem;
+        color: #666;
+        margin: 0 0 8px;
     }
 
 .price {
-    color: #28a745;
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 12px;
+    font-weight: 700;
+    color: #2e7d32;
+    margin-bottom: 10px;
 }
 
-/* ====== RESPONSIVE ====== */
-@media (max-width: 1200px) {
-    .category-grid,
-    .book-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    .book-card img {
-        height: 250px;
-    }
+/* ===== HERO ===== */
+.hero-section {
+    background: linear-gradient(135deg, #81c784, #388e3c);
+    border-radius: 0 0 40px 40px;
+    color: #fff;
+    padding: 70px 20px;
+    text-align: center;
 }
 
-@media (max-width: 992px) {
-    .category-grid,
-    .book-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .book-card img {
-        height: 220px;
-    }
-
-    .category-card img {
-        height: 90px;
-    }
-}
-
-@media (max-width: 768px) {
-    .hero-section {
-        padding: 50px 15px;
-    }
-
-        .hero-section h1 {
-            font-size: 1.8rem;
-        }
-
-    .section-title {
-        font-size: 22px;
-    }
-
-    .category-grid,
-    .book-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .book-card img {
-        height: 200px;
-    }
-
-    .category-card img {
-        height: 80px;
-    }
-}
-
-@media (max-width: 576px) {
     .hero-section h1 {
-        font-size: 1.6rem;
+        font-size: 2.4rem;
+        font-weight: 700;
     }
 
     .hero-section p {
         font-size: 1rem;
+        color: rgba(255,255,255,0.9);
+        margin-top: 8px;
     }
 
-    .section-title {
-        font-size: 20px;
-    }
-
-    .book-card img {
-        height: 180px;
-    }
-
-    .category-card img {
-        height: 70px;
-    }
-
-    .action-buttons {
-        gap: 6px;
-    }
-
-        .action-buttons .btn {
-            font-size: 12px;
-            padding: 6px 10px;
-        }
-
-    .book-title {
-        max-width: 120px; /* responsive ellipsis */
-    }
-}
-/* ====== NAVBAR CUSTOM ====== */
+/* ===== NAVBAR ===== */
 .navbar {
-    font-weight: 500;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
     .navbar .nav-link {
-        color: #333;
-        transition: color 0.25s ease;
-        padding: 8px 14px;
+        color: #444;
+        font-weight: 500;
+        transition: color 0.25s;
     }
 
-        .navbar .nav-link:hover,
-        .navbar .nav-link:focus {
-            color: #28a745;
+        .navbar .nav-link:hover {
+            color: #2e7d32;
         }
 
     .navbar .dropdown-menu {
-        border-radius: 8px;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
 
-    .navbar .dropdown-item:hover {
-        background: #f8f9fa;
-        color: #28a745;
-    }
-
-/* Search box hiệu ứng mở rộng */
-.search-box input {
-    width: 160px;
-    transition: width 0.3s ease;
-}
-
-    .search-box input:focus {
-        width: 240px;
-    }
-/* Nền gradient nhẹ */
-.auth-background {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #e8f5e9, #ffffff); /* xanh nhạt pha trắng */
-}
-
-/* Card */
-.auth-card {
-    width: 380px;
-    background: #fff;
-    border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-    padding: 2rem;
-    animation: fadeIn 0.5s ease-in-out;
-}
-
-/* Tiêu đề */
-.auth-title {
+/* ===== CATEGORY / GỢI Ý ===== */
+.section-title {
     font-weight: 700;
     color: #2e7d32;
     text-align: center;
-    margin-bottom: 1.5rem;
+    margin: 2rem 0 1.5rem;
+    font-size: 1.4rem;
 }
 
-/* Input */
-.auth-card .form-control {
-    border-radius: 10px;
-    padding: 12px;
-    border: 1px solid #dcdcdc;
-    transition: 0.3s;
-}
-
-    .auth-card .form-control:focus {
-        border-color: #43a047;
-        box-shadow: 0 0 6px rgba(67, 160, 71, 0.3);
-    }
-
-/* Nút */
-.btn-auth {
-    background: linear-gradient(90deg, #43a047, #66bb6a);
-    border: none;
-    border-radius: 50px;
-    font-weight: 600;
-    padding: 12px;
-    transition: 0.3s;
-}
-
-    .btn-auth:hover {
-        background: linear-gradient(90deg, #388e3c, #4caf50);
-        transform: translateY(-1px);
-    }
-
-/* Link nhỏ */
-.auth-footer {
-    text-align: center;
-    margin-top: 1rem;
-    font-size: 0.9rem;
-}
-
-    .auth-footer a {
-        color: #388e3c;
-        font-weight: 600;
-        text-decoration: none;
-    }
-
-        .auth-footer a:hover {
-            text-decoration: underline;
-        }
-
-/* Hiệu ứng vào */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.category-grid {
+    display: grid;
 }
