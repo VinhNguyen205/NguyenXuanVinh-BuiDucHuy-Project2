@@ -12,7 +12,7 @@ public partial class Account
     [Key]
     [StringLength(36)]
     [Unicode(false)]
-    [DatabaseGenerated(DatabaseGeneratedOption.None)] // không để Identity vì string không auto tăng
+    [DatabaseGenerated(DatabaseGeneratedOption.None)]
     public string AccountId { get; set; } = Guid.NewGuid().ToString();
 
     [StringLength(64)]
@@ -41,9 +41,13 @@ public partial class Account
     [Unicode(false)]
     public string? Phone { get; set; }
 
+    // Map thẳng tới cột IsAdmin (bit) trong DB
+    [Column("IsAdmin")]
+    public bool? IsAdmin { get; set; }
+
     public bool? Active { get; set; } = true;
 
-    // 🔑 Role: "Admin", "Member", "Guest"
+    // Role: "Admin", "Member", ...
     [StringLength(20)]
     [Unicode(false)]
     public string Role { get; set; } = "Member";

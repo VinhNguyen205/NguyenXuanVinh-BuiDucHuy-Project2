@@ -26,11 +26,13 @@ public partial class OrderDetail
 
     public int? TotalMoney { get; set; }
 
-    [ForeignKey("BookId")]
-    [InverseProperty("OrderDetails")]
+    // 🔗 Quan hệ 1-n với Book
+    [ForeignKey(nameof(BookId))]
+    [InverseProperty(nameof(Book.OrderDetails))]
     public virtual Book? Book { get; set; }
 
-    [ForeignKey("OrderId")]
-    [InverseProperty("OrderDetails")]
-    public virtual OrderBook? Order { get; set; }
+    // 🔗 Quan hệ 1-n với OrderBook
+    [ForeignKey(nameof(OrderId))]
+    [InverseProperty(nameof(OrderBook.OrderDetails))]
+    public virtual OrderBook? OrderBook { get; set; }
 }

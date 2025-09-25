@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using NguyenXuanVinh_Project2.Models;
 using Project2.Models;
-using Microsoft.AspNetCore.Http;
+using System;
 using System.Linq;
 
 namespace NguyenXuanVinh_Project2.Controllers
@@ -15,74 +17,73 @@ namespace NguyenXuanVinh_Project2.Controllers
             _context = context;
         }
 
-        // GET: /Account/Login
+        // ===================== LOGIN =====================
         [HttpGet]
         public IActionResult Login(string? returnUrl = null)
         {
+            // Nếu đã đăng nhập → quay về trang chủ
             if (!string.IsNullOrEmpty(HttpContext.Session.GetString("Username")))
-            {
-                // Nếu đã login thì chuyển hướng luôn
                 return RedirectToAction("Index", "Home");
-            }
 
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
-        // POST: /Account/Login
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Login(string username, string password, string? returnUrl = null)
         {
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
                 ViewBag.Error = "Vui lòng nhập đầy đủ thông tin.";
                 return View();
             }
 
             var user = _context.Accounts
-                .FirstOrDefault(a => a.Username == username
-                                  && a.Password == password
-                                  && (a.Active ?? false));
-
+                               .AsNoTracking()
+                               .FirstOrDefault(a => a.Username == username
+                                                 && a.Password == password // ⚠️ Nên hash thực tế
+                                                 && (a.Active ?? false));
             if (user == null)
             {
                 ViewBag.Error = "Sai tài khoản hoặc mật khẩu, hoặc tài khoản bị khóa!";
                 return View();
             }
 
-            // Lưu session
+            // 👉 Lưu session
             HttpContext.Session.SetString("Username", user.Username);
             HttpContext.Session.SetString("AccountId", user.AccountId);
             HttpContext.Session.SetString("Role", user.Role ?? "Member");
 
-            // Nếu có returnUrl hợp lệ → redirect về đó
-            if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+            // ⚡ Quan trọng: set IsAdmin cho AdminController
+            if (string.Equals(user.Role, "Admin", StringComparison.OrdinalIgnoreCase))
             {
-                return Redirect(returnUrl);
+                HttpContext.Session.SetString("IsAdmin", "true");
+            }
+            else
+            {
+                HttpContext.Session.Remove("IsAdmin");
             }
 
-            // Mặc định điều hướng theo Role
-            if (user.Role == "Admin")
-                return RedirectToAction("Index", "Admin");
+            // Nếu có returnUrl hợp lệ → redirect về đó
+            if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                return Redirect(returnUrl);
 
-            return RedirectToAction("Index", "Home");
+            // Điều hướng theo Role
+            return string.Equals(user.Role, "Admin", StringComparison.OrdinalIgnoreCase)
+                ? RedirectToAction("Index", "Admin")
+                : RedirectToAction("Index", "Home");
         }
 
-        // GET: /Account/Register
+        // ===================== REGISTER MEMBER =====================
         [HttpGet]
-        public IActionResult Register()
-        {
-            return View();
-        }
+        public IActionResult Register() => View();
 
-        // POST: /Account/Register
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Register(RegisterViewModel model)
         {
-            if (!ModelState.IsValid)
-                return View(model);
+            if (!ModelState.IsValid) return View(model);
 
             if (_context.Accounts.Any(a => a.Username == model.Username))
             {
@@ -95,7 +96,7 @@ namespace NguyenXuanVinh_Project2.Controllers
                 AccountId = Guid.NewGuid().ToString(),
                 Username = model.Username,
                 Email = model.Email,
-                Password = model.Password, // ⚠️ TODO: hash password
+                Password = model.Password, // ⚠️ Nên hash
                 Active = true,
                 Role = "Member"
             };
@@ -107,17 +108,15 @@ namespace NguyenXuanVinh_Project2.Controllers
             return RedirectToAction("Login");
         }
 
-        // GET: /Account/RegisterAdmin
+        // ===================== REGISTER ADMIN =====================
         [HttpGet]
         public IActionResult RegisterAdmin()
         {
             if (HttpContext.Session.GetString("Role") != "Admin")
                 return RedirectToAction("Login");
-
             return View();
         }
 
-        // POST: /Account/RegisterAdmin
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult RegisterAdmin(Account model)
@@ -125,8 +124,7 @@ namespace NguyenXuanVinh_Project2.Controllers
             if (HttpContext.Session.GetString("Role") != "Admin")
                 return RedirectToAction("Login");
 
-            if (!ModelState.IsValid)
-                return View(model);
+            if (!ModelState.IsValid) return View(model);
 
             if (_context.Accounts.Any(a => a.Username == model.Username))
             {
@@ -145,7 +143,7 @@ namespace NguyenXuanVinh_Project2.Controllers
             return RedirectToAction("Login");
         }
 
-        // GET: /Account/Logout
+        // ===================== LOGOUT =====================
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();

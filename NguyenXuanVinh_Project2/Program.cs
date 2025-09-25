@@ -1,11 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NguyenXuanVinh_Project2.Models;
-using Project2.Models;
+using Project2.Models;   // Nếu DbContext nằm trong namespace này
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Kết nối CSDL
+// ================== 1. Add services ==================
 var connectionString = builder.Configuration.GetConnectionString("Project2");
+
+// Đăng ký DbContext
 builder.Services.AddDbContext<Project2DbContext>(options =>
     options.UseSqlServer(connectionString));
 
@@ -15,14 +18,18 @@ builder.Services.AddControllersWithViews();
 // 👉 Thêm Session
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(30); // hết hạn sau 30 phút
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Hết hạn sau 30 phút
     options.Cookie.HttpOnly = true;
-    options.Cookie.IsEssential = true;
+    options.Cookie.IsEssential = true; // Bắt buộc cho GDPR
 });
+
+// 👉 Nếu sau này dùng [Authorize] thì cần Identity/Cookie
+// builder.Services.AddAuthentication(...);
+// builder.Services.AddAuthorization(...);
 
 var app = builder.Build();
 
-// Cấu hình pipeline
+// ================== 2. Configure middleware pipeline ==================
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -34,12 +41,15 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
-
-// 👉 Bật Session
+// 👉 Bật Session **TRƯỚC** Authorization
 app.UseSession();
 
-// Cấu hình route mặc định
+// 👉 Nếu có Authentication thì gọi ở đây
+// app.UseAuthentication();
+
+app.UseAuthorization();
+
+// Route mặc định
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

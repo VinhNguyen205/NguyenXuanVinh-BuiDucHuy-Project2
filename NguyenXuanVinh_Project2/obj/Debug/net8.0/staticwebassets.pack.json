@@ -13,8 +13,40 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\5cm.jpg",
+      "PackagePath": "staticwebassets\\images\\books\\5cm.jpg"
+    },
+    {
       "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\admin.jpg",
       "PackagePath": "staticwebassets\\images\\books\\admin.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\aoharu.jpg",
+      "PackagePath": "staticwebassets\\images\\books\\aoharu.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\assclass.jpg",
+      "PackagePath": "staticwebassets\\images\\books\\assclass.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\banner1.jpg",
+      "PackagePath": "staticwebassets\\images\\books\\banner1.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\banner2.webp",
+      "PackagePath": "staticwebassets\\images\\books\\banner2.webp"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\banner3.webp",
+      "PackagePath": "staticwebassets\\images\\books\\banner3.webp"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\blackclover.jpg",
+      "PackagePath": "staticwebassets\\images\\books\\blackclover.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\bleach.jpg",
+      "PackagePath": "staticwebassets\\images\\books\\bleach.jpg"
     },
     {
       "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\bluelock.png",
@@ -25,8 +57,40 @@
       "PackagePath": "staticwebassets\\images\\books\\chainsawman.jpg"
     },
     {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\clannad.jpg",
+      "PackagePath": "staticwebassets\\images\\books\\clannad.jpg"
+    },
+    {
       "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\dbs.jpg",
       "PackagePath": "staticwebassets\\images\\books\\dbs.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\deathnote.jpg",
+      "PackagePath": "staticwebassets\\images\\books\\deathnote.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\erased.jpg",
+      "PackagePath": "staticwebassets\\images\\books\\erased.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\fairytail.jpg",
+      "PackagePath": "staticwebassets\\images\\books\\fairytail.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\fma.jpg",
+      "PackagePath": "staticwebassets\\images\\books\\fma.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\goblin.jpg",
+      "PackagePath": "staticwebassets\\images\\books\\goblin.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\horimiya.jpg",
+      "PackagePath": "staticwebassets\\images\\books\\horimiya.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\hunter.jpg",
+      "PackagePath": "staticwebassets\\images\\books\\hunter.jpg"
     },
     {
       "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\jujutsukaisen.jpg",
@@ -37,8 +101,32 @@
       "PackagePath": "staticwebassets\\images\\books\\kimet.jpg"
     },
     {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\komi.jpg",
+      "PackagePath": "staticwebassets\\images\\books\\komi.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\konosuba.jpg",
+      "PackagePath": "staticwebassets\\images\\books\\konosuba.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\madeinabyss.jpg",
+      "PackagePath": "staticwebassets\\images\\books\\madeinabyss.jpg"
+    },
+    {
       "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\mha.jpg",
       "PackagePath": "staticwebassets\\images\\books\\mha.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\naruto.jpg",
+      "PackagePath": "staticwebassets\\images\\books\\naruto.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\neverland.jpg",
+      "PackagePath": "staticwebassets\\images\\books\\neverland.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\ngnl.jpg",
+      "PackagePath": "staticwebassets\\images\\books\\ngnl.jpg"
     },
     {
       "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\no-cover.jpg",
@@ -47,6 +135,34 @@
     {
       "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\onepiece.jpg",
       "PackagePath": "staticwebassets\\images\\books\\onepiece.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\orange.jpg",
+      "PackagePath": "staticwebassets\\images\\books\\orange.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\overlord.jpg",
+      "PackagePath": "staticwebassets\\images\\books\\overlord.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\parasyte.jpg",
+      "PackagePath": "staticwebassets\\images\\books\\parasyte.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\rezero.jpg",
+      "PackagePath": "staticwebassets\\images\\books\\rezero.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\sao.jpg",
+      "PackagePath": "staticwebassets\\images\\books\\sao.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\slime.jpg",
+      "PackagePath": "staticwebassets\\images\\books\\slime.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\souleater.jpg",
+      "PackagePath": "staticwebassets\\images\\books\\souleater.jpg"
     },
     {
       "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\spyxfamily.webp",
@@ -59,6 +175,22 @@
     {
       "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\tokyorevengers.webp",
       "PackagePath": "staticwebassets\\images\\books\\tokyorevengers.webp"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\violet.jpg",
+      "PackagePath": "staticwebassets\\images\\books\\violet.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\weathering.jpg",
+      "PackagePath": "staticwebassets\\images\\books\\weathering.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\whales.jpg",
+      "PackagePath": "staticwebassets\\images\\books\\whales.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\books\\yourlie.jpg",
+      "PackagePath": "staticwebassets\\images\\books\\yourlie.jpg"
     },
     {
       "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\home\\conan.jpg",

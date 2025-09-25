@@ -38,10 +38,11 @@ public partial class OrderBook
     [Unicode(false)]
     public string? Status { get; set; }
 
-    [ForeignKey("AccountId")]
-    [InverseProperty("OrderBooks")]
+    [ForeignKey(nameof(AccountId))]
+    [InverseProperty(nameof(Account.OrderBooks))]
     public virtual Account? Account { get; set; }
 
-    [InverseProperty("Order")]
+    // 🔑 Đồng bộ với OrderDetail.OrderBook
+    [InverseProperty(nameof(OrderDetail.OrderBook))]
     public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
 }
