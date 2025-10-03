@@ -96,9 +96,12 @@
             }
 
         @@media (max-width: 768px) {
-            .banner-slide img {
-                height: 260px;
-            }
+            .banner-slide img
+
+        {
+            height: 260px;
+        }
+
         }
 
         /* ===== HERO TEXT OVERLAY ===== */
@@ -171,9 +174,10 @@
                                 <i class="bi bi-grid"></i> Danh mục
                             </a>
                             <ul class="dropdown-menu shadow">
-                                <li><a class="dropdown-item" asp-controller="Books" asp-action="Index" asp-route-category="manga"><i class="bi bi-book"></i> Truyện tranh</a></li>
-                                <li><a class="dropdown-item" asp-controller="Books" asp-action="Index" asp-route-category="lightnovel"><i class="bi bi-brightness-alt-high"></i> Light Novel</a></li>
-                                <li><a class="dropdown-item" asp-controller="Books" asp-action="Index" asp-route-category="gift"><i class="bi bi-gift"></i> Quà tặng</a></li>
+                                <li><a class="dropdown-item" asp-controller="Books" asp-action="Index"><i class="bi bi-book"></i> Truyện tranh</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-brightness-alt-high"></i> Light Novel</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" asp-controller="Gifts" asp-action="Index"><i class="bi bi-gift"></i> Quà tặng</a></li>
                             </ul>
                         </li>
 
@@ -237,11 +241,11 @@
                                 <i class="bi bi-cart3"></i>
                                 @if (cartCount > 0)
                                 {
-                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">@cartCount</span>
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-count">@cartCount</span>
                                 }
                             </a>
                             <div class="mini-cart text-start">
-                                <p><strong>Giỏ hàng:</strong> @cartCount sản phẩm</p>
+                                <p><strong>Giỏ hàng:</strong> <span id="mini-cart-count">@cartCount</span> sản phẩm</p>
                                 <p class="text-success">Tổng tạm tính sẽ hiển thị ở đây</p>
                                 <p class="text-end"><a asp-controller="Cart" asp-action="Index" class="btn btn-sm btn-success">Xem giỏ hàng</a></p>
                             </div>

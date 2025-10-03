@@ -1,23 +1,346 @@
 ﻿@{
-    ViewData["Title"] = "Trang quản trị";
+    ViewData["Title"] = "Trang Quản Trị";
+    var username = ViewBag.Username ?? "Admin";
 }
 
-<div class="container mt-4">
-    <h2 class="text-success">Xin chào Admin, @ViewBag.Username!</h2>
-    <p>Chào mừng bạn đến với khu vực quản trị.</p>
+<div class="container-fluid py-4">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h2 class="fw-bold text-success mb-2">
+                        <i class="bi bi-speedometer2"></i> Xin chào, @username!
+                    </h2>
+                    <p class="text-muted mb-0">Chào mừng bạn đến với khu vực quản trị</p>
+                </div>
+                <div>
+                    <a href="@Url.Action("Logout","Admin")" class="btn btn-outline-danger">
+                        <i class="bi bi-box-arrow-right"></i> Đăng xuất
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <ul class="list-group mt-3">
-        <li class="list-group-item">
-            <a href="@Url.Action("Index", "Books")">📚 Quản lý Sách</a>
-        </li>
-        <li class="list-group-item">
-            <a href="@Url.Action("Index", "Category")">📂 Quản lý Danh mục</a>
-        </li>
-        <li class="list-group-item">
-            <a href="@Url.Action("Index", "Publisher")">🏢 Quản lý Nhà xuất bản</a>
-        </li>
-        <li class="list-group-item">
-            <a href="@Url.Action("Logout", "Account")" class="text-danger">🚪 Đăng xuất</a>
-        </li>
-    </ul>
+    <!-- Statistics Cards -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-3 col-sm-6">
+            <div class="stat-card">
+                <div class="stat-card-inner bg-gradient-primary">
+                    <div class="stat-icon">
+                        <i class="bi bi-book-fill"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h6 class="stat-label">Tổng Sách</h6>
+                        <h3 class="stat-value">@(ViewBag.TotalBooks ?? 0)</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+            <div class="stat-card">
+                <div class="stat-card-inner bg-gradient-success">
+                    <div class="stat-icon">
+                        <i class="bi bi-grid-3x3-gap-fill"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h6 class="stat-label">Danh Mục</h6>
+                        <h3 class="stat-value">@(ViewBag.TotalCategories ?? 0)</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+            <div class="stat-card">
+                <div class="stat-card-inner bg-gradient-warning">
+                    <div class="stat-icon">
+                        <i class="bi bi-building"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h6 class="stat-label">Nhà Xuất Bản</h6>
+                        <h3 class="stat-value">@(ViewBag.TotalPublishers ?? 0)</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+            <div class="stat-card">
+                <div class="stat-card-inner bg-gradient-info">
+                    <div class="stat-icon">
+                        <i class="bi bi-gift-fill"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h6 class="stat-label">Quà Tặng</h6>
+                        <h3 class="stat-value">@(ViewBag.TotalGifts ?? 0)</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Management Actions -->
+    <div class="row g-4 mb-4">
+        <div class="col-lg-4 col-md-6">
+            <div class="action-card">
+                <div class="action-header bg-primary">
+                    <i class="bi bi-book-half"></i>
+                    <h5>Quản lý Sách</h5>
+                </div>
+                <div class="action-body">
+                    <p class="text-muted">Thêm, sửa, xóa sách và quà tặng trong hệ thống</p>
+                    <div class="d-grid gap-2">
+                        <a href="@Url.Action("Index","Books")" class="btn btn-outline-primary">
+                            <i class="bi bi-list-ul"></i> Xem danh sách
+                        </a>
+                        <a href="@Url.Action("Create","Books")" class="btn btn-primary">
+                            <i class="bi bi-plus-circle-fill"></i> Thêm sách mới
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+            <div class="action-card">
+                <div class="action-header bg-success">
+                    <i class="bi bi-gift-fill"></i>
+                    <h5>Quản lý Quà tặng</h5>
+                </div>
+                <div class="action-body">
+                    <p class="text-muted">Quản lý các sản phẩm quà tặng đặc biệt</p>
+                    <div class="d-grid gap-2">
+                        <a href="@Url.Action("Index","Gifts")" class="btn btn-outline-success">
+                            <i class="bi bi-list-ul"></i> Xem danh sách
+                        </a>
+                        <a href="@Url.Action("Create","Books")" class="btn btn-success">
+                            <i class="bi bi-plus-circle-fill"></i> Thêm quà tặng
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+            <div class="action-card">
+                <div class="action-header bg-warning">
+                    <i class="bi bi-building"></i>
+                    <h5>Quản lý Nhà xuất bản</h5>
+                </div>
+                <div class="action-body">
+                    <p class="text-muted">Quản lý thông tin các nhà xuất bản</p>
+                    <div class="d-grid gap-2">
+                        <a href="@Url.Action("Index","Publisher")" class="btn btn-outline-warning">
+                            <i class="bi bi-list-ul"></i> Xem danh sách
+                        </a>
+                        <a href="@Url.Action("Create","Publisher")" class="btn btn-warning">
+                            <i class="bi bi-plus-circle-fill"></i> Thêm NXB mới
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Guide for Gifts -->
+    <div class="row">
+        <div class="col-12">
+            <div class="guide-card">
+                <div class="guide-header">
+                    <i class="bi bi-lightbulb-fill"></i>
+                    <h5>Hướng dẫn thêm Quà tặng</h5>
+                </div>
+                <div class="guide-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="fw-bold text-success mb-3"><i class="bi bi-1-circle-fill"></i> Thêm sản phẩm mới</h6>
+                            <ol class="guide-list">
+                                <li>Click nút <strong>"Thêm sách mới"</strong> ở phần Quản lý Sách</li>
+                                <li>Điền đầy đủ thông tin sản phẩm</li>
+                                <li>Tại dropdown <strong>Category</strong>, chọn <code>Gift</code> hoặc <code>Quà tặng</code></li>
+                                <li>Click <strong>Save</strong> để hoàn tất</li>
+                            </ol>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="fw-bold text-info mb-3"><i class="bi bi-2-circle-fill"></i> Chuyển sản phẩm cũ thành Gift</h6>
+                            <ol class="guide-list">
+                                <li>Vào <strong>Quản lý Sách</strong> → Danh sách</li>
+                                <li>Tìm sản phẩm cần chuyển</li>
+                                <li>Click nút <span class="badge bg-primary">Edit</span></li>
+                                <li>Đổi <strong>Category</strong> thành <code>Gift</code></li>
+                                <li>Lưu lại</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="alert alert-info mt-3 mb-0">
+                        <i class="bi bi-info-circle-fill"></i>
+                        <strong>Lưu ý:</strong> Nếu chưa có Category "Gift", vui lòng vào <strong>Quản lý Danh mục</strong> để tạo mới.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<style>
+    /* Statistics Cards */
+    .stat-card {
+        height: 100%;
+    }
+
+    .stat-card-inner {
+        padding: 1.5rem;
+        border-radius: 16px;
+        color: white;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+        .stat-card-inner:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .bg-gradient-success {
+        background: linear-gradient(135deg, #5cb85c 0%, #2e7d32 100%);
+    }
+
+    .bg-gradient-warning {
+        background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+    }
+
+    .bg-gradient-info {
+        background: linear-gradient(135deg, #17a2b8 0%, #0d7f95 100%);
+    }
+
+    .stat-icon {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 4rem;
+        opacity: 0.2;
+    }
+
+    .stat-content {
+        position: relative;
+        z-index: 1;
+    }
+
+    .stat-label {
+        font-size: 0.875rem;
+        opacity: 0.9;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .stat-value {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin: 0;
+    }
+
+    /* Action Cards */
+    .action-card {
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        transition: transform 0.3s, box-shadow 0.3s;
+        height: 100%;
+    }
+
+        .action-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+    .action-header {
+        padding: 1.5rem;
+        color: white;
+        text-align: center;
+    }
+
+        .action-header i {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .action-header h5 {
+            margin: 0;
+            font-weight: 600;
+        }
+
+    .action-body {
+        padding: 1.5rem;
+    }
+
+    /* Guide Card */
+    .guide-card {
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .guide-header {
+        background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+        padding: 1.5rem;
+        color: white;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+        .guide-header i {
+            font-size: 2rem;
+        }
+
+        .guide-header h5 {
+            margin: 0;
+            font-weight: 600;
+        }
+
+    .guide-body {
+        padding: 2rem;
+    }
+
+    .guide-list {
+        padding-left: 1.5rem;
+        line-height: 2;
+    }
+
+        .guide-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .guide-list code {
+            background: #f8f9fa;
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #d63384;
+            font-weight: 600;
+        }
+
+    /* Responsive */
+    @@media (max-width: 768px) {
+        .stat-value {
+            font-size: 2rem;
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+        }
+    }
+</style>
