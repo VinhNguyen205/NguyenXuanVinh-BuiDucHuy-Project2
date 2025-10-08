@@ -2,8 +2,6 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using NguyenXuanVinh_Project2.Models;
 using NguyenXuanVinh_Project2.Helpers;
-
-
 namespace NguyenXuanVinh_Project2.Controllers
 {
     public class HomeController : Controller

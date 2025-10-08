@@ -10,13 +10,13 @@
             <div class="d-flex justify-content-between align-items-center">
                 <div>
                     <h2 class="fw-bold text-success mb-2">
-                        <i class="bi bi-speedometer2"></i> Xin chào, @username!
+                        <i class="bi bi-speedometer2"></i> Welcome, @username!
                     </h2>
-                    <p class="text-muted mb-0">Chào mừng bạn đến với khu vực quản trị</p>
+                    <p class="text-muted mb-0">Chào Mừng Đến Với Khu Vực Quản Trị</p>
                 </div>
                 <div>
                     <a href="@Url.Action("Logout","Admin")" class="btn btn-outline-danger">
-                        <i class="bi bi-box-arrow-right"></i> Đăng xuất
+                        <i class="bi bi-box-arrow-right"></i> Đăng Xuất
                     </a>
                 </div>
             </div>
@@ -94,10 +94,10 @@
                     <p class="text-muted">Thêm, sửa, xóa sách và quà tặng trong hệ thống</p>
                     <div class="d-grid gap-2">
                         <a href="@Url.Action("Index","Books")" class="btn btn-outline-primary">
-                            <i class="bi bi-list-ul"></i> Xem danh sách
+                            <i class="bi bi-list-ul"></i> Xem Danh Sách
                         </a>
                         <a href="@Url.Action("Create","Books")" class="btn btn-primary">
-                            <i class="bi bi-plus-circle-fill"></i> Thêm sách mới
+                            <i class="bi bi-plus-circle-fill"></i> Thêm Sách Mới
                         </a>
                     </div>
                 </div>
@@ -111,13 +111,13 @@
                     <h5>Quản lý Quà tặng</h5>
                 </div>
                 <div class="action-body">
-                    <p class="text-muted">Quản lý các sản phẩm quà tặng đặc biệt</p>
+                    <p class="text-muted">Quản Lý Sản Phẩm Quà Tặng</p>
                     <div class="d-grid gap-2">
                         <a href="@Url.Action("Index","Gifts")" class="btn btn-outline-success">
                             <i class="bi bi-list-ul"></i> Xem danh sách
                         </a>
-                        <a href="@Url.Action("Create","Books")" class="btn btn-success">
-                            <i class="bi bi-plus-circle-fill"></i> Thêm quà tặng
+                        <a href="@Url.Action("Create","Gifts")" class="btn btn-success">
+                            <i class="bi bi-plus-circle-fill"></i> Thêm Quà Tặng
                         </a>
                     </div>
                 </div>
@@ -134,10 +134,10 @@
                     <p class="text-muted">Quản lý thông tin các nhà xuất bản</p>
                     <div class="d-grid gap-2">
                         <a href="@Url.Action("Index","Publisher")" class="btn btn-outline-warning">
-                            <i class="bi bi-list-ul"></i> Xem danh sách
+                            <i class="bi bi-list-ul"></i> Xem Danh Sách
                         </a>
                         <a href="@Url.Action("Create","Publisher")" class="btn btn-warning">
-                            <i class="bi bi-plus-circle-fill"></i> Thêm NXB mới
+                            <i class="bi bi-plus-circle-fill"></i> Thêm NXB
                         </a>
                     </div>
                 </div>
@@ -185,162 +185,3 @@
     </div>
 </div>
 
-<style>
-    /* Statistics Cards */
-    .stat-card {
-        height: 100%;
-    }
-
-    .stat-card-inner {
-        padding: 1.5rem;
-        border-radius: 16px;
-        color: white;
-        position: relative;
-        overflow: hidden;
-        transition: transform 0.3s, box-shadow 0.3s;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-        .stat-card-inner:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-        }
-
-    .bg-gradient-primary {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    }
-
-    .bg-gradient-success {
-        background: linear-gradient(135deg, #5cb85c 0%, #2e7d32 100%);
-    }
-
-    .bg-gradient-warning {
-        background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
-    }
-
-    .bg-gradient-info {
-        background: linear-gradient(135deg, #17a2b8 0%, #0d7f95 100%);
-    }
-
-    .stat-icon {
-        position: absolute;
-        right: 20px;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 4rem;
-        opacity: 0.2;
-    }
-
-    .stat-content {
-        position: relative;
-        z-index: 1;
-    }
-
-    .stat-label {
-        font-size: 0.875rem;
-        opacity: 0.9;
-        margin-bottom: 0.5rem;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-
-    .stat-value {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin: 0;
-    }
-
-    /* Action Cards */
-    .action-card {
-        background: white;
-        border-radius: 16px;
-        overflow: hidden;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        transition: transform 0.3s, box-shadow 0.3s;
-        height: 100%;
-    }
-
-        .action-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-        }
-
-    .action-header {
-        padding: 1.5rem;
-        color: white;
-        text-align: center;
-    }
-
-        .action-header i {
-            font-size: 3rem;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .action-header h5 {
-            margin: 0;
-            font-weight: 600;
-        }
-
-    .action-body {
-        padding: 1.5rem;
-    }
-
-    /* Guide Card */
-    .guide-card {
-        background: white;
-        border-radius: 16px;
-        overflow: hidden;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    }
-
-    .guide-header {
-        background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
-        padding: 1.5rem;
-        color: white;
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-    }
-
-        .guide-header i {
-            font-size: 2rem;
-        }
-
-        .guide-header h5 {
-            margin: 0;
-            font-weight: 600;
-        }
-
-    .guide-body {
-        padding: 2rem;
-    }
-
-    .guide-list {
-        padding-left: 1.5rem;
-        line-height: 2;
-    }
-
-        .guide-list li {
-            margin-bottom: 0.5rem;
-        }
-
-        .guide-list code {
-            background: #f8f9fa;
-            padding: 2px 8px;
-            border-radius: 4px;
-            color: #d63384;
-            font-weight: 600;
-        }
-
-    /* Responsive */
-    @@media (max-width: 768px) {
-        .stat-value {
-            font-size: 2rem;
-        }
-
-        .stat-icon {
-            font-size: 3rem;
-        }
-    }
-</style>

@@ -1,0 +1,74 @@
+﻿@model NguyenXuanVinh_Project2.Models.Gift
+@using System.Net
+
+@{
+    ViewData["Title"] = "Chi tiết quà tặng";
+}
+
+<div class="container my-5">
+    <div class="row">
+        <!-- Ảnh -->
+        <div class="col-md-5">
+            @{
+                var imgSrc = !string.IsNullOrEmpty(Model.Picture) &&
+                (Model.Picture.StartsWith("http://") || Model.Picture.StartsWith("https://"))
+                ? Model.Picture
+                : Url.Content("~/images/gifts/" + (Model.Picture ?? "no-gift.jpg"));
+            }
+            <img src="@imgSrc"
+                 alt="@Html.Raw(WebUtility.HtmlDecode(Model.GiftName ?? "Không rõ"))"
+                 class="img-fluid rounded shadow-sm"
+                 onerror="this.onerror=null; this.src='/images/gifts/no-gift.jpg';" />
+        </div>
+
+        <!-- Nội dung -->
+        <div class="col-md-7">
+            <h2 class="fw-bold text-success mb-3">
+                <i class="bi bi-gift-fill"></i>
+                @Html.Raw(WebUtility.HtmlDecode(Model.GiftName ?? "Không rõ"))
+            </h2>
+
+            <p class="text-muted">
+                @Html.Raw(WebUtility.HtmlDecode(Model.Description ?? "Không có mô tả cho quà tặng này."))
+            </p>
+
+            <p class="fs-5 text-success fw-bold mb-3">
+                <i class="bi bi-cash-stack"></i>
+                @(Model.Price?.ToString("N0") ?? "0") đ
+            </p>
+
+            <p class="text-muted mb-4">
+                <i class="bi bi-box-seam"></i>
+                Còn lại: @(Model.Stock ?? 0) sản phẩm
+            </p>
+
+            <div class="d-flex gap-2">
+                <button type="button" class="btn btn-outline-success add-to-cart" data-id="@Model.GiftId">
+                    <i class="bi bi-cart-plus"></i> Thêm vào giỏ
+                </button>
+                <a href="@Url.Action("Index", "Gifts")" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i> Quay lại
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function () {
+            $(".add-to-cart").click(function () {
+                var id = $(this).data("id");
+                $.post('/Cart/AddToCart', { id: id })
+                    .done(function (res) {
+                        $("#cart-count").text(res.count);
+                        alert("Đã thêm quà tặng vào giỏ!");
+                    })
+                    .fail(function () {
+                        alert("Không thể thêm vào giỏ.");
+                    });
+            });
+        });
+    </script>
+}

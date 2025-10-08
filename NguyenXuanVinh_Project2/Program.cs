@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NguyenXuanVinh_Project2.Models;
-using Project2.Models;   // Nếu DbContext nằm trong namespace này
 using System;
 
 var builder = WebApplication.CreateBuilder(args);

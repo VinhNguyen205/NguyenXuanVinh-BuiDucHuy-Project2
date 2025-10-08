@@ -1,0 +1,46 @@
+﻿@model NguyenXuanVinh_Project2.Models.Gift
+
+@{
+    ViewData["Title"] = "Create Gift";
+}
+
+<h2>Create Gift</h2>
+
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="GiftName" class="control-label"></label>
+        <input asp-for="GiftName" class="form-control" />
+        <span asp-validation-for="GiftName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Price" class="control-label"></label>
+        <input asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description" class="control-label"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Picture" class="control-label"></label>
+        <input asp-for="Picture" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Stock" class="control-label"></label>
+        <input asp-for="Stock" class="form-control" />
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

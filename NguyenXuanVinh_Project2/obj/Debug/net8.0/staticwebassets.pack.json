@@ -193,6 +193,10 @@
       "PackagePath": "staticwebassets\\images\\books\\yourlie.jpg"
     },
     {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\gifts\\narutokey.webp",
+      "PackagePath": "staticwebassets\\images\\gifts\\narutokey.webp"
+    },
+    {
       "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\home\\conan.jpg",
       "PackagePath": "staticwebassets\\images\\home\\conan.jpg"
     },
@@ -201,8 +205,16 @@
       "PackagePath": "staticwebassets\\images\\home\\daupha.jpg"
     },
     {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\home\\logo.jpg",
+      "PackagePath": "staticwebassets\\images\\home\\logo.jpg"
+    },
+    {
       "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\home\\op100.jpg",
       "PackagePath": "staticwebassets\\images\\home\\op100.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\home\\opnew.webp",
+      "PackagePath": "staticwebassets\\images\\home\\opnew.webp"
     },
     {
       "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\home\\tuphuc.webp",

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using NguyenXuanVinh_Project2.Models;
 
-namespace Project2.Models
+namespace NguyenXuanVinh_Project2.Models
 {
     public partial class Project2DbContext : DbContext
     {
@@ -18,11 +18,14 @@ namespace Project2.Models
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Publisher> Publishers { get; set; }
 
+        // Thêm mới
+        public virtual DbSet<Gift> Gifts { get; set; }
+        public virtual DbSet<OrderGift> OrderGifts { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                // ⚠️ Thay chuỗi kết nối nếu cần
                 optionsBuilder.UseSqlServer(
                     "Server=.;Database=Project2;Trusted_Connection=True;TrustServerCertificate=True;");
             }
@@ -135,6 +138,42 @@ namespace Project2.Models
                       .OnDelete(DeleteBehavior.Restrict);
             });
 
+            // ===== GIFT =====
+            modelBuilder.Entity<Gift>(entity =>
+            {
+                entity.HasKey(e => e.GiftId);
+
+                entity.Property(e => e.GiftName)
+                    .HasMaxLength(200)
+                    .IsRequired();
+
+                entity.Property(e => e.Price)
+                    .HasColumnType("float"); // <- CHỈNH DÒNG NÀY CHO TRÙNG SQL
+
+                entity.Property(e => e.Description)
+                    .HasColumnType("ntext");
+
+                entity.Property(e => e.Picture)
+                    .HasMaxLength(200);
+            });
+
+
+            // ===== ORDERGIFT =====
+            modelBuilder.Entity<OrderGift>(entity =>
+            {
+                entity.HasKey(e => e.OrderGiftId);
+
+                entity.HasOne(d => d.OrderBook)
+                      .WithMany(p => p.OrderGifts)
+                      .HasForeignKey(d => d.OrderId)
+                      .OnDelete(DeleteBehavior.Cascade);
+
+                entity.HasOne(d => d.Gift)
+                      .WithMany(p => p.OrderGifts)
+                      .HasForeignKey(d => d.GiftId)
+                      .OnDelete(DeleteBehavior.Restrict);
+            });
+
             // ===== SEED DATA =====
             modelBuilder.Entity<Category>().HasData(
                 new Category { CategoryId = 1, CategoryName = "Shounen" },
@@ -215,5 +254,6 @@ new Book { BookId = "M00040", Title = "Children of the Whales", Author = "Abi Um
                 }
             );
         }
+        public DbSet<OrderGift> OrderGift { get; set; } = default!;
     }
 }

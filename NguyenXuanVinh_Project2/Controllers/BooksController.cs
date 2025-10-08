@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NguyenXuanVinh_Project2.Models;
-using Project2.Models;
 
 namespace NguyenXuanVinh_Project2.Controllers
 {
@@ -167,6 +166,31 @@ namespace NguyenXuanVinh_Project2.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
+        // GET: Books/Search
+        [HttpGet]
+        public async Task<IActionResult> Search(string query)
+        {
+            if (string.IsNullOrWhiteSpace(query))
+            {
+                // Nếu không nhập gì thì quay lại Index
+                return RedirectToAction(nameof(Index));
+            }
+
+            var books = await _context.Books
+                .Include(b => b.Category)
+                .Include(b => b.Publisher)
+                .Where(b =>
+                    (b.Title != null && b.Title.Contains(query)) ||
+                    (b.Author != null && b.Author.Contains(query)) ||
+                    (b.Category != null && b.Category.CategoryName.Contains(query)) ||
+                    (b.Publisher != null && b.Publisher.PublisherName.Contains(query))
+                )
+                .ToListAsync();
+
+            ViewData["SearchQuery"] = query;
+            return View("Index", books); 
+        }
+
 
         private bool BookExists(string id)
         {

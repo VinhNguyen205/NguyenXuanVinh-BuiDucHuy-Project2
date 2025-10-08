@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using NguyenXuanVinh_Project2.Models;
-using Project2.Models;
 using System;
 using System.Linq;
 

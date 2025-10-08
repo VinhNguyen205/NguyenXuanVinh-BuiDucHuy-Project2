@@ -80,6 +80,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/NguyenXuanVinh_Project2/NguyenXuanVinh_Project2/Views/Gifts/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2lmdHNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/NguyenXuanVinh_Project2/NguyenXuanVinh_Project2/Views/Gifts/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2lmdHNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/NguyenXuanVinh_Project2/NguyenXuanVinh_Project2/Views/Gifts/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2lmdHNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/NguyenXuanVinh_Project2/NguyenXuanVinh_Project2/Views/Gifts/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2lmdHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -90,6 +102,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/NguyenXuanVinh_Project2/NguyenXuanVinh_Project2/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/NguyenXuanVinh_Project2/NguyenXuanVinh_Project2/Views/OrderGifts/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJHaWZ0c1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/NguyenXuanVinh_Project2/NguyenXuanVinh_Project2/Views/OrderGifts/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJHaWZ0c1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/NguyenXuanVinh_Project2/NguyenXuanVinh_Project2/Views/OrderGifts/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJHaWZ0c1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/NguyenXuanVinh_Project2/NguyenXuanVinh_Project2/Views/OrderGifts/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJHaWZ0c1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/NguyenXuanVinh_Project2/NguyenXuanVinh_Project2/Views/OrderGifts/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJHaWZ0c1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/NguyenXuanVinh_Project2/NguyenXuanVinh_Project2/Views/Shared/Error.cshtml]

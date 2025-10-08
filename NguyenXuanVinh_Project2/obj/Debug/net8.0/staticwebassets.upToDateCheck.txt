@@ -45,9 +45,12 @@ wwwroot\images\books\violet.jpg
 wwwroot\images\books\weathering.jpg
 wwwroot\images\books\whales.jpg
 wwwroot\images\books\yourlie.jpg
+wwwroot\images\gifts\narutokey.webp
 wwwroot\images\home\conan.jpg
 wwwroot\images\home\daupha.jpg
+wwwroot\images\home\logo.jpg
 wwwroot\images\home\op100.jpg
+wwwroot\images\home\opnew.webp
 wwwroot\images\home\tuphuc.webp
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap.css

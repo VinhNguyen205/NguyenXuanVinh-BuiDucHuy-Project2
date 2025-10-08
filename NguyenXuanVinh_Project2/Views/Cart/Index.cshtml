@@ -1,101 +1,137 @@
-﻿@model List<NguyenXuanVinh_Project2.Models.CartItem>
+﻿@model IEnumerable<NguyenXuanVinh_Project2.Models.CartItem>
+@using System.Net
 
 @{
-    ViewData["Title"] = "Giỏ hàng";
-    var total = Model.Sum(i => (i.Book?.Price ?? 0) * i.Quantity);
+    ViewData["Title"] = "Giỏ Hàng";
+    decimal total = Model.Sum(i => i.TotalPrice);
+    int totalItems = Model.Sum(i => i.Quantity);
 }
 
-<!-- Đảm bảo meta charset UTF-8 nếu chưa có ở _Layout.cshtml -->
-<head>
-    <meta charset="utf-8" />
-</head>
-
-<h2 class="mb-4 text-success">🛒 Giỏ hàng của bạn</h2>
-
-@if (!Model.Any())
-{
-    <div class="alert alert-info">Giỏ hàng trống. Hãy thêm sản phẩm vào giỏ!</div>
-}
-else
-{
-    <div class="table-responsive">
-        <table class="table table-bordered align-middle text-center shadow-sm">
-            <thead class="table-success">
-                <tr>
-                    <th style="width:100px;">Ảnh</th>
-                    <th style="min-width:200px;">Tên sách</th>
-                    <th>Giá</th>
-                    <th style="width:160px;">Số Lượng</th>
-                    <th>Tổng</th>
-                    <th style="width:100px;">Hành Động</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @{
-                                string imgSrc;
-                                if (!string.IsNullOrEmpty(item.Book?.Picture) &&
-                                (item.Book!.Picture.StartsWith("http://") || item.Book.Picture.StartsWith("https://")))
-                                {
-                                    imgSrc = item.Book.Picture;
-                                }
-                                else
-                                {
-                                    imgSrc = Url.Content("~/images/books/" + (item.Book?.Picture ?? "no-cover.jpg"));
-                                }
-                            }
-
-                            <img src="@imgSrc" alt="@(item.Book?.Title ?? "Không rõ tiêu đề")"
-                                 style="height:80px; object-fit:cover;" class="rounded shadow-sm"
-                                 onerror="this.onerror=null; this.src='/images/books/no-cover.jpg';" />
-                        </td>
-                        <td class="book-title fw-bold" title="@Html.Raw(item.Book?.Title ?? "Không rõ")">
-                            @{
-                                string displayTitle = item.Book?.Title ?? "Không rõ";
-                                // Nếu data bị encode sẵn, decode trước (thử nếu Raw chưa đủ)
-                                displayTitle = System.Net.WebUtility.HtmlDecode(displayTitle);
-                            }
-                            @Html.Raw(displayTitle)
-                        </td>
-                        <td>@((item.Book?.Price ?? 0).ToString("N0")) đ</td>
-                        <td>
-                            <form asp-action="UpdateQuantity" asp-controller="Cart" method="post" class="d-flex justify-content-center">
-                                <input type="hidden" name="id" value="@item.Book?.BookId" />
-                                <input type="number" name="quantity" value="@item.Quantity" min="1" class="form-control w-50 text-center me-2" />
-                                <button type="submit" class="btn btn-sm btn-outline-primary">Cập nhật</button>
-                            </form>
-                        </td>
-                        <td class="text-success fw-bold">
-                            @(((item.Book?.Price ?? 0) * item.Quantity).ToString("N0")) đ
-                        </td>
-                        <td>
-                            <form asp-action="Remove" asp-controller="Cart" method="post">
-                                <input type="hidden" name="id" value="@item.Book?.BookId" />
-                                <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
-                            </form>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-            <tfoot>
-                <tr class="table-light">
-                    <td colspan="4" class="text-end fw-bold">Tổng cộng:</td>
-                    <td colspan="2" class="text-danger fw-bold fs-5">
-                        @(total.ToString("N0")) đ
-                    </td>
-                </tr>
-            </tfoot>
-        </table>
+<div class="container my-5">
+    <div class="text-center mb-5">
+        <h1 class="fw-bold text-primary">
+            <i class="bi bi-cart4"></i> Giỏ Hàng Của Bạn
+        </h1>
+        <p class="text-muted">Kiểm tra lại đơn hàng trước khi thanh toán</p>
     </div>
 
-    <div class="text-end mt-3">
-        <a href="@Url.Action("Checkout", "Cart")" class="btn btn-success btn-lg">
-            <i class="bi bi-cash-coin"></i> Thanh toán
-        </a>
-    </div>
-}
+    @if (Model != null && Model.Any())
+    {
+        <div class="row g-4">
+            @foreach (var item in Model)
+            {
+                var isBook = item.Book != null;
+                var name = isBook ? item.Book?.Title ?? "Không rõ" : item.Gift?.GiftName ?? "Không rõ";
+                var description = isBook ? item.Book?.Description ?? "" : item.Gift?.Description ?? "";
+                var price = isBook ? Convert.ToDecimal(item.Book?.Price ?? 0) : Convert.ToDecimal(item.Gift?.Price ?? 0);
+                var imgSrc = isBook
+                ? Url.Content("~/images/books/" + (item.Book?.Picture ?? "no-book.jpg"))
+                : (!string.IsNullOrEmpty(item.Gift?.Picture) &&
+                (item.Gift.Picture.StartsWith("http://") || item.Gift.Picture.StartsWith("https://"))
+                ? item.Gift.Picture
+                : Url.Content("~/images/gifts/" + (item.Gift?.Picture ?? "no-gift.jpg")));
 
-<!-- Debug info (xóa sau): @ViewBag.DebugTitle -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card h-100 cart-card">
+                        <div class="position-relative">
+                            <img src="@imgSrc" class="card-img-top" alt="@name"
+                                 loading="lazy"
+                                 onerror="this.onerror=null; this.src='/images/no-image.jpg';" />
+                            <span class="badge @(isBook ? "bg-info" : "bg-danger") position-absolute top-0 end-0 m-2">
+                                <i class="bi @(isBook ? "bi-book" : "bi-gift")"></i> @(isBook ? "Truyện" : "Quà")
+                            </span>
+                        </div>
+
+                        <div class="card-body text-center">
+                            <h6 class="fw-semibold text-truncate" title="@name">
+                                @Html.Raw(WebUtility.HtmlDecode(name ?? "Không rõ"))
+                            </h6>
+                            <p class="text-muted small mb-1 description">@Html.Raw(WebUtility.HtmlDecode(description ?? ""))</p>
+                            <p class="fw-bold text-success mb-2 price">
+                                <i class="bi bi-cash-stack"></i> @price.ToString("N0") đ
+                            </p>
+
+                            <form asp-action="@(isBook ? "UpdateQuantityBook" : "UpdateQuantityGift")" method="post" class="d-inline">
+                                <input type="hidden" name="@(isBook ? "bookId" : "giftId")" value="@(isBook ? item.BookId : item.GiftId)" />
+                                <div class="input-group input-group-sm justify-content-center mb-2">
+                                    <input type="number" name="quantity" value="@item.Quantity" min="1" class="form-control text-center" aria-label="Số lượng" />
+                                    <button type="submit" class="btn btn-outline-secondary" aria-label="Cập nhật số lượng">
+                                        <i class="bi bi-arrow-repeat"></i>
+                                    </button>
+                                </div>
+                            </form>
+
+                            <p class="text-muted mb-0">Thành tiền: <span class="fw-bold">@item.TotalPrice.ToString("N0") đ</span></p>
+                        </div>
+
+                        <div class="card-footer bg-white border-0 text-center">
+                            <form asp-action="@(isBook ? "RemoveBook" : "RemoveGift")" method="post">
+                                <input type="hidden" name="@(isBook ? "bookId" : "giftId")" value="@(isBook ? item.BookId : item.GiftId)" />
+                                <button type="submit" class="btn btn-sm btn-outline-danger" aria-label="Xóa sản phẩm khỏi giỏ hàng">
+                                    <i class="bi bi-trash"></i> Xóa
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="text-end mt-5">
+            <h5 class="fw-bold text-secondary mb-2">
+                Tổng: @totalItems món hàng
+            </h5>
+            <h4 class="fw-bold text-success">
+                Tổng cộng: @total.ToString("N0") đ
+            </h4>
+
+            <div class="mt-3">
+                <a href="@Url.Action("Checkout", "Cart")" class="btn btn-lg btn-primary me-2" aria-label="Tiến hành thanh toán">
+                    <i class="bi bi-credit-card"></i> Thanh Toán
+                </a>
+                <form asp-action="ClearCart" method="post" class="d-inline">
+                    <button type="submit" class="btn btn-lg btn-outline-danger" aria-label="Xóa toàn bộ giỏ hàng">
+                        <i class="bi bi-trash3"></i> Xóa toàn bộ
+                    </button>
+                </form>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="text-center py-5 empty-cart">
+            <i class="bi bi-cart-x"></i>
+            <h4 class="text-muted mt-3">Giỏ hàng của bạn đang trống</h4>
+            <div class="mt-3">
+                <a href="@Url.Action("Index", "Books")" class="btn btn-outline-primary me-2" aria-label="Xem thêm truyện">
+                    <i class="bi bi-book"></i> Xem thêm truyện
+                </a>
+                <a href="@Url.Action("Index", "Gifts")" class="btn btn-outline-success" aria-label="Xem quà tặng">
+                    <i class="bi bi-gift"></i> Xem quà tặng
+                </a>
+            </div>
+        </div>
+    }
+
+    @if (TempData["Message"] != null)
+    {
+        <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1055;">
+            <div id="cartToast" class="toast align-items-center text-bg-success border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        <i class="bi bi-check-circle me-2"></i> @TempData["Message"]
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var toastEl = document.getElementById('cartToast');
+                var toast = new bootstrap.Toast(toastEl, { delay: 3000 });
+                toast.show();
+            });
+        </script>
+    }
+</div>

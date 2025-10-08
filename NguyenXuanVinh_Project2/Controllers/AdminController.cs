@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using NguyenXuanVinh_Project2.Models;
 using System;
 using System.Threading.Tasks;
-using Project2.Models;
 
 namespace NguyenXuanVinh_Project2.Controllers
 {

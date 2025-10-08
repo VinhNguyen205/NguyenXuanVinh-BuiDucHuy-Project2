@@ -42,7 +42,11 @@ public partial class OrderBook
     [InverseProperty(nameof(Account.OrderBooks))]
     public virtual Account? Account { get; set; }
 
-    // 🔑 Đồng bộ với OrderDetail.OrderBook
+    // 🔑 Quan hệ 1 OrderBook - nhiều OrderDetails
     [InverseProperty(nameof(OrderDetail.OrderBook))]
     public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
+
+    // 🔑 Quan hệ 1 OrderBook - nhiều OrderGifts
+    [InverseProperty(nameof(OrderGift.OrderBook))]
+    public virtual ICollection<OrderGift> OrderGifts { get; set; } = new List<OrderGift>();
 }
