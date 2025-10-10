@@ -49,6 +49,7 @@ wwwroot\images\gifts\narutokey.webp
 wwwroot\images\home\conan.jpg
 wwwroot\images\home\daupha.jpg
 wwwroot\images\home\logo.jpg
+wwwroot\images\home\logoweb.jpg
 wwwroot\images\home\op100.jpg
 wwwroot\images\home\opnew.webp
 wwwroot\images\home\tuphuc.webp

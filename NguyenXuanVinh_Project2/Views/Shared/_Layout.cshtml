@@ -1,24 +1,24 @@
-﻿    @using Microsoft.AspNetCore.Http
-    <!DOCTYPE html>
-    <html lang="vi">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+﻿@using Microsoft.AspNetCore.Http
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Mèo Mê Manga</title>
 
-        <!-- Bootstrap & Icons -->
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css" />
+    <!-- Bootstrap & Icons -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css" />
 
-        <!-- Custom CSS -->
-        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    </head>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
 
-    <body class="d-flex flex-column min-vh-100">
-        <!-- ===== NAVBAR ===== -->
-        <header>
-            <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
-                <div class="container-fluid">
+<body class="d-flex flex-column min-vh-100">
+    <!-- ===== NAVBAR ===== -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+            <div class="container-fluid">
                 <!-- Logo -->
                 <a class="navbar-brand fw-bold text-success d-flex align-items-center gap-2"
                    asp-controller="Home" asp-action="Index">
@@ -26,59 +26,42 @@
                     <span>Mèo Mê Manga</span>
                 </a>
 
+                <!-- Toggle -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#mainNavbar" aria-controls="mainNavbar"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                    <!-- Toggle -->
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#mainNavbar" aria-controls="mainNavbar"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+                <!-- Navbar content -->
+                <div class="collapse navbar-collapse" id="mainNavbar">
+                    <!-- Menu trái -->
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Books" asp-action="Index">
+                                <i class="bi bi-book"></i> Truyện tranh
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Books" asp-action="Index" asp-route-category="Truyện chữ">
+                                <i class="bi bi-brightness-alt-high"></i> Light Novel
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Gifts" asp-action="Index">
+                                <i class="bi bi-gift"></i> Quà tặng
+                            </a>
+                        </li>
+                    </ul>
 
-                    <!-- Navbar content -->
-                    <div class="collapse navbar-collapse" id="mainNavbar">
-                        <!-- Menu trái -->
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Home" asp-action="Index">
-                                    <i class="bi bi-house-door"></i> Trang Chủ
-                                </a>
-                            </li>
-
-                            <!-- Danh mục -->
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                                    <i class="bi bi-grid"></i> Danh mục
-                                </a>
-                                <ul class="dropdown-menu shadow">
-                                    <li><a class="dropdown-item" asp-controller="Books" asp-action="Index"><i class="bi bi-book"></i> Truyện tranh</a></li>
-                                    <li><a class="dropdown-item" href="#"><i class="bi bi-brightness-alt-high"></i> Light Novel</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" asp-controller="Gifts" asp-action="Index"><i class="bi bi-gift"></i> Quà tặng</a></li>
-                                </ul>
-                            </li>
-
-                            <!-- Thông tin -->
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                                    <i class="bi bi-info-circle"></i> Thông Tin
-                                </a>
-                                <ul class="dropdown-menu shadow">
-                                    <li><a class="dropdown-item" asp-controller="Release" asp-action="Index"><i class="bi bi-calendar-event"></i> Lịch phát hành</a></li>
-                                    <li><a class="dropdown-item" asp-controller="News" asp-action="Index"><i class="bi bi-newspaper"></i> Tin tức</a></li>
-                                    <li><a class="dropdown-item" asp-controller="Promotion" asp-action="Index"><i class="bi bi-tags"></i> Khuyến mãi</a></li>
-                                    <li><a class="dropdown-item" asp-controller="Guide" asp-action="Index"><i class="bi bi-question-circle"></i> Hướng dẫn</a></li>
-                                    <li><a class="dropdown-item" asp-controller="Contact" asp-action="Index"><i class="bi bi-envelope"></i> Liên hệ</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    <!-- Thay thế toàn bộ phần col-lg-4 search -->
+                    <!-- Thanh tìm kiếm -->
                     <div class="col-lg-4 d-flex justify-content-center align-items-center" style="flex: 1;">
                         <form method="get" action="@Url.Action("Search", "Books")" style="width: 100%; max-width: 600px;">
                             <div class="input-group">
                                 <input type="text"
                                        name="query"
                                        class="form-control"
-                                       placeholder="Tìm truyện, tác giả..."
+                                       placeholder="Tìm Truyện, Tác Giả..."
                                        style="min-width: 300px;">
                                 <button type="submit" class="btn btn-success">
                                     <i class="bi bi-search"></i>
@@ -87,75 +70,72 @@
                         </form>
                     </div>
 
-                        <!-- Tài khoản & giỏ hàng -->
-                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
-                            <li class="nav-item dropdown me-2">
-                                @if (Context.Session.GetString("Username") == null)
-                                {
-                                    <a class="btn btn-outline-success dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                                        <i class="bi bi-person-circle"></i> Tài Khoản
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-end shadow">
-                                        <li><a class="dropdown-item" asp-controller="Account" asp-action="Login"><i class="bi bi-box-arrow-in-right"></i> Đăng nhập</a></li>
-                                        <li><a class="dropdown-item" asp-controller="Account" asp-action="Register"><i class="bi bi-person-plus"></i> Đăng ký</a></li>
-                                    </ul>
-                                }
-                                else
-                                {
-                                    <a class="btn btn-outline-dark dropdown-toggle d-flex align-items-center gap-2" href="#" data-bs-toggle="dropdown">
-                                        <i class="bi bi-person-circle"></i> @Context.Session.GetString("Username")
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-end shadow">
-                                        @if (Context.Session.GetString("Role") == "Admin")
-                                        {
-                                            <li><a class="dropdown-item" asp-controller="Admin" asp-action="Index"><i class="bi bi-speedometer2"></i> Trang quản trị</a></li>
-                                            <li><hr class="dropdown-divider" /></li>
-                                        }
-                                        <li><a class="dropdown-item text-danger" asp-controller="Account" asp-action="Logout"><i class="bi bi-box-arrow-right"></i> Đăng xuất</a></li>
-                                    </ul>
-                                }
-                            </li>
-                            <li class="nav-item position-relative cart-wrapper">
-                                @{
-                                    var cartCount = Context.Session.GetInt32("CartCount") ?? 0;
-                                }
-                                <a asp-controller="Cart" asp-action="Index" class="btn btn-outline-success position-relative">
-                                    <i class="bi bi-cart3"></i>
-                                    @if (cartCount > 0)
-                                    {
-                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-count">@cartCount</span>
-                                    }
+                    <!-- Tài khoản & giỏ hàng -->
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
+                        <li class="nav-item dropdown me-2">
+                            @if (Context.Session.GetString("Username") == null)
+                            {
+                                <a class="btn btn-outline-success dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                                    <i class="bi bi-person-circle"></i> Tài Khoản
                                 </a>
-                                <div class="mini-cart text-start">
-                                    <p><strong>Giỏ hàng:</strong> <span id="mini-cart-count">@cartCount</span> sản phẩm</p>
-                                    <p class="text-success">Tổng tạm tính sẽ hiển thị ở đây</p>
-                                    <p class="text-end"><a asp-controller="Cart" asp-action="Index" class="btn btn-sm btn-success">Xem giỏ hàng</a></p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                                <ul class="dropdown-menu dropdown-menu-end shadow">
+                                    <li><a class="dropdown-item" asp-controller="Account" asp-action="Login"><i class="bi bi-box-arrow-in-right"></i> Đăng nhập</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Account" asp-action="Register"><i class="bi bi-person-plus"></i> Đăng ký</a></li>
+                                </ul>
+                            }
+                            else
+                            {
+                                <a class="btn btn-outline-dark dropdown-toggle d-flex align-items-center gap-2" href="#" data-bs-toggle="dropdown">
+                                    <i class="bi bi-person-circle"></i> @Context.Session.GetString("Username")
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end shadow">
+                                    @if (Context.Session.GetString("Role") == "Admin")
+                                    {
+                                        <li><a class="dropdown-item" asp-controller="Admin" asp-action="Index"><i class="bi bi-speedometer2"></i> Trang quản trị</a></li>
+                                        <li><hr class="dropdown-divider" /></li>
+                                    }
+                                    <li><a class="dropdown-item text-danger" asp-controller="Account" asp-action="Logout"><i class="bi bi-box-arrow-right"></i> Đăng xuất</a></li>
+                                </ul>
+                            }
+                        </li>
+                        <li class="nav-item position-relative cart-wrapper">
+                            @{
+                                var cartCount = Context.Session.GetInt32("CartCount") ?? 0;
+                                var cartTotal = Context.Session.GetString("CartTotal") ?? "0";
+                            }
+                            <a asp-controller="Cart" asp-action="Index" class="btn btn-outline-success position-relative">
+                                <i class="bi bi-cart3"></i>
+                                @if (cartCount > 0)
+                                {
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-count">@cartCount</span>
+                                }
+                            </a>
+                            <div class="mini-cart text-start">
+                                <p><strong>Giỏ hàng:</strong> <span id="mini-cart-count">@cartCount</span> sản phẩm</p>
+                                <p class="text-success fw-bold fs-5">
+                                    <i class="bi bi-cash-stack me-1"></i>
+                                    <span id="mini-cart-total">@cartTotal</span>đ
+                                </p>
+                                <p class="text-end"><a asp-controller="Cart" asp-action="Index" class="btn btn-sm btn-success">Xem giỏ hàng</a></p>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-            </nav>
-        </header>
-
-        <!-- ===== MAIN ===== -->
-        <main class="flex-grow-1 py-4">
-            <div class="container">
-                @RenderBody()
             </div>
-        </main>
+        </nav>
+    </header>
 
-        <!-- ===== FOOTER ===== -->
-        <footer class="text-center py-3 border-top mt-auto">
-            <div class="container text-muted">
-                © 2025 - Mèo Mê Manga | Made With ❤️
-            </div>
-        </footer>
+    <!-- ===== MAIN ===== -->
+    <main class="flex-grow-1 py-4">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </main>
 
-        <!-- Scripts -->
-        <script src="~/lib/jquery/dist/jquery.min.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-        @await RenderSectionAsync("Scripts", required: false)
-    </body>
-    </html>
+    <!-- Scripts -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

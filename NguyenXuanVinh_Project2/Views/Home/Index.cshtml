@@ -3,125 +3,200 @@
 }
 
 <!-- Hero banner -->
-<section class="hero-section text-center mb-5">
-    <div class="container">
-        <h1 class="display-4 fw-bold text-white mb-3 animate__animated animate__fadeInDown">
+<section class="hero-section text-center mb-5 position-relative overflow-hidden" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 80px 0; border-radius: 0 0 50px 50px;">
+    <div class="container position-relative">
+        <h1 class="display-3 fw-bold text-white mb-3 animate__animated animate__fadeInDown">
             <i class="bi bi-book-half me-2"></i>
             Chào mừng đến với <span class="text-warning">Mèo Mê Manga</span>
         </h1>
-        <p class="lead text-light mb-4 animate__animated animate__fadeInUp">
+        <p class="lead text-light mb-4 animate__animated animate__fadeInUp fs-4">
             Kho Truyện Phong Phú – Manga, Light Novel, Comic & More!
         </p>
         <a href="@Url.Action("Index", "Books")"
-           class="btn btn-lg btn-warning shadow-sm px-4">
-            <i class="bi bi-rocket-takeoff-fill me-1"></i> Khám Phá Ngay
+           class="btn btn-warning btn-lg shadow-lg px-5 py-3 fw-bold">
+            <i class="bi bi-rocket-takeoff-fill me-2"></i> Khám Phá Ngay
         </a>
+    </div>
+    <!-- Decorative elements -->
+    <div class="position-absolute top-0 start-0 opacity-25" style="font-size: 200px;">
+        <i class="bi bi-book"></i>
+    </div>
+    <div class="position-absolute bottom-0 end-0 opacity-25" style="font-size: 200px;">
+        <i class="bi bi-star-fill"></i>
     </div>
 </section>
 
 <!-- Danh mục nổi bật -->
 <div class="container mb-5">
-    <h2 class="fw-bold mb-4 text-center section-title">
-        <i class="bi bi-grid-3x3-gap-fill me-1"></i> Danh Mục Nổi Bật
-    </h2>
-    <div class="row text-center">
-        <div class="col-md-4 mb-4">
-            <div class="category-card h-100">
-                <i class="bi bi-book fs-1 text-success"></i>
-                <h5 class="mt-3">Truyện tranh</h5>
-                <a href="@Url.Action("Index", "Books")"
-                   class="btn btn-outline-success mt-2">
-                    <i class="bi bi-eye"></i> Xem Ngay
-                </a>
-            </div>
+    <div class="text-center mb-5">
+        <h2 class="fw-bold display-5 mb-2">
+            <i class="bi bi-grid-3x3-gap-fill me-2 text-success"></i> Khám Phá Theo Thể Loại
+        </h2>
+        <p class="text-muted">Tìm kiếm truyện yêu thích theo danh mục</p>
+    </div>
+    <div class="row g-4">
+        <!-- Truyện tranh -->
+        <div class="col-md-4">
+            <a href="@Url.Action("Index", "Books")" class="text-decoration-none">
+                <div class="category-card-modern position-relative overflow-hidden rounded-4 shadow-lg" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 220px;">
+                    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center text-white p-4">
+                        <i class="bi bi-book fs-1 mb-3"></i>
+                        <h4 class="fw-bold mb-2">Truyện Tranh</h4>
+                        <p class="small opacity-75 mb-0">Manga, Manhwa, Manhua</p>
+                    </div>
+                    <div class="position-absolute bottom-0 end-0 opacity-10" style="font-size: 140px; margin: -20px;">
+                        <i class="bi bi-book"></i>
+                    </div>
+                </div>
+            </a>
         </div>
-        <div class="col-md-4 mb-4">
-            <div class="category-card h-100">
-                <i class="bi bi-journals fs-1 text-success"></i>
-                <h5 class="mt-3">Light Novel</h5>
-                <a href="@Url.Action("Index", "Books")"
-                   class="btn btn-outline-success mt-2">
-                    <i class="bi bi-eye"></i> Xem Ngay
-                </a>
-            </div>
+
+        <!-- Light Novel -->
+        <div class="col-md-4">
+            <a href="@Url.Action("Index", "Books", new { category = "Truyện chữ" })" class="text-decoration-none">
+                <div class="category-card-modern position-relative overflow-hidden rounded-4 shadow-lg" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); height: 220px;">
+                    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center text-white p-4">
+                        <i class="bi bi-journals fs-1 mb-3"></i>
+                        <h4 class="fw-bold mb-2">Light Novel</h4>
+                        <p class="small opacity-75 mb-0">Tiểu thuyết Nhật Bản</p>
+                    </div>
+                    <div class="position-absolute bottom-0 end-0 opacity-10" style="font-size: 140px; margin: -20px;">
+                        <i class="bi bi-journals"></i>
+                    </div>
+                </div>
+            </a>
         </div>
-        <div class="col-md-4 mb-4">
-            <div class="category-card h-100">
-                <i class="bi bi-gift-fill fs-1 text-success"></i>
-                <h5 class="mt-3">Quà tặng</h5>
-                <a href="@Url.Action("Index", "Gifts")"
-                   class="btn btn-outline-success mt-2">
-                    <i class="bi bi-search-heart"></i> Khám Phá
-                </a>
-            </div>
+
+        <!-- Quà tặng -->
+        <div class="col-md-4">
+            <a href="@Url.Action("Index", "Gifts")" class="text-decoration-none">
+                <div class="category-card-modern position-relative overflow-hidden rounded-4 shadow-lg" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); height: 220px;">
+                    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center text-white p-4">
+                        <i class="bi bi-gift-fill fs-1 mb-3"></i>
+                        <h4 class="fw-bold mb-2">Quà Tặng</h4>
+                        <p class="small opacity-75 mb-0">Móc khóa, Figure, Poster</p>
+                    </div>
+                    <div class="position-absolute bottom-0 end-0 opacity-10" style="font-size: 140px; margin: -20px;">
+                        <i class="bi bi-gift-fill"></i>
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
 </div>
 
-<!-- Deal trong ngày (tuỳ chọn) -->
+<!-- Deal trong ngày với Countdown -->
 <div class="container mb-5">
-    <div class="bg-success bg-gradient text-white rounded-4 p-4 text-center shadow-sm">
-        <h3 class="fw-bold mb-2">
-            <i class="bi bi-fire me-1"></i> Deal Hôm Nay
-        </h3>
-        <p class="mb-3">Giảm giá sốc cho các bộ truyện hot – số lượng giới hạn!</p>
-        <a href="@Url.Action("Index","Books")"
-           class="btn btn-warning fw-semibold px-4">
-            <i class="bi bi-lightning-charge-fill me-1"></i> Mua Ngay
-        </a>
+    <div class="row g-0 rounded-4 shadow-lg overflow-hidden">
+        <div class="col-md-8 p-5 position-relative" style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 50%, #c44569 100%);">
+            <div class="text-white position-relative" style="z-index: 2;">
+                <div class="d-flex align-items-center mb-3">
+                    <i class="bi bi-lightning-charge-fill fs-2 me-2 text-warning"></i>
+                    <h3 class="fw-bold mb-0">Flash Sale Hôm Nay</h3>
+                </div>
+                <h2 class="display-5 fw-bold mb-3">Giảm đến 50%</h2>
+                <p class="lead mb-4 opacity-90">Săn deal cực hot cho hàng trăm đầu truyện yêu thích!</p>
+
+                <!-- Countdown timer -->
+                <div class="d-flex gap-3 mb-4 flex-wrap">
+                    <div class="text-center bg-white rounded-3 p-3 shadow" style="min-width: 80px;">
+                        <div class="fs-3 fw-bold text-dark" id="hours">00</div>
+                        <small class="text-uppercase text-secondary" style="font-size: 0.75rem;">Giờ</small>
+                    </div>
+                    <div class="text-center bg-white rounded-3 p-3 shadow" style="min-width: 80px;">
+                        <div class="fs-3 fw-bold text-dark" id="minutes">00</div>
+                        <small class="text-uppercase text-secondary" style="font-size: 0.75rem;">Phút</small>
+                    </div>
+                    <div class="text-center bg-white rounded-3 p-3 shadow" style="min-width: 80px;">
+                        <div class="fs-3 fw-bold text-dark" id="seconds">00</div>
+                        <small class="text-uppercase text-secondary" style="font-size: 0.75rem;">Giây</small>
+                    </div>
+                </div>
+
+                <a href="@Url.Action("Index","Books")" class="btn btn-warning btn-lg px-5 py-3 shadow-lg fw-bold">
+                    <i class="bi bi-cart-fill me-2"></i> Mua Ngay
+                </a>
+            </div>
+            <!-- Decorative fire icon -->
+            <div class="position-absolute" style="top: 20px; right: 20px; font-size: 100px; opacity: 0.15;">
+                <i class="bi bi-fire"></i>
+            </div>
+        </div>
+        <div class="col-md-4 p-0 position-relative d-flex align-items-center justify-content-center" style="background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%); min-height: 300px;">
+            <div class="text-center">
+                <i class="bi bi-fire fs-1 text-danger mb-3" style="font-size: 80px;"></i>
+                <div class="display-4 fw-bold text-danger">HOT!</div>
+                <p class="text-dark fw-semibold mt-2">Số lượng có hạn</p>
+            </div>
+        </div>
     </div>
 </div>
 
 <!-- Sản phẩm gợi ý -->
 <div class="container mb-5">
-    <h2 class="fw-bold mb-4 text-center section-title">
-        <i class="bi bi-stars me-1"></i> Sản Phẩm Gợi Ý
-    </h2>
-    <div class="row">
-        <div class="col-md-3 mb-4">
-            <div class="book-card">
-                <img src="~/images/home/tuphuc.webp" alt="Thiên Quan Tứ Phúc">
-                <div class="book-card-body">
-                    <h6>Thiên Quan Tứ Phúc Tập 1</h6>
-                    <p class="price">120.000đ</p>
-                    <a href="#" class="btn-add">
-                        <i class="bi bi-cart-plus"></i> Add To Cart
+    <div class="text-center mb-5">
+        <h2 class="fw-bold display-5 mb-2">
+            <i class="bi bi-stars me-2 text-warning"></i> Sản Phẩm Gợi Ý
+        </h2>
+        <p class="text-muted">Những đầu sách đáng chú ý trong tháng</p>
+    </div>
+    <div class="row g-4">
+        <div class="col-md-3 col-sm-6">
+            <div class="book-card h-100 shadow-sm rounded-4 overflow-hidden bg-white">
+                <div class="position-relative overflow-hidden">
+                    <img src="~/images/home/tuphuc.webp" alt="Thiên Quan Tứ Phúc" class="w-100" style="height: 350px; object-fit: cover;">
+                    <span class="position-absolute top-0 end-0 badge bg-danger m-2">New</span>
+                </div>
+                <div class="book-card-body p-3">
+                    <h6 class="fw-bold mb-2">Thiên Quan Tứ Phúc Tập 1</h6>
+                    <p class="price text-success fw-bold fs-5 mb-3">120.000đ</p>
+                    <a href="#" class="btn btn-outline-success w-100">
+                        <i class="bi bi-cart-plus"></i> Thêm Vào Giỏ
                     </a>
                 </div>
             </div>
         </div>
-        <div class="col-md-3 mb-4">
-            <div class="book-card">
-                <img src="~/images/home/daupha.jpg" alt="Đấu Phá Thương Khung">
-                <div class="book-card-body">
-                    <h6>Đấu Phá Thương Khung Tập 1</h6>
-                    <p class="price">95.000đ</p>
-                    <a href="#" class="btn-add">
-                        <i class="bi bi-cart-plus"></i> Add To Cart
+        <div class="col-md-3 col-sm-6">
+            <div class="book-card h-100 shadow-sm rounded-4 overflow-hidden bg-white">
+                <div class="position-relative overflow-hidden">
+                    <img src="~/images/home/daupha.jpg" alt="Đấu Phá Thương Khung" class="w-100" style="height: 350px; object-fit: cover;">
+                    <span class="position-absolute top-0 end-0 badge bg-warning m-2">Hot</span>
+                </div>
+                <div class="book-card-body p-3">
+                    <h6 class="fw-bold mb-2">Đấu Phá Thương Khung Tập 1</h6>
+                    <p class="price text-success fw-bold fs-5 mb-3">95.000đ</p>
+                    <a href="#" class="btn btn-outline-success w-100">
+                        <i class="bi bi-cart-plus"></i> Thêm Vào Giỏ
                     </a>
                 </div>
             </div>
         </div>
-        <div class="col-md-3 mb-4">
-            <div class="book-card">
-                <img src="~/images/home/opnew.webp" alt="One Piece 100">
-                <div class="book-card-body">
-                    <h6>One Piece Tập 100</h6>
-                    <p class="price">60.000đ</p>
-                    <a href="#" class="btn-add">
-                        <i class="bi bi-cart-plus"></i> Add To Cart
+        <div class="col-md-3 col-sm-6">
+            <div class="book-card h-100 shadow-sm rounded-4 overflow-hidden bg-white">
+                <div class="position-relative overflow-hidden">
+                    <img src="~/images/home/opnew.webp" alt="One Piece 100" class="w-100" style="height: 350px; object-fit: cover;">
+                    <span class="position-absolute top-0 end-0 badge bg-info m-2">Bestseller</span>
+                </div>
+                <div class="book-card-body p-3">
+                    <h6 class="fw-bold mb-2">One Piece Tập 100</h6>
+                    <p class="price text-success fw-bold fs-5 mb-3">60.000đ</p>
+                    <a href="#" class="btn btn-outline-success w-100">
+                        <i class="bi bi-cart-plus"></i> Thêm Vào Giỏ
                     </a>
                 </div>
             </div>
         </div>
-        <div class="col-md-3 mb-4">
-            <div class="book-card">
-                <img src="~/images/home/conan.jpg" alt="Detective Conan">
-                <div class="book-card-body">
-                    <h6>Detective Conan Special Edition</h6>
-                    <p class="price">70.000đ</p>
-                    <a href="#" class="btn-add">
-                        <i class="bi bi-cart-plus"></i> Add To Cart
+        <div class="col-md-3 col-sm-6">
+            <div class="book-card h-100 shadow-sm rounded-4 overflow-hidden bg-white">
+                <div class="position-relative overflow-hidden">
+                    <img src="~/images/home/conan.jpg" alt="Detective Conan" class="w-100" style="height: 350px; object-fit: cover;">
+                    <span class="position-absolute top-0 end-0 badge bg-success m-2">Sale</span>
+                </div>
+                <div class="book-card-body p-3">
+                    <h6 class="fw-bold mb-2">Detective Conan Special Edition</h6>
+                    <p class="price text-success fw-bold fs-5 mb-3">70.000đ</p>
+                    <a href="#" class="btn btn-outline-success w-100">
+                        <i class="bi bi-cart-plus"></i> Thêm Vào Giỏ
                     </a>
                 </div>
             </div>
@@ -129,35 +204,237 @@
     </div>
 </div>
 
-<!-- Tin tức / blog nhỏ -->
+<!-- Tin tức / blog -->
 <div class="container mb-5">
-    <h2 class="fw-bold mb-4 text-center section-title">
-        <i class="bi bi-newspaper me-1"></i> Tin tức & Review
-    </h2>
+    <div class="text-center mb-5">
+        <h2 class="fw-bold display-5 mb-2">
+            <i class="bi bi-newspaper me-2 text-info"></i> Tin tức & Review
+        </h2>
+        <p class="text-muted">Cập nhật tin tức mới nhất về manga & light novel</p>
+    </div>
     <div class="row g-4">
         <div class="col-md-4">
-            <div class="p-3 bg-white rounded-4 shadow-sm h-100">
+            <div class="p-4 bg-white rounded-4 shadow-sm h-100 border border-light">
+                <div class="mb-3">
+                    <span class="badge bg-success">Review</span>
+                </div>
                 <h6 class="fw-bold mb-2">[Review] One Piece tập 100</h6>
-                <p class="text-muted small mb-2">Cập nhật 20/09/2025</p>
-                <p class="small">Tập 100 đánh dấu cột mốc lớn với trận chiến Wano…</p>
-                <a href="#" class="text-success small"><i class="bi bi-chevron-right"></i> Đọc tiếp</a>
+                <p class="text-muted small mb-3"><i class="bi bi-calendar3 me-1"></i> Cập nhật 20/09/2025</p>
+                <p class="small text-secondary">Tập 100 đánh dấu cột mốc lớn với trận chiến Wano đầy kịch tính...</p>
+                <a href="#" class="btn btn-sm btn-outline-success mt-2">
+                    <i class="bi bi-chevron-right"></i> Đọc tiếp
+                </a>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="p-3 bg-white rounded-4 shadow-sm h-100">
+            <div class="p-4 bg-white rounded-4 shadow-sm h-100 border border-light">
+                <div class="mb-3">
+                    <span class="badge bg-info">Top List</span>
+                </div>
                 <h6 class="fw-bold mb-2">Top Light Novel tháng 9</h6>
-                <p class="text-muted small mb-2">Cập nhật 18/09/2025</p>
-                <p class="small">Danh sách 5 bộ Light Novel bán chạy nhất…</p>
-                <a href="#" class="text-success small"><i class="bi bi-chevron-right"></i> Xem thêm</a>
+                <p class="text-muted small mb-3"><i class="bi bi-calendar3 me-1"></i> Cập nhật 18/09/2025</p>
+                <p class="small text-secondary">Danh sách 5 bộ Light Novel bán chạy nhất trong tháng qua...</p>
+                <a href="#" class="btn btn-sm btn-outline-success mt-2">
+                    <i class="bi bi-chevron-right"></i> Xem thêm
+                </a>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="p-3 bg-white rounded-4 shadow-sm h-100">
+            <div class="p-4 bg-white rounded-4 shadow-sm h-100 border border-light">
+                <div class="mb-3">
+                    <span class="badge bg-warning text-dark">Khuyến mãi</span>
+                </div>
                 <h6 class="fw-bold mb-2">Khuyến mãi mùa thu</h6>
-                <p class="text-muted small mb-2">Đến 30/09/2025</p>
-                <p class="small">Giảm tới 40% cho hàng trăm đầu truyện hot…</p>
-                <a href="#" class="text-success small"><i class="bi bi-chevron-right"></i> Xem chi tiết</a>
+                <p class="text-muted small mb-3"><i class="bi bi-calendar3 me-1"></i> Đến 30/09/2025</p>
+                <p class="small text-secondary">Giảm tới 40% cho hàng trăm đầu truyện hot nhất hiện nay...</p>
+                <a href="#" class="btn btn-sm btn-outline-success mt-2">
+                    <i class="bi bi-chevron-right"></i> Xem chi tiết
+                </a>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Footer - Liên hệ giống Hikaru -->
+<footer class="mt-5 pt-5 pb-4" style="background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); color: white;">
+    <div class="container">
+        <div class="row g-4">
+            <!-- Thông tin công ty -->
+            <div class="col-md-3">
+                <h5 class="fw-bold mb-3 text-warning">
+                    <img src="~/images/home/logo.jpg" alt="Logo" width="40" height="40" class="rounded-circle me-2">
+                    Mèo Mê Manga
+                </h5>
+                <p class="small opacity-75">Công Ty TNHH Mèo Mê Manga</p>
+                <p class="small opacity-75">Mã số thuế: 0123456789</p>
+                <p class="small opacity-75">Cấp ngày: 11/10/2025</p>
+            </div>
+
+            <!-- Liên hệ -->
+            <div class="col-md-3">
+                <h5 class="fw-bold mb-3 text-warning">
+                    <i class="bi bi-geo-alt-fill me-2"></i>Liên Hệ
+                </h5>
+                <p class="small mb-2">
+                    <i class="bi bi-pin-map me-2"></i>
+                    Số 123 Đường ABC, Phường XYZ<br>
+                    <span class="ms-4">Trung Văn, Hà Nội City</span>
+                </p>
+                <p class="small mb-2">
+                    <i class="bi bi-telephone-fill me-2"></i>
+                    <a href="tel:0357335092" class="text-white text-decoration-none">035 733 5092</a>
+                </p>
+                <p class="small mb-2">
+                    <i class="bi bi-envelope-fill me-2"></i>
+                    <a href="mailto:meomemanga@gmail.com" class="text-white text-decoration-none">meomemanga@gmail.com</a>
+                </p>
+            </div>
+
+            <!-- Chính sách -->
+            <div class="col-md-3">
+                <h5 class="fw-bold mb-3 text-warning">
+                    <i class="bi bi-file-text me-2"></i>Chính Sách Chung
+                </h5>
+                <ul class="list-unstyled small">
+                    <li class="mb-2">
+                        <a href="#" class="text-white text-decoration-none opacity-75 hover-opacity-100">
+                            <i class="bi bi-chevron-right me-1"></i> Điều khoản sử dụng
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#" class="text-white text-decoration-none opacity-75 hover-opacity-100">
+                            <i class="bi bi-chevron-right me-1"></i> Chính sách thanh toán
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#" class="text-white text-decoration-none opacity-75 hover-opacity-100">
+                            <i class="bi bi-chevron-right me-1"></i> Chính sách bảo mật
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#" class="text-white text-decoration-none opacity-75 hover-opacity-100">
+                            <i class="bi bi-chevron-right me-1"></i> Chính sách giao hàng
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#" class="text-white text-decoration-none opacity-75 hover-opacity-100">
+                            <i class="bi bi-chevron-right me-1"></i> Chính sách đổi trả
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Đăng ký nhận tin -->
+            <div class="col-md-3">
+                <h5 class="fw-bold mb-3 text-warning">
+                    <i class="bi bi-envelope-paper me-2"></i>Đăng Ký Nhận Tin
+                </h5>
+                <p class="small opacity-75 mb-3">Nhận thông tin khuyến mãi và sản phẩm mới</p>
+                <div class="input-group mb-3">
+                    <input type="email" class="form-control" placeholder="Email của bạn">
+                    <button class="btn btn-warning" type="button">
+                        <i class="bi bi-send-fill"></i>
+                    </button>
+                </div>
+                <h6 class="fw-bold mb-3 mt-4">
+                    <i class="bi bi-share me-2"></i>Fanpage
+                </h6>
+                <div class="d-flex gap-2">
+                    <a href="#" class="btn btn-outline-light btn-sm rounded-circle" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+                    <a href="#" class="btn btn-outline-light btn-sm rounded-circle" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                    <a href="#" class="btn btn-outline-light btn-sm rounded-circle" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                        <i class="bi bi-youtube"></i>
+                    </a>
+                    <a href="#" class="btn btn-outline-light btn-sm rounded-circle" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                        <i class="bi bi-tiktok"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <hr class="my-4 opacity-25">
+
+        <div class="text-center small opacity-75">
+            © 2025 - Mèo Mê Manga | Made With <i class="bi bi-heart-fill text-danger"></i>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .category-card-modern {
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        cursor: pointer;
+    }
+
+        .category-card-modern:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25) !important;
+        }
+
+    .book-card {
+        transition: all 0.3s ease;
+    }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
+        }
+
+        .book-card img {
+            transition: transform 0.3s ease;
+        }
+
+        .book-card:hover img {
+            transform: scale(1.05);
+        }
+
+    .backdrop-blur {
+        backdrop-filter: blur(10px);
+    }
+
+    .hover-opacity-100:hover {
+        opacity: 1 !important;
+    }
+</style>
+
+@section Scripts {
+    <script>
+        // Countdown Timer
+        function startCountdown() {
+            // Đặt thời gian kết thúc là 24 giờ từ bây giờ
+            const endTime = new Date().getTime() + (24 * 60 * 60 * 1000);
+
+            const timer = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = endTime - now;
+
+                // Tính toán giờ, phút, giây
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Hiển thị với format 2 chữ số
+                document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+                document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+                document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+
+                // Khi hết giờ
+                if (distance < 0) {
+                    clearInterval(timer);
+                    document.getElementById("hours").textContent = "00";
+                    document.getElementById("minutes").textContent = "00";
+                    document.getElementById("seconds").textContent = "00";
+                }
+            }, 1000);
+        }
+
+        // Khởi chạy countdown khi trang load
+        document.addEventListener('DOMContentLoaded', function() {
+            startCountdown();
+        });
+    </script>
+}

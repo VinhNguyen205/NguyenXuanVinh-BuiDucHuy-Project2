@@ -16,6 +16,29 @@ namespace NguyenXuanVinh_Project2.Controllers
             _context = context;
         }
 
+        // Helper method để cập nhật Session
+        private void UpdateCartSession(List<CartItem> cart)
+        {
+            HttpContext.Session.SetObjectAsJson("Cart", cart);
+            HttpContext.Session.SetInt32("CartCount", cart.Sum(c => c.Quantity));
+
+            // Tính tổng tiền
+            decimal total = 0;
+            foreach (var item in cart)
+            {
+                if (!string.IsNullOrEmpty(item.BookId) && item.Book != null)
+                {
+                    total += (decimal)(item.Book.Price ?? 0) * item.Quantity;
+                }
+                else if (item.GiftId.HasValue && item.Gift != null)
+                {
+                    total += (decimal)(item.Gift.Price ?? 0) * item.Quantity;
+                }
+            }
+
+            HttpContext.Session.SetString("CartTotal", total.ToString("N0"));
+        }
+
         // Trang giỏ hàng
         public IActionResult Index()
         {
@@ -33,6 +56,9 @@ namespace NguyenXuanVinh_Project2.Controllers
                     item.Gift = _context.Gifts.FirstOrDefault(g => g.GiftId == item.GiftId.Value);
                 }
             }
+
+            // Cập nhật lại session với dữ liệu mới
+            UpdateCartSession(cart);
 
             return View(cart);
         }
@@ -63,10 +89,13 @@ namespace NguyenXuanVinh_Project2.Controllers
                 });
             }
 
-            HttpContext.Session.SetObjectAsJson("Cart", cart);
-            HttpContext.Session.SetInt32("CartCount", cart.Sum(c => c.Quantity));
+            UpdateCartSession(cart);
 
-            return Json(new { count = cart.Sum(c => c.Quantity) });
+            return Json(new
+            {
+                count = cart.Sum(c => c.Quantity),
+                total = HttpContext.Session.GetString("CartTotal")
+            });
         }
 
         // Thêm quà vào giỏ
@@ -95,10 +124,8 @@ namespace NguyenXuanVinh_Project2.Controllers
                 });
             }
 
-            HttpContext.Session.SetObjectAsJson("Cart", cart);
-            HttpContext.Session.SetInt32("CartCount", cart.Sum(c => c.Quantity));
+            UpdateCartSession(cart);
 
-            // ✅ Thêm thông báo và chuyển hướng lại trang quà
             TempData["Success"] = $"Đã thêm '{gift.GiftName}' vào giỏ hàng!";
             return RedirectToAction("Index", "Gifts");
         }
@@ -110,10 +137,15 @@ namespace NguyenXuanVinh_Project2.Controllers
         {
             var cart = HttpContext.Session.GetObjectFromJson<List<CartItem>>("Cart") ?? new List<CartItem>();
             var item = cart.FirstOrDefault(c => !string.IsNullOrEmpty(c.BookId) && c.BookId == bookId);
-            if (item != null && quantity > 0) item.Quantity = quantity;
 
-            HttpContext.Session.SetObjectAsJson("Cart", cart);
-            HttpContext.Session.SetInt32("CartCount", cart.Sum(c => c.Quantity));
+            if (item != null && quantity > 0)
+            {
+                item.Quantity = quantity;
+                // Nạp lại Book để tính toán
+                item.Book = _context.Books.FirstOrDefault(b => b.BookId == bookId);
+            }
+
+            UpdateCartSession(cart);
 
             TempData["Message"] = "Cập nhật giỏ hàng thành công!";
             return RedirectToAction("Index");
@@ -125,10 +157,15 @@ namespace NguyenXuanVinh_Project2.Controllers
         {
             var cart = HttpContext.Session.GetObjectFromJson<List<CartItem>>("Cart") ?? new List<CartItem>();
             var item = cart.FirstOrDefault(c => c.GiftId.HasValue && c.GiftId.Value == giftId);
-            if (item != null && quantity > 0) item.Quantity = quantity;
 
-            HttpContext.Session.SetObjectAsJson("Cart", cart);
-            HttpContext.Session.SetInt32("CartCount", cart.Sum(c => c.Quantity));
+            if (item != null && quantity > 0)
+            {
+                item.Quantity = quantity;
+                // Nạp lại Gift để tính toán
+                item.Gift = _context.Gifts.FirstOrDefault(g => g.GiftId == giftId);
+            }
+
+            UpdateCartSession(cart);
 
             TempData["Message"] = "Cập nhật giỏ hàng thành công!";
             return RedirectToAction("Index");
@@ -142,8 +179,7 @@ namespace NguyenXuanVinh_Project2.Controllers
             var item = cart.FirstOrDefault(c => !string.IsNullOrEmpty(c.BookId) && c.BookId == bookId);
             if (item != null) cart.Remove(item);
 
-            HttpContext.Session.SetObjectAsJson("Cart", cart);
-            HttpContext.Session.SetInt32("CartCount", cart.Sum(c => c.Quantity));
+            UpdateCartSession(cart);
 
             TempData["Message"] = "Đã xóa sản phẩm khỏi giỏ hàng!";
             return RedirectToAction("Index");
@@ -157,16 +193,19 @@ namespace NguyenXuanVinh_Project2.Controllers
             var item = cart.FirstOrDefault(c => c.GiftId.HasValue && c.GiftId.Value == giftId);
             if (item != null) cart.Remove(item);
 
-            HttpContext.Session.SetObjectAsJson("Cart", cart);
-            HttpContext.Session.SetInt32("CartCount", cart.Sum(c => c.Quantity));
+            UpdateCartSession(cart);
 
             TempData["Message"] = "Đã xóa sản phẩm khỏi giỏ hàng!";
             return RedirectToAction("Index");
         }
+
         [HttpPost]
         public IActionResult ClearCart()
         {
             HttpContext.Session.Remove("Cart");
+            HttpContext.Session.SetInt32("CartCount", 0);
+            HttpContext.Session.SetString("CartTotal", "0");
+
             TempData["Message"] = "Đã xóa toàn bộ giỏ hàng!";
             return RedirectToAction("Index");
         }
@@ -184,6 +223,7 @@ namespace NguyenXuanVinh_Project2.Controllers
 
             HttpContext.Session.Remove("Cart");
             HttpContext.Session.SetInt32("CartCount", 0);
+            HttpContext.Session.SetString("CartTotal", "0");
 
             TempData["Message"] = "Thanh toán thành công!";
             return RedirectToAction("Index");

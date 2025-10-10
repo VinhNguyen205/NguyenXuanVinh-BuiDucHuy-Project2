@@ -209,6 +209,10 @@
       "PackagePath": "staticwebassets\\images\\home\\logo.jpg"
     },
     {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\home\\logoweb.jpg",
+      "PackagePath": "staticwebassets\\images\\home\\logoweb.jpg"
+    },
+    {
       "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\home\\op100.jpg",
       "PackagePath": "staticwebassets\\images\\home\\op100.jpg"
     },

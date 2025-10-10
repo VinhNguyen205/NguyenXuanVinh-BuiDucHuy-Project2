@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "S9AbZChquOocu+Q06CSAJoJXMJqd2kE3kwxU5rQGG0g=",
+  "Hash": "HPiuwtd9QqFXHvknkBGd1EiCQ1IN0lQ8V1Prb4Se848=",
   "Source": "NguyenXuanVinh_Project2",
   "BasePath": "_content/NguyenXuanVinh_Project2",
   "Mode": "Default",
@@ -2388,6 +2388,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\home\\logo.jpg"
+    },
+    {
+      "Identity": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\home\\logoweb.jpg",
+      "SourceId": "NguyenXuanVinh_Project2",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\",
+      "BasePath": "_content/NguyenXuanVinh_Project2",
+      "RelativePath": "images/home/logoweb#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "d5zfclt7bv",
+      "Integrity": "TxCSO2SIyRen54qL0+ol8PIOttQb+OnUmDyU4bcEixA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\home\\logoweb.jpg"
     },
     {
       "Identity": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\home\\op100.jpg",
@@ -10071,6 +10092,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-kG543OW4w14zGuDc1PdZIWuOU+A6l+gkwgkMJzRHpKk="
+        }
+      ]
+    },
+    {
+      "Route": "images/home/logoweb.d5zfclt7bv.jpg",
+      "AssetFile": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\home\\logoweb.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "109521"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"TxCSO2SIyRen54qL0+ol8PIOttQb+OnUmDyU4bcEixA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 10 Oct 2025 19:19:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "d5zfclt7bv"
+        },
+        {
+          "Name": "label",
+          "Value": "images/home/logoweb.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-TxCSO2SIyRen54qL0+ol8PIOttQb+OnUmDyU4bcEixA="
+        }
+      ]
+    },
+    {
+      "Route": "images/home/logoweb.jpg",
+      "AssetFile": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\home\\logoweb.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "109521"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"TxCSO2SIyRen54qL0+ol8PIOttQb+OnUmDyU4bcEixA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 10 Oct 2025 19:19:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-TxCSO2SIyRen54qL0+ol8PIOttQb+OnUmDyU4bcEixA="
         }
       ]
     },
