@@ -1,57 +1,120 @@
 ﻿@model NguyenXuanVinh_Project2.Models.Book
-
 @{
     ViewData["Title"] = "Thêm truyện mới";
 }
 
-<h1>Thêm truyện mới</h1>
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm border-0 rounded-4">
+                <div class="card-header bg-success text-white py-3">
+                    <h3 class="mb-0">
+                        <i class="bi bi-plus-circle me-2"></i>Thêm Truyện Mới
+                    </h3>
+                </div>
+                <div class="card-body p-4">
+                    <!-- Validation Summary -->
+                    <div asp-validation-summary="All" class="alert alert-danger"></div>
 
-<form asp-action="Create" method="post">
-    <div class="form-group">
-        <label asp-for="BookId"></label>
-        <input asp-for="BookId" class="form-control" />
+                    <form asp-action="Create" method="post">
+                        <div class="row g-3">
+                            <!-- BookId -->
+                            <div class="col-md-6">
+                                <label asp-for="BookId" class="form-label fw-bold">Mã Truyện</label>
+                                <input asp-for="BookId" class="form-control" placeholder="VD: M00041" />
+                                <span asp-validation-for="BookId" class="text-danger small"></span>
+                            </div>
+
+                            <!-- Title -->
+                            <div class="col-md-6">
+                                <label asp-for="Title" class="form-label fw-bold">Tên Truyện</label>
+                                <input asp-for="Title" class="form-control" placeholder="VD: One Piece" />
+                                <span asp-validation-for="Title" class="text-danger small"></span>
+                            </div>
+
+                            <!-- Author -->
+                            <div class="col-md-6">
+                                <label asp-for="Author" class="form-label fw-bold">Tác Giả</label>
+                                <input asp-for="Author" class="form-control" placeholder="VD: Eiichiro Oda" />
+                                <span asp-validation-for="Author" class="text-danger small"></span>
+                            </div>
+
+                            <!-- Release -->
+                            <div class="col-md-6">
+                                <label asp-for="Release" class="form-label fw-bold">Năm Phát Hành</label>
+                                <input asp-for="Release" type="number" class="form-control" placeholder="VD: 2023" min="1900" max="2100" />
+                                <span asp-validation-for="Release" class="text-danger small"></span>
+                            </div>
+
+                            <!-- Price -->
+                            <div class="col-md-6">
+                                <label asp-for="Price" class="form-label fw-bold">Giá (VNĐ)</label>
+                                <input asp-for="Price" type="number" class="form-control" placeholder="VD: 120000" step="1000" min="0" />
+                                <span asp-validation-for="Price" class="text-danger small"></span>
+                            </div>
+
+                            <!-- Picture -->
+                            <div class="col-md-6">
+                                <label asp-for="Picture" class="form-label fw-bold">Ảnh Bìa</label>
+                                <input asp-for="Picture" class="form-control" placeholder="VD: onepiece.jpg" />
+                                <span asp-validation-for="Picture" class="text-danger small"></span>
+                                <small class="text-muted">Tên file ảnh trong thư mục wwwroot/images/books/</small>
+                            </div>
+
+                            <!-- CategoryId -->
+                            <div class="col-md-6">
+                                <label asp-for="CategoryId" class="form-label fw-bold">Thể Loại</label>
+                                <select asp-for="CategoryId" class="form-select" asp-items="ViewBag.CategoryId">
+                                    <option value="">-- Chọn thể loại --</option>
+                                </select>
+                                <span asp-validation-for="CategoryId" class="text-danger small"></span>
+                            </div>
+
+                            <!-- PublisherId -->
+                            <div class="col-md-6">
+                                <label asp-for="PublisherId" class="form-label fw-bold">Nhà Xuất Bản</label>
+                                <select asp-for="PublisherId" class="form-select" asp-items="ViewBag.PublisherId">
+                                    <option value="">-- Chọn NXB --</option>
+                                </select>
+                                <span asp-validation-for="PublisherId" class="text-danger small"></span>
+                            </div>
+
+                            <!-- Description -->
+                            <div class="col-12">
+                                <label asp-for="Description" class="form-label fw-bold">Mô Tả</label>
+                                <textarea asp-for="Description" class="form-control" rows="4" placeholder="Nhập mô tả về truyện..."></textarea>
+                                <span asp-validation-for="Description" class="text-danger small"></span>
+                            </div>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="d-flex gap-2 justify-content-end mt-4">
+                            <a asp-action="Index" class="btn btn-secondary px-4">
+                                <i class="bi bi-x-circle me-1"></i> Hủy
+                            </a>
+                            <button type="submit" class="btn btn-success px-4">
+                                <i class="bi bi-check-circle me-1"></i> Lưu Truyện
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 
-    <div class="form-group">
-        <label asp-for="Title"></label>
-        <input asp-for="Title" class="form-control" />
-    </div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 
-    <div class="form-group">
-        <label asp-for="Author"></label>
-        <input asp-for="Author" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Release"></label>
-        <input asp-for="Release" type="date" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Price"></label>
-        <input asp-for="Price" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Description"></label>
-        <textarea asp-for="Description" class="form-control"></textarea>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Picture">Ảnh bìa</label>
-        <input asp-for="Picture" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label>Thể loại</label>
-        <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
-    </div>
-
-    <div class="form-group">
-        <label>Nhà xuất bản</label>
-        <select asp-for="PublisherId" class="form-control" asp-items="ViewBag.PublisherId"></select>
-    </div>
-
-    <button type="submit" class="btn btn-success">Lưu</button>
-    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
-</form>
+    <script>
+        // Preview image khi nhập tên file
+        $('input[name="Picture"]').on('blur', function() {
+            var filename = $(this).val();
+            if (filename) {
+                console.log('Image: /images/books/' + filename);
+            }
+        });
+    </script>
+}

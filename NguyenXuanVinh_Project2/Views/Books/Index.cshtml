@@ -12,81 +12,89 @@
     <div class="row g-4">
         <!-- ==== SIDEBAR ==== -->
         <div class="col-md-3">
-            <div class="sidebar shadow-sm p-3 bg-white rounded-4">
-                <h5 class="fw-bold text-success mb-3">
-                    <i class="bi bi-grid-3x3-gap"></i> Danh mục
+            <div class="sidebar shadow-sm p-4 bg-white rounded-4 sticky-top" style="top: 100px;">
+                <h5 class="fw-bold text-success mb-4 d-flex align-items-center">
+                    <i class="bi bi-funnel-fill me-2"></i> Bộ Lọc
                 </h5>
-                <ul class="list-group mb-4">
-                    <li class="list-group-item">
-                        <a asp-controller="Books" asp-action="Index">
-                            <i class="bi bi-collection"></i> Tất cả
+
+                <!-- Danh mục -->
+                <h6 class="fw-bold text-dark mb-3">
+                    <i class="bi bi-grid-3x3-gap me-2"></i> Danh mục
+                </h6>
+                <ul class="list-group list-group-flush mb-4">
+                    <li class="list-group-item px-0 py-2 border-0">
+                        <a asp-controller="Books" asp-action="Index" class="text-decoration-none text-dark d-flex align-items-center category-link">
+                            <i class="bi bi-collection me-2"></i> Tất cả
                         </a>
                     </li>
-                    <li class="list-group-item">
-                        <a asp-controller="Books" asp-action="Index" asp-route-category="Shounen">
+                    <li class="list-group-item px-0 py-2 border-0">
+                        <a asp-controller="Books" asp-action="Index" asp-route-category="Shounen" class="text-decoration-none text-dark d-flex align-items-center category-link">
                             🔥 Shounen
                         </a>
                     </li>
-                    <li class="list-group-item">
-                        <a asp-controller="Books" asp-action="Index" asp-route-category="Shoujo">
-                            📚 Shoujo
+                    <li class="list-group-item px-0 py-2 border-0">
+                        <a asp-controller="Books" asp-action="Index" asp-route-category="Shoujo" class="text-decoration-none text-dark d-flex align-items-center category-link">
+                            💖 Shoujo
                         </a>
                     </li>
-                    <li class="list-group-item">
-                        <a asp-controller="Books" asp-action="Index" asp-route-category="Seinen">
+                    <li class="list-group-item px-0 py-2 border-0">
+                        <a asp-controller="Books" asp-action="Index" asp-route-category="Seinen" class="text-decoration-none text-dark d-flex align-items-center category-link">
                             ⚡ Seinen
                         </a>
                     </li>
-                    <li class="list-group-item">
-                        <a asp-controller="Books" asp-action="Index" asp-route-category="Isekai">
+                    <li class="list-group-item px-0 py-2 border-0">
+                        <a asp-controller="Books" asp-action="Index" asp-route-category="Isekai" class="text-decoration-none text-dark d-flex align-items-center category-link">
                             🎭 Isekai
                         </a>
                     </li>
-                    <li class="list-group-item">
-                        <a asp-controller="Books" asp-action="Index" asp-route-category="Fantasy">
-                            💖 Fantasy
+                    <li class="list-group-item px-0 py-2 border-0">
+                        <a asp-controller="Books" asp-action="Index" asp-route-category="Fantasy" class="text-decoration-none text-dark d-flex align-items-center category-link">
+                            ✨ Fantasy
                         </a>
                     </li>
-                    <li class="list-group-item">
-                        <a asp-controller="Books" asp-action="Index" asp-route-category="Hành động">
+                    <li class="list-group-item px-0 py-2 border-0">
+                        <a asp-controller="Books" asp-action="Index" asp-route-category="Action" class="text-decoration-none text-dark d-flex align-items-center category-link">
                             ⚔️ Action
                         </a>
                     </li>
-                    <li class="list-group-item">
-                        <a asp-controller="Books" asp-action="Index" asp-route-category="Phiêu lưu">
+                    <li class="list-group-item px-0 py-2 border-0">
+                        <a asp-controller="Books" asp-action="Index" asp-route-category="Adventure" class="text-decoration-none text-dark d-flex align-items-center category-link">
                             🗺️ Adventure
                         </a>
                     </li>
-                    <li class="list-group-item">
-                        <a asp-controller="Books" asp-action="Index" asp-route-category="Truyện chữ">
+                    <li class="list-group-item px-0 py-2 border-0">
+                        <a asp-controller="Books" asp-action="Index" asp-route-category="LightNovel" class="text-decoration-none text-dark d-flex align-items-center category-link">
                             ✍️ Light Novel
                         </a>
                     </li>
                 </ul>
 
-                <h5 class="fw-bold text-success mb-3">
-                    <i class="bi bi-funnel"></i> Bộ lọc giá
-                </h5>
+                <hr class="my-4">
+
+                <!-- Bộ lọc giá -->
+                <h6 class="fw-bold text-dark mb-3">
+                    <i class="bi bi-cash-stack me-2"></i> Khoảng giá
+                </h6>
                 <form method="get" asp-action="Index">
-                    <div class="form-check">
+                    <div class="form-check mb-2">
                         <input type="radio" class="form-check-input" name="price" value="1" id="p1" onchange="this.form.submit()">
-                        <label class="form-check-label" for="p1">< 50.000đ</label>
+                        <label class="form-check-label" for="p1">Dưới 50.000đ</label>
                     </div>
-                    <div class="form-check">
+                    <div class="form-check mb-2">
                         <input type="radio" class="form-check-input" name="price" value="2" id="p2" onchange="this.form.submit()">
-                        <label class="form-check-label" for="p2">50.000đ – 100.000đ</label>
+                        <label class="form-check-label" for="p2">50k - 100k</label>
                     </div>
-                    <div class="form-check">
+                    <div class="form-check mb-2">
                         <input type="radio" class="form-check-input" name="price" value="3" id="p3" onchange="this.form.submit()">
-                        <label class="form-check-label" for="p3">100.000đ – 200.000đ</label>
+                        <label class="form-check-label" for="p3">100k - 200k</label>
                     </div>
-                    <div class="form-check">
+                    <div class="form-check mb-2">
                         <input type="radio" class="form-check-input" name="price" value="4" id="p4" onchange="this.form.submit()">
-                        <label class="form-check-label" for="p4">200.000đ – 300.000đ</label>
+                        <label class="form-check-label" for="p4">200k - 300k</label>
                     </div>
                     <div class="form-check">
                         <input type="radio" class="form-check-input" name="price" value="5" id="p5" onchange="this.form.submit()">
-                        <label class="form-check-label" for="p5">> 300.000đ</label>
+                        <label class="form-check-label" for="p5">Trên 300.000đ</label>
                     </div>
                 </form>
             </div>
@@ -94,19 +102,23 @@
 
         <!-- ==== MAIN CONTENT ==== -->
         <div class="col-md-9">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="fw-bold text-success">
-                    <i class="bi bi-book-half"></i> Danh Sách Truyện
-                </h2>
+            <!-- Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
+                <div>
+                    <h2 class="fw-bold text-dark mb-1">
+                        <i class="bi bi-book-half text-success me-2"></i> Danh Sách Truyện
+                    </h2>
+                    <p class="text-muted small mb-0">Khám phá bộ sưu tập manga & light novel</p>
+                </div>
 
                 @if (role == "Admin")
                 {
-                    <div class="btn-group">
-                        <a href="@Url.Action("Create","Books")" class="btn btn-sm btn-success">
-                            <i class="bi bi-plus-circle"></i> Thêm
+                    <div class="btn-group shadow-sm">
+                        <a href="@Url.Action("Create","Books")" class="btn btn-success">
+                            <i class="bi bi-plus-circle me-1"></i> Thêm mới
                         </a>
-                        <a href="@Url.Action("Index","Admin")" class="btn btn-sm btn-warning">
-                            <i class="bi bi-gear-fill"></i> Quản Trị
+                        <a href="@Url.Action("Index","Admin")" class="btn btn-outline-success">
+                            <i class="bi bi-gear-fill me-1"></i> Quản Trị
                         </a>
                     </div>
                 }
@@ -115,81 +127,94 @@
             <!-- ==== MESSAGE / ALERT ==== -->
             @if (TempData["Message"] != null)
             {
-                <div class="alert alert-info alert-dismissible fade show text-center fade-alert" role="alert">
-                    <i class="bi bi-info-circle animated-icon"></i> @TempData["Message"]
+                <div class="alert alert-info alert-dismissible fade show text-center fade-alert shadow-sm" role="alert">
+                    <i class="bi bi-info-circle me-2"></i> @TempData["Message"]
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 </div>
             }
             else if (Model == null || !Model.Any())
             {
-                <div class="alert alert-warning text-center fade-alert">
-                    <i class="bi bi-exclamation-triangle animated-icon"></i> Không tìm thấy truyện nào phù hợp với yêu cầu của bạn.
+                <div class="alert alert-warning text-center fade-alert shadow-sm border-0">
+                    <i class="bi bi-exclamation-triangle fs-1 d-block mb-3"></i>
+                    <h5 class="fw-bold">Không tìm thấy truyện nào</h5>
+                    <p class="mb-0">Hãy thử tìm kiếm với từ khóa khác hoặc chọn danh mục khác</p>
                 </div>
             }
             else
             {
-                <div class="alert alert-success text-center fade-alert">
-                    <i class="bi bi-check-circle animated-icon"></i> Tìm thấy <strong>@Model.Count()</strong> truyện phù hợp!
+                <div class="alert alert-success text-center fade-alert border-0 shadow-sm bg-success bg-opacity-10">
+                    <i class="bi bi-check-circle text-success me-2"></i>
+                    Tìm thấy <strong class="text-success">@Model.Count()</strong> truyện phù hợp!
                 </div>
             }
 
             <!-- ==== BOOKS GRID ==== -->
             @if (Model != null && Model.Any())
             {
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
                     @foreach (var item in Model)
                     {
                         <div class="col">
-                            <div class="card h-100 shadow-sm border-0 product-card">
-                                @{
-                                    var imgSrc = !string.IsNullOrEmpty(item.Picture) &&
-                                    (item.Picture.StartsWith("http://") || item.Picture.StartsWith("https://"))
-                                    ? item.Picture
-                                    : Url.Content("~/images/books/" + (item.Picture ?? "no-cover.jpg"));
-                                }
-                                <img src="@imgSrc"
-                                     alt="@Html.Raw(WebUtility.HtmlDecode(item.Title ?? "Không rõ"))"
-                                     class="card-img-top book-img"
-                                     onerror="this.onerror=null; this.src='/images/books/no-cover.jpg';" />
+                            <div class="card h-100 border-0 shadow-sm product-card">
+                                <!-- Image with badge -->
+                                <div class="position-relative overflow-hidden" style="height: 350px;">
+                                    @{
+                                        var imgSrc = !string.IsNullOrEmpty(item.Picture) &&
+                                        (item.Picture.StartsWith("http://") || item.Picture.StartsWith("https://"))
+                                        ? item.Picture
+                                        : Url.Content("~/images/books/" + (item.Picture ?? "no-cover.jpg"));
+                                    }
+                                    <img src="@imgSrc"
+                                         alt="@Html.Raw(WebUtility.HtmlDecode(item.Title ?? "Không rõ"))"
+                                         class="card-img-top h-100 w-100"
+                                         style="object-fit: cover; transition: transform 0.3s ease;"
+                                         onerror="this.onerror=null; this.src='/images/books/no-cover.jpg';" />
 
-                                <div class="card-body text-center">
-                                    <h6 class="card-title text-truncate fw-semibold"
+                                    <!-- Quick view overlay -->
+                                    <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 d-flex align-items-center justify-content-center opacity-0 quick-view">
+                                        <a href="@Url.Action("Details", new { id = item.BookId })" class="btn btn-light rounded-pill px-4">
+                                            <i class="bi bi-eye me-2"></i> Xem chi tiết
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <h6 class="card-title fw-bold mb-2 text-truncate"
                                         title="@Html.Raw(WebUtility.HtmlDecode(item.Title ?? "Không rõ"))">
                                         @Html.Raw(WebUtility.HtmlDecode(item.Title ?? "Không rõ"))
                                     </h6>
-                                    <p class="author text-muted small mb-1">
-                                        <i class="bi bi-person-circle"></i>
+                                    <p class="text-muted small mb-2">
+                                        <i class="bi bi-person me-1"></i>
                                         @Html.Raw(WebUtility.HtmlDecode(item.Author ?? "Không rõ"))
                                     </p>
-                                    <p class="price text-success fw-bold mb-2">
-                                        <i class="bi bi-cash-stack"></i>
-                                        @(item.Price?.ToString("N0") ?? "0") đ
-                                    </p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-success fw-bold fs-5">
+                                            @(item.Price?.ToString("N0") ?? "0")đ
+                                        </span>
+                                        <button type="button" class="btn btn-success btn-sm add-to-cart px-3"
+                                                data-id="@item.BookId">
+                                            <i class="bi bi-cart-plus me-1"></i> Thêm
+                                        </button>
+                                    </div>
                                 </div>
 
-                                <div class="card-footer bg-white border-0 d-flex justify-content-center gap-1">
-                                    @if (role == "Admin")
-                                    {
+                                @if (role == "Admin")
+                                {
+                                    <div class="card-footer bg-light border-0 d-flex gap-2 justify-content-center py-2">
                                         <a href="@Url.Action("Edit", new { id = item.BookId })"
-                                           class="btn btn-sm btn-outline-primary" title="Sửa">
+                                           class="btn btn-sm btn-outline-primary">
                                             <i class="bi bi-pencil-square"></i>
                                         </a>
+                                        <a href="@Url.Action("Details", new { id = item.BookId })"
+                                           class="btn btn-sm btn-outline-info">
+                                            <i class="bi bi-info-circle"></i>
+                                        </a>
                                         <a href="@Url.Action("Delete", new { id = item.BookId })"
-                                           class="btn btn-sm btn-outline-danger" title="Xóa">
+                                           class="btn btn-sm btn-outline-danger">
                                             <i class="bi bi-trash"></i>
                                         </a>
-                                    }
-
-                                    <a href="@Url.Action("Details", new { id = item.BookId })"
-                                       class="btn btn-sm btn-outline-info" title="Chi tiết">
-                                        <i class="bi bi-info-circle"></i>
-                                    </a>
-
-                                    <button type="button" class="btn btn-sm btn-outline-success add-to-cart"
-                                            data-id="@item.BookId" title="Thêm vào giỏ">
-                                        <i class="bi bi-cart-plus"></i>
-                                    </button>
-                                </div>
+                                    </div>
+                                }
                             </div>
                         </div>
                     }
@@ -200,42 +225,134 @@
 </div>
 
 <!-- Bootstrap Toast -->
-<div class="toast-container position-fixed bottom-0 end-0 p-3">
-    <div id="cartToast" class="toast align-items-center text-bg-success border-0" role="alert">
-        <div class="d-flex">
-            <div class="toast-body fw-semibold">
-                <i class="bi bi-check-circle me-2"></i> Đã thêm sản phẩm vào giỏ hàng!
+<div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 9999;">
+    <div id="cartToast" class="toast align-items-center border-0 shadow-lg" role="alert">
+        <div class="d-flex bg-success text-white rounded">
+            <div class="toast-body fw-semibold py-3">
+                <i class="bi bi-check-circle-fill me-2"></i> Đã thêm sản phẩm vào giỏ hàng!
             </div>
             <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
         </div>
     </div>
 </div>
 
+<style>
+    /* Sidebar sticky */
+    .sidebar {
+        transition: box-shadow 0.3s ease;
+    }
+
+    /* Category links */
+    .category-link {
+        padding: 8px 12px;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+    }
+
+        .category-link:hover {
+            background-color: #f8f9fa;
+            padding-left: 20px;
+            color: #198754 !important;
+        }
+
+    /* Product card hover effects */
+    .product-card {
+        transition: all 0.3s ease;
+        border-radius: 12px !important;
+        overflow: hidden;
+    }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15) !important;
+        }
+
+            .product-card:hover img {
+                transform: scale(1.1);
+            }
+
+            .product-card:hover .quick-view {
+                opacity: 1 !important;
+            }
+
+    /* Quick view overlay */
+    .quick-view {
+        transition: opacity 0.3s ease;
+    }
+
+    /* Alert animations */
+    .fade-alert {
+        animation: slideDown 0.5s ease;
+    }
+
+    @@keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Button hover */
+    .btn {
+        transition: all 0.2s ease;
+    }
+
+    /* Price badge */
+    .card-body .text-success {
+        text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+</style>
+
 @section Scripts {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(function () {
-            // Add to cart logic
+            // Add to cart with animation
             $(".add-to-cart").click(function () {
-                var id = $(this).data("id");
+                var $btn = $(this);
+                var originalHtml = $btn.html();
+
+                // Disable button and show loading
+                $btn.prop('disabled', true).html('<i class="bi bi-hourglass-split"></i>');
+
+                var id = $btn.data("id");
                 $.post('/Cart/AddToCart', { id: id })
                     .done(function (res) {
                         if (res && res.count !== undefined) {
                             $("#cart-count").text(res.count);
+                            $("#mini-cart-count").text(res.count);
                         }
+                        if (res && res.total !== undefined) {
+                            $("#mini-cart-total").text(res.total);
+                        }
+
+                        // Success animation
+                        $btn.html('<i class="bi bi-check-lg"></i>').removeClass('btn-success').addClass('btn-outline-success');
+
+                        // Show toast
                         const toast = new bootstrap.Toast(document.getElementById('cartToast'));
                         toast.show();
+
+                        // Reset button after 2s
+                        setTimeout(function() {
+                            $btn.html(originalHtml).prop('disabled', false).removeClass('btn-outline-success').addClass('btn-success');
+                        }, 2000);
                     })
                     .fail(function () {
                         alert("Không thể thêm sản phẩm vào giỏ.");
+                        $btn.html(originalHtml).prop('disabled', false);
                     });
             });
 
-            // Auto fade alerts after 3s
+            // Auto fade alerts
             setTimeout(() => {
                 $(".fade-alert").fadeOut(800);
             }, 3000);
         });
     </script>
-
 }

@@ -1,131 +1,252 @@
 ﻿@model IEnumerable<NguyenXuanVinh_Project2.Models.Gift>
 @using System.Net
 
+@* Suppress CSS warnings for Razor syntax *@
+@* ReSharper disable CssNotResolved *@
+@* ReSharper disable CssInvalidAtRule *@
+
 @{
     ViewData["Title"] = "Quà Tặng";
     var role = Context.Session.GetString("Role");
 }
 
-<div class="container my-5">
+<div class="container my-4">
+    <!-- Header -->
     <div class="text-center mb-5">
-        <h1 class="fw-bold text-success">
-            <i class="bi bi-gift-fill"></i> Quà Tặng Đặc Biệt
+        <h1 class="fw-bold display-5 mb-2">
+            <i class="bi bi-gift-fill text-success"></i> Quà Tặng Đặc Biệt
         </h1>
-        <p class="text-muted">Quà tặng đi kèm hoặc có thể mua riêng</p>
+        <p class="text-muted">Móc khóa, Figure, Poster và nhiều quà tặng hấp dẫn khác</p>
     </div>
 
+    <!-- Success Alert -->
     @if (TempData["Success"] != null)
     {
-        <div class="alert alert-success fade-alert text-center" id="successAlert">
-            <i class="bi bi-check-circle"></i> @TempData["Success"]
+        <div class="alert alert-success alert-dismissible fade show text-center shadow-sm border-0" role="alert">
+            <i class="bi bi-check-circle-fill me-2"></i> @TempData["Success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
     }
 
+    <!-- Admin Controls -->
     @if (role == "Admin")
     {
-        <div class="text-end mb-4">
-            <a href="@Url.Action("Create", "Gifts")" class="btn btn-primary">
-                <i class="bi bi-plus-circle"></i> Thêm Quà Tặng
+        <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
+            <h5 class="text-muted mb-0">
+                <i class="bi bi-box-seam me-2"></i>Quản lý quà tặng
+            </h5>
+            <a href="@Url.Action("Create", "Gifts")" class="btn btn-success shadow-sm">
+                <i class="bi bi-plus-circle me-1"></i> Thêm Quà Tặng
             </a>
         </div>
     }
 
-    <div class="items-grid">
-        @if (Model != null && Model.Any())
-        {
+    <!-- Gifts Grid -->
+    @if (Model != null && Model.Any())
+    {
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
             @foreach (var item in Model)
             {
-                <div class="card h-100 product-card">
-                    @{
-                        var imgSrc = !string.IsNullOrEmpty(item.Picture) &&
-                        (item.Picture.StartsWith("http://") || item.Picture.StartsWith("https://"))
-                        ? item.Picture
-                        : Url.Content("~/images/gifts/" + (item.Picture ?? "no-gift.jpg"));
-                    }
+                <div class="col">
+                    <div class="card h-100 border-0 shadow-sm gift-card">
+                        <!-- Image with Badge -->
+                        <div class="position-relative overflow-hidden" style="height: 280px;">
+                            @{
+                                var imgSrc = !string.IsNullOrEmpty(item.Picture) &&
+                                (item.Picture.StartsWith("http://") || item.Picture.StartsWith("https://"))
+                                ? item.Picture
+                                : Url.Content("~/images/gifts/" + (item.Picture ?? "no-gift.jpg"));
+                            }
 
-                    <div class="position-relative">
-                        <img src="@imgSrc"
-                             alt="@Html.Raw(WebUtility.HtmlDecode(item.GiftName ?? "Không rõ"))"
-                             class="card-img-top book-img"
-                             loading="lazy"
-                             onerror="this.onerror=null; this.src='/images/gifts/no-gift.jpg';" />
-                        <span class="badge bg-danger position-absolute top-0 end-0 m-2">
-                            <i class="bi bi-gift"></i> Quà
-                        </span>
-                    </div>
+                            <img src="@imgSrc"
+                                 alt="@Html.Raw(WebUtility.HtmlDecode(item.GiftName ?? "Không rõ"))"
+                                 class="w-100 h-100"
+                                 style="object-fit: cover; transition: transform 0.3s ease;"
+                                 loading="lazy"
+                                 onerror="this.onerror=null; this.src='/images/gifts/no-gift.jpg';" />
 
-                    <div class="card-body text-center">
-                        <h6 class="card-title text-truncate fw-semibold"
-                            title="@Html.Raw(WebUtility.HtmlDecode(item.GiftName ?? "Không rõ"))">
-                            @Html.Raw(WebUtility.HtmlDecode(item.GiftName ?? "Không rõ"))
-                        </h6>
-                        <p class="text-muted small mb-1">
-                            @Html.Raw(WebUtility.HtmlDecode(item.Description ?? ""))
-                        </p>
-                        <p class="price text-success fw-bold mb-2">
-                            <i class="bi bi-cash-stack"></i>
-                            @string.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:N0} đ", item.Price ?? 0)
-                        </p>
-                    </div>
+                            <span class="badge bg-danger position-absolute top-0 end-0 m-2">
+                                <i class="bi bi-gift"></i> Gift
+                            </span>
 
-                    <div class="card-footer bg-white border-0 d-flex justify-content-center gap-2">
-                        <a href="@Url.Action("Details", "Gifts", new { id = item.GiftId })"
-                           class="btn btn-sm btn-outline-info" title="Xem chi tiết quà tặng">
-                            <i class="bi bi-info-circle"></i>
-                        </a>
+                            <!-- Quick View Overlay -->
+                            <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 d-flex align-items-center justify-content-center opacity-0 quick-view-gift">
+                                <a href="@Url.Action("Details", "Gifts", new { id = item.GiftId })"
+                                   class="btn btn-light rounded-pill px-4">
+                                    <i class="bi bi-eye me-2"></i> Chi tiết
+                                </a>
+                            </div>
+                        </div>
 
-                        <button type="button" class="btn btn-sm btn-outline-success add-gift"
-                                data-id="@item.GiftId" title="Thêm vào giỏ">
-                            <i class="bi bi-cart-plus"></i>
-                        </button>
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <h6 class="card-title fw-bold mb-2 text-truncate"
+                                title="@Html.Raw(WebUtility.HtmlDecode(item.GiftName ?? "Không rõ"))">
+                                @Html.Raw(WebUtility.HtmlDecode(item.GiftName ?? "Không rõ"))
+                            </h6>
 
+                            @if (!string.IsNullOrEmpty(item.Description))
+                            {
+                                <p class="text-muted small mb-2 text-truncate"
+                                   title="@Html.Raw(WebUtility.HtmlDecode(item.Description))">
+                                    @Html.Raw(WebUtility.HtmlDecode(item.Description))
+                                </p>
+                            }
+
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="text-success fw-bold fs-5">
+                                    @string.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:N0}đ", item.Price ?? 0)
+                                </span>
+                                <button type="button"
+                                        class="btn btn-success btn-sm add-gift px-3"
+                                        data-id="@item.GiftId">
+                                    <i class="bi bi-cart-plus me-1"></i> Thêm
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Admin Footer -->
                         @if (role == "Admin")
                         {
-                            <a href="@Url.Action("Delete", "Gifts", new { id = item.GiftId })"
-                               class="btn btn-sm btn-outline-danger" title="Xóa quà tặng">
-                                <i class="bi bi-trash"></i>
-                            </a>
+                            <div class="card-footer bg-light border-0 d-flex gap-2 justify-content-center py-2">
+                                <a href="@Url.Action("Edit", "Gifts", new { id = item.GiftId })"
+                                   class="btn btn-sm btn-outline-primary" title="Sửa">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                                <a href="@Url.Action("Details", "Gifts", new { id = item.GiftId })"
+                                   class="btn btn-sm btn-outline-info" title="Chi tiết">
+                                    <i class="bi bi-info-circle"></i>
+                                </a>
+                                <a href="@Url.Action("Delete", "Gifts", new { id = item.GiftId })"
+                                   class="btn btn-sm btn-outline-danger" title="Xóa">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </div>
                         }
                     </div>
                 </div>
             }
-        }
-        else
-        {
-            <div class="text-center py-5">
-                <i class="bi bi-gift display-5 text-muted"></i>
-                <h4 class="text-muted mt-3">Chưa có quà tặng nào</h4>
-                <p class="text-muted">Vui lòng quay lại sau!</p>
+        </div>
+    }
+    else
+    {
+        <div class="text-center py-5 my-5">
+            <i class="bi bi-gift display-1 text-muted mb-3"></i>
+            <h4 class="text-muted">Chưa có quà tặng nào</h4>
+            <p class="text-muted">Vui lòng quay lại sau hoặc liên hệ với chúng tôi!</p>
+        </div>
+    }
+</div>
+
+<!-- Toast Notification -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 9999;">
+    <div id="giftToast" class="toast align-items-center border-0 shadow-lg" role="alert">
+        <div class="d-flex bg-success text-white rounded">
+            <div class="toast-body fw-semibold py-3">
+                <i class="bi bi-check-circle-fill me-2"></i>
+                <span id="toastMessage">Đã thêm quà tặng vào giỏ hàng!</span>
             </div>
-        }
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+        </div>
     </div>
 </div>
+
+<style>
+    /* Gift card hover effects */
+    .gift-card {
+        transition: all 0.3s ease;
+        border-radius: 12px !important;
+        overflow: hidden;
+    }
+
+        .gift-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15) !important;
+        }
+
+            .gift-card:hover img {
+                transform: scale(1.1);
+            }
+
+            .gift-card:hover .quick-view-gift {
+                opacity: 1 !important;
+            }
+
+    /* Quick view overlay */
+    .quick-view-gift {
+        transition: opacity 0.3s ease;
+    }
+
+    /* Button animations */
+    .btn {
+        transition: all 0.2s ease;
+    }
+
+    /* Badge - xóa animation để tránh warning */
+    .badge {
+        /* animation removed to avoid CSS warnings in Razor */
+    }
+</style>
 
 @section Scripts {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        // Làm mờ alert sau 3s
-        setTimeout(() => {
-            const alert = document.getElementById("successAlert");
-            if (alert) alert.style.opacity = "0";
-        }, 3000);
-
-        // Add gift to cart
         $(function () {
+            // Add gift to cart with animation
             $(".add-gift").click(function () {
-                const id = $(this).data("id");
+                var $btn = $(this);
+                var originalHtml = $btn.html();
+
+                // Disable button and show loading
+                $btn.prop('disabled', true).html('<i class="bi bi-hourglass-split"></i>');
+
+                const id = $btn.data("id");
+
                 $.post('/Cart/AddGiftToCart', { id: id })
                     .done(function (res) {
+                        // Update cart count
                         if (res && res.count !== undefined) {
                             $("#cart-count").text(res.count);
-                            pulseElement(document.querySelector('#cart-count'));
+                            $("#mini-cart-count").text(res.count);
                         }
-                        showCustomToast('Đã thêm quà tặng vào giỏ hàng!', { durationMs: 3000, type: 'success' });
+                        // Update cart total
+                        if (res && res.total !== undefined) {
+                            $("#mini-cart-total").text(res.total);
+                        }
+
+                        // Success animation
+                        $btn.html('<i class="bi bi-check-lg"></i>')
+                            .removeClass('btn-success')
+                            .addClass('btn-outline-success');
+
+                        // Show toast
+                        const toast = new bootstrap.Toast(document.getElementById('giftToast'));
+                        toast.show();
+
+                        // Reset button after 2s
+                        setTimeout(function() {
+                            $btn.html(originalHtml)
+                                .prop('disabled', false)
+                                .removeClass('btn-outline-success')
+                                .addClass('btn-success');
+                        }, 2000);
                     })
                     .fail(function () {
-                        showCustomToast('Không thể thêm quà tặng.', { durationMs: 3000, type: 'error' });
+                        // Error handling
+                        $("#toastMessage").text("Không thể thêm quà tặng!");
+                        $(".toast .d-flex").removeClass('bg-success').addClass('bg-danger');
+
+                        const toast = new bootstrap.Toast(document.getElementById('giftToast'));
+                        toast.show();
+
+                        $btn.html(originalHtml).prop('disabled', false);
                     });
             });
+
+            // Auto hide alerts
+            setTimeout(() => {
+                $(".alert").fadeOut(800);
+            }, 3000);
         });
     </script>
 }
