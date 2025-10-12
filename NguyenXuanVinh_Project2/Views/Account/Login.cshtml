@@ -1,53 +1,112 @@
-﻿@{
+﻿@model LoginViewModel 
+@using Microsoft.AspNetCore.Http
+@{
     ViewData["Title"] = "Đăng nhập";
     var role = Context.Session.GetString("Role");
 }
+<style>
+    .password-wrapper {
+        position: relative;
+    }
+
+    .password-toggle-icon {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #6c757d;
+    }
+</style>
 
 <div class="d-flex align-items-center justify-content-center vh-100 bg-light">
-    <div class="card shadow-lg border-0 rounded-4 login-card" style="width: 400px;">
+    <div class="card shadow-lg border-0 rounded-4 login-card" style="width: 420px;">
         <div class="text-center mt-4">
             <div class="login-icon bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center">
-                <i class="bi bi-box-arrow-in-right fs-2"></i>
+                <i class="bi bi-person-circle fs-1"></i>
             </div>
-            <h3 class="fw-bold text-success mt-2">Đăng nhập</h3>
-            <p class="text-muted small">Vui lòng nhập thông tin để tiếp tục</p>
+            <h3 class="fw-bold text-success mt-2">Chào mừng trở lại!</h3>
+            <p class="text-muted small">Đăng nhập vào tài khoản của bạn</p>
         </div>
 
-        <div class="card-body px-4 pb-4">
-            @if (TempData["Success"] != null)
+        <div class="card-body p-4">
+            @if (TempData["SuccessMessage"] != null)
             {
-                <div class="alert alert-success text-center rounded-3 shadow-sm">@TempData["Success"]</div>
+                <div class="alert alert-success text-center rounded-3 shadow-sm">@TempData["SuccessMessage"]</div>
             }
-            @if (ViewBag.Error != null)
+            @if (TempData["ErrorMessage"] != null)
             {
-                <div class="alert alert-danger text-center rounded-3 shadow-sm">@ViewBag.Error</div>
+                <div class="alert alert-danger text-center rounded-3 shadow-sm">@TempData["ErrorMessage"]</div>
             }
 
             <form asp-action="Login" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-2"></div>
+
                 <div class="mb-3">
-                    <label for="username" class="form-label fw-semibold">Tên đăng nhập</label>
-                    <input type="text" class="form-control rounded-3 shadow-sm" id="username" name="username" placeholder="Nhập tên đăng nhập" required />
+                    <label asp-for="Username" class="form-label fw-semibold"></label>
+                    <input asp-for="Username" class="form-control rounded-3 shadow-sm" placeholder="Nhập tên đăng nhập" />
+                    <span asp-validation-for="Username" class="text-danger small"></span>
                 </div>
+
                 <div class="mb-3">
-                    <label for="password" class="form-label fw-semibold">Mật khẩu</label>
-                    <input type="password" class="form-control rounded-3 shadow-sm" id="password" name="password" placeholder="••••••••" required />
+                    <label asp-for="Password" class="form-label fw-semibold"></label>
+                    <div class="password-wrapper">
+                        <input asp-for="Password" class="form-control rounded-3 shadow-sm" placeholder="••••••••" />
+                        <span class="password-toggle-icon" onclick="togglePasswordVisibility()">
+                            <i class="bi bi-eye-slash"></i>
+                        </span>
+                    </div>
+                    <span asp-validation-for="Password" class="text-danger small"></span>
                 </div>
-                <button type="submit" class="btn btn-success w-100 rounded-3 fw-bold shadow-sm">
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" asp-for="RememberMe">
+                        <label class="form-check-label" asp-for="RememberMe">
+                            Ghi nhớ tôi
+                        </label>
+                    </div>
+                    <a href="#" class="text-success small fw-semibold">Quên mật khẩu?</a>
+                </div>
+
+                <button type="submit" class="btn btn-success w-100 rounded-3 fw-bold shadow-sm p-2">
                     <i class="bi bi-box-arrow-in-right"></i> Đăng nhập
                 </button>
             </form>
 
             <div class="text-center mt-3">
                 <span class="text-muted">Chưa có tài khoản?</span>
-                <a asp-controller="Account" asp-action="Register" class="text-success fw-semibold">Đăng ký</a>
+                <a asp-controller="Account" asp-action="Register" class="text-success fw-semibold">Đăng ký ngay</a>
             </div>
 
             @if (role == "Admin")
             {
-                <div class="text-center mt-2">
-                    👑 <a asp-controller="Account" asp-action="RegisterAdmin" class="text-danger fw-bold">Tạo Admin</a>
+                <div class="text-center mt-2 border-top pt-2">
+                    👑 <a asp-controller="Account" asp-action="RegisterAdmin" class="text-danger fw-bold">Tạo tài khoản Admin mới</a>
                 </div>
             }
         </div>
     </div>
 </div>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById("Password");
+            const icon = document.querySelector(".password-toggle-icon i");
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                icon.classList.remove("bi-eye-slash");
+                icon.classList.add("bi-eye");
+            } else {
+                passwordInput.type = "password";
+                icon.classList.remove("bi-eye");
+                icon.classList.add("bi-eye-slash");
+            }
+        }
+    </script>
+}

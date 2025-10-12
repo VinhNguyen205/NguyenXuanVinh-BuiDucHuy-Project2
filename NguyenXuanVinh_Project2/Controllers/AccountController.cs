@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using NguyenXuanVinh_Project2.Models;
 using System;
-using System.Linq;
+using System.Threading.Tasks; 
 
 namespace NguyenXuanVinh_Project2.Controllers
 {
@@ -20,132 +20,157 @@ namespace NguyenXuanVinh_Project2.Controllers
         [HttpGet]
         public IActionResult Login(string? returnUrl = null)
         {
-            // Nếu đã đăng nhập → quay về trang chủ
             if (!string.IsNullOrEmpty(HttpContext.Session.GetString("Username")))
+            {
                 return RedirectToAction("Index", "Home");
-
-            ViewBag.ReturnUrl = returnUrl;
-            return View();
+            }
+            ViewData["ReturnUrl"] = returnUrl;
+            return View(new LoginViewModel()); // <-- Sử dụng ViewModel
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Login(string username, string password, string? returnUrl = null)
+        public async Task<IActionResult> Login(LoginViewModel model, string? returnUrl = null)
         {
-            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+            if (ModelState.IsValid)
             {
-                ViewBag.Error = "Vui lòng nhập đầy đủ thông tin.";
-                return View();
+                // ⚠️ QUAN TRỌNG: Trong thực tế, bạn PHẢI HASH MẬT KHẨU
+                // Code này chỉ dành cho mục đích demo
+                var user = await _context.Accounts
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(a => a.Username == model.Username && a.Password == model.Password);
+
+                if (user != null && (user.Active ?? false))
+                {
+                    // Lưu session
+                    HttpContext.Session.SetString("Username", user.Username);
+                    HttpContext.Session.SetString("AccountId", user.AccountId);
+                    HttpContext.Session.SetString("Role", user.Role ?? "Member");
+
+                    TempData["SuccessMessage"] = $"Chào mừng {user.Username} đã trở lại!";
+
+                    // Điều hướng
+                    if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                    {
+                        return Redirect(returnUrl);
+                    }
+
+                    return string.Equals(user.Role, "Admin", StringComparison.OrdinalIgnoreCase)
+                        ? RedirectToAction("Index", "Admin")
+                        : RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Tên đăng nhập hoặc mật khẩu không đúng, hoặc tài khoản đã bị khóa.";
+                }
             }
-
-            var user = _context.Accounts
-                               .AsNoTracking()
-                               .FirstOrDefault(a => a.Username == username
-                                                 && a.Password == password // ⚠️ Nên hash thực tế
-                                                 && (a.Active ?? false));
-            if (user == null)
-            {
-                ViewBag.Error = "Sai tài khoản hoặc mật khẩu, hoặc tài khoản bị khóa!";
-                return View();
-            }
-
-            // 👉 Lưu session
-            HttpContext.Session.SetString("Username", user.Username);
-            HttpContext.Session.SetString("AccountId", user.AccountId);
-            HttpContext.Session.SetString("Role", user.Role ?? "Member");
-
-            // ⚡ Quan trọng: set IsAdmin cho AdminController
-            if (string.Equals(user.Role, "Admin", StringComparison.OrdinalIgnoreCase))
-            {
-                HttpContext.Session.SetString("IsAdmin", "true");
-            }
-            else
-            {
-                HttpContext.Session.Remove("IsAdmin");
-            }
-
-            // Nếu có returnUrl hợp lệ → redirect về đó
-            if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
-                return Redirect(returnUrl);
-
-            // Điều hướng theo Role
-            return string.Equals(user.Role, "Admin", StringComparison.OrdinalIgnoreCase)
-                ? RedirectToAction("Index", "Admin")
-                : RedirectToAction("Index", "Home");
+            // Nếu model không hợp lệ hoặc đăng nhập thất bại, hiển thị lại form
+            return View(model);
         }
 
         // ===================== REGISTER MEMBER =====================
         [HttpGet]
-        public IActionResult Register() => View();
+        public IActionResult Register()
+        {
+            return View(new RegisterViewModel()); // <-- Sử dụng ViewModel
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Register(RegisterViewModel model)
+        public async Task<IActionResult> Register(RegisterViewModel model)
         {
-            if (!ModelState.IsValid) return View(model);
-
-            if (_context.Accounts.Any(a => a.Username == model.Username))
+            if (ModelState.IsValid)
             {
-                ModelState.AddModelError("", "Tên đăng nhập đã tồn tại!");
-                return View(model);
+                if (await _context.Accounts.AnyAsync(a => a.Username == model.Username))
+                {
+                    ModelState.AddModelError("Username", "Tên đăng nhập này đã được sử dụng.");
+                    return View(model);
+                }
+
+                if (await _context.Accounts.AnyAsync(a => a.Email == model.Email))
+                {
+                    ModelState.AddModelError("Email", "Email này đã được sử dụng.");
+                    return View(model);
+                }
+
+                var newUser = new Account
+                {
+                    AccountId = Guid.NewGuid().ToString(),
+                    Username = model.Username,
+                    Email = model.Email,
+                    Password = model.Password, // ⚠️ Nên hash mật khẩu
+                    Active = true,
+                    Role = "Member"
+                };
+
+                _context.Accounts.Add(newUser);
+                await _context.SaveChangesAsync();
+
+                TempData["SuccessMessage"] = "Đăng ký thành công! Vui lòng đăng nhập.";
+                return RedirectToAction("Login");
             }
-
-            var newUser = new Account
-            {
-                AccountId = Guid.NewGuid().ToString(),
-                Username = model.Username,
-                Email = model.Email,
-                Password = model.Password, // ⚠️ Nên hash
-                Active = true,
-                Role = "Member"
-            };
-
-            _context.Accounts.Add(newUser);
-            _context.SaveChanges();
-
-            TempData["Success"] = "Đăng ký thành công! Bạn có thể đăng nhập ngay.";
-            return RedirectToAction("Login");
+            return View(model);
         }
 
-        // ===================== REGISTER ADMIN =====================
+        // ===================== REGISTER ADMIN (Cải tiến) =====================
+        // [Authorize(Roles = "Admin")] // Cách bảo vệ tốt hơn là dùng Authorize
         [HttpGet]
         public IActionResult RegisterAdmin()
         {
+            // Kiểm tra quyền Admin qua Session (cách cơ bản)
             if (HttpContext.Session.GetString("Role") != "Admin")
+            {
+                TempData["ErrorMessage"] = "Bạn không có quyền truy cập chức năng này.";
                 return RedirectToAction("Login");
-            return View();
+            }
+            return View(new RegisterViewModel()); // Tái sử dụng RegisterViewModel
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult RegisterAdmin(Account model)
+        public async Task<IActionResult> RegisterAdmin(RegisterViewModel model)
         {
             if (HttpContext.Session.GetString("Role") != "Admin")
-                return RedirectToAction("Login");
-
-            if (!ModelState.IsValid) return View(model);
-
-            if (_context.Accounts.Any(a => a.Username == model.Username))
             {
-                ModelState.AddModelError("", "Tên đăng nhập đã tồn tại!");
-                return View(model);
+                return Forbid(); // Trả về lỗi 403 Forbidden
             }
 
-            model.AccountId = Guid.NewGuid().ToString();
-            model.Role = "Admin";
-            model.Active = true;
+            // Xóa validation của AgreeToTerms vì form admin không có
+            ModelState.Remove("AgreeToTerms");
 
-            _context.Accounts.Add(model);
-            _context.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                if (await _context.Accounts.AnyAsync(a => a.Username == model.Username))
+                {
+                    ModelState.AddModelError("Username", "Tên đăng nhập đã tồn tại!");
+                    return View(model);
+                }
 
-            TempData["Success"] = "Tạo Admin mới thành công!";
-            return RedirectToAction("Login");
+                var newAdmin = new Account
+                {
+                    AccountId = Guid.NewGuid().ToString(),
+                    Username = model.Username,
+                    Email = model.Email,
+                    Password = model.Password, // ⚠️ Nên hash
+                    Active = true,
+                    Role = "Admin" // <-- Gán quyền Admin
+                };
+
+                _context.Accounts.Add(newAdmin);
+                await _context.SaveChangesAsync();
+
+                TempData["SuccessMessage"] = $"Tạo tài khoản Admin '{newAdmin.Username}' thành công!";
+                return RedirectToAction("Index", "Admin"); // Quay về trang quản trị
+            }
+            return View(model);
         }
 
         // ===================== LOGOUT =====================
+        [HttpGet]
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
+            TempData["SuccessMessage"] = "Bạn đã đăng xuất thành công.";
             return RedirectToAction("Index", "Home");
         }
     }

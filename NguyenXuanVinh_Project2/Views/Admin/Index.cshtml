@@ -7,17 +7,25 @@
     <!-- Header -->
     <div class="row mb-4">
         <div class="col-12">
-            <div class="d-flex justify-content-between align-items-center">
-                <div>
-                    <h2 class="fw-bold text-success mb-2">
-                        <i class="bi bi-speedometer2"></i> Welcome, @username!
-                    </h2>
-                    <p class="text-muted mb-0">Chào Mừng Đến Với Khu Vực Quản Trị</p>
-                </div>
-                <div>
-                    <a href="@Url.Action("Logout","Admin")" class="btn btn-outline-danger">
-                        <i class="bi bi-box-arrow-right"></i> Đăng Xuất
-                    </a>
+            <div class="card shadow-sm border-0 rounded-4 bg-gradient"
+                 style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                <div class="card-body p-4 text-white">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h2 class="fw-bold mb-2">
+                                <i class="bi bi-speedometer2 me-2"></i> Welcome, @username!
+                            </h2>
+                            <p class="mb-0 opacity-75">Chào mừng đến với khu vực quản trị Mèo Mê Manga</p>
+                        </div>
+                        <div>
+                            <a asp-controller="Home" asp-action="Index" class="btn btn-light me-2">
+                                <i class="bi bi-house-door"></i> Trang Chủ
+                            </a>
+                            <a asp-controller="Admin" asp-action="Logout" class="btn btn-outline-light">
+                                <i class="bi bi-box-arrow-right"></i> Đăng Xuất
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -25,57 +33,69 @@
 
     <!-- Statistics Cards -->
     <div class="row g-4 mb-4">
-        <div class="col-md-3 col-sm-6">
-            <div class="stat-card">
-                <div class="stat-card-inner bg-gradient-primary">
-                    <div class="stat-icon">
-                        <i class="bi bi-book-fill"></i>
-                    </div>
-                    <div class="stat-content">
-                        <h6 class="stat-label">Tổng Sách</h6>
-                        <h3 class="stat-value">@(ViewBag.TotalBooks ?? 0)</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6">
-            <div class="stat-card">
-                <div class="stat-card-inner bg-gradient-success">
-                    <div class="stat-icon">
-                        <i class="bi bi-grid-3x3-gap-fill"></i>
-                    </div>
-                    <div class="stat-content">
-                        <h6 class="stat-label">Danh Mục</h6>
-                        <h3 class="stat-value">@(ViewBag.TotalCategories ?? 0)</h3>
+        <!-- Tổng Sách -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card border-0 shadow-sm stat-card h-100">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center">
+                        <div class="stat-icon bg-primary bg-opacity-10 text-primary rounded-circle p-3 me-3">
+                            <i class="bi bi-book-fill fs-3"></i>
+                        </div>
+                        <div>
+                            <h6 class="text-muted mb-1">Tổng Sách</h6>
+                            <h2 class="fw-bold mb-0">@(ViewBag.TotalBooks ?? 0)</h2>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-3 col-sm-6">
-            <div class="stat-card">
-                <div class="stat-card-inner bg-gradient-warning">
-                    <div class="stat-icon">
-                        <i class="bi bi-building"></i>
-                    </div>
-                    <div class="stat-content">
-                        <h6 class="stat-label">Nhà Xuất Bản</h6>
-                        <h3 class="stat-value">@(ViewBag.TotalPublishers ?? 0)</h3>
+        <!-- Danh Mục -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card border-0 shadow-sm stat-card h-100">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center">
+                        <div class="stat-icon bg-success bg-opacity-10 text-success rounded-circle p-3 me-3">
+                            <i class="bi bi-grid-3x3-gap-fill fs-3"></i>
+                        </div>
+                        <div>
+                            <h6 class="text-muted mb-1">Danh Mục</h6>
+                            <h2 class="fw-bold mb-0">@(ViewBag.TotalCategories ?? 0)</h2>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-3 col-sm-6">
-            <div class="stat-card">
-                <div class="stat-card-inner bg-gradient-info">
-                    <div class="stat-icon">
-                        <i class="bi bi-gift-fill"></i>
+        <!-- Nhà Xuất Bản -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card border-0 shadow-sm stat-card h-100">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center">
+                        <div class="stat-icon bg-warning bg-opacity-10 text-warning rounded-circle p-3 me-3">
+                            <i class="bi bi-building fs-3"></i>
+                        </div>
+                        <div>
+                            <h6 class="text-muted mb-1">Nhà Xuất Bản</h6>
+                            <h2 class="fw-bold mb-0">@(ViewBag.TotalPublishers ?? 0)</h2>
+                        </div>
                     </div>
-                    <div class="stat-content">
-                        <h6 class="stat-label">Quà Tặng</h6>
-                        <h3 class="stat-value">@(ViewBag.TotalGifts ?? 0)</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quà Tặng -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card border-0 shadow-sm stat-card h-100">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center">
+                        <div class="stat-icon bg-info bg-opacity-10 text-info rounded-circle p-3 me-3">
+                            <i class="bi bi-gift-fill fs-3"></i>
+                        </div>
+                        <div>
+                            <h6 class="text-muted mb-1">Quà Tặng</h6>
+                            <h2 class="fw-bold mb-0">@(ViewBag.TotalGifts ?? 0)</h2>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -84,60 +104,66 @@
 
     <!-- Management Actions -->
     <div class="row g-4 mb-4">
+        <!-- Quản lý Sách -->
         <div class="col-lg-4 col-md-6">
-            <div class="action-card">
-                <div class="action-header bg-primary">
-                    <i class="bi bi-book-half"></i>
-                    <h5>Quản lý Sách</h5>
+            <div class="card border-0 shadow-sm h-100 action-card">
+                <div class="card-header bg-primary text-white py-3">
+                    <h5 class="mb-0">
+                        <i class="bi bi-book-half me-2"></i>Quản lý Sách
+                    </h5>
                 </div>
-                <div class="action-body">
-                    <p class="text-muted">Thêm, sửa, xóa sách và quà tặng trong hệ thống</p>
+                <div class="card-body p-4">
+                    <p class="text-muted mb-3">Thêm, sửa, xóa sách trong hệ thống</p>
                     <div class="d-grid gap-2">
-                        <a href="@Url.Action("Index","Books")" class="btn btn-outline-primary">
-                            <i class="bi bi-list-ul"></i> Xem Danh Sách
+                        <a asp-controller="Books" asp-action="Index" class="btn btn-outline-primary">
+                            <i class="bi bi-list-ul me-1"></i> Xem Danh Sách
                         </a>
-                        <a href="@Url.Action("Create","Books")" class="btn btn-primary">
-                            <i class="bi bi-plus-circle-fill"></i> Thêm Sách Mới
+                        <a asp-controller="Books" asp-action="Create" class="btn btn-primary">
+                            <i class="bi bi-plus-circle-fill me-1"></i> Thêm Sách Mới
                         </a>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- Quản lý Quà tặng -->
         <div class="col-lg-4 col-md-6">
-            <div class="action-card">
-                <div class="action-header bg-success">
-                    <i class="bi bi-gift-fill"></i>
-                    <h5>Quản lý Quà tặng</h5>
+            <div class="card border-0 shadow-sm h-100 action-card">
+                <div class="card-header bg-success text-white py-3">
+                    <h5 class="mb-0">
+                        <i class="bi bi-gift-fill me-2"></i>Quản lý Quà Tặng
+                    </h5>
                 </div>
-                <div class="action-body">
-                    <p class="text-muted">Quản Lý Sản Phẩm Quà Tặng</p>
+                <div class="card-body p-4">
+                    <p class="text-muted mb-3">Quản lý sản phẩm quà tặng</p>
                     <div class="d-grid gap-2">
-                        <a href="@Url.Action("Index","Gifts")" class="btn btn-outline-success">
-                            <i class="bi bi-list-ul"></i> Xem danh sách
+                        <a asp-controller="Gifts" asp-action="Index" class="btn btn-outline-success">
+                            <i class="bi bi-list-ul me-1"></i> Xem Danh Sách
                         </a>
-                        <a href="@Url.Action("Create","Gifts")" class="btn btn-success">
-                            <i class="bi bi-plus-circle-fill"></i> Thêm Quà Tặng
+                        <a asp-controller="Gifts" asp-action="Create" class="btn btn-success">
+                            <i class="bi bi-plus-circle-fill me-1"></i> Thêm Quà Tặng
                         </a>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- Quản lý Nhà xuất bản -->
         <div class="col-lg-4 col-md-6">
-            <div class="action-card">
-                <div class="action-header bg-warning">
-                    <i class="bi bi-building"></i>
-                    <h5>Quản lý Nhà xuất bản</h5>
+            <div class="card border-0 shadow-sm h-100 action-card">
+                <div class="card-header bg-warning text-white py-3">
+                    <h5 class="mb-0">
+                        <i class="bi bi-building me-2"></i>Quản lý Nhà Xuất Bản
+                    </h5>
                 </div>
-                <div class="action-body">
-                    <p class="text-muted">Quản lý thông tin các nhà xuất bản</p>
+                <div class="card-body p-4">
+                    <p class="text-muted mb-3">Quản lý thông tin các nhà xuất bản</p>
                     <div class="d-grid gap-2">
-                        <a href="@Url.Action("Index","Publisher")" class="btn btn-outline-warning">
-                            <i class="bi bi-list-ul"></i> Xem Danh Sách
+                        <a asp-controller="Publisher" asp-action="Index" class="btn btn-outline-warning">
+                            <i class="bi bi-list-ul me-1"></i> Xem Danh Sách
                         </a>
-                        <a href="@Url.Action("Create","Publisher")" class="btn btn-warning">
-                            <i class="bi bi-plus-circle-fill"></i> Thêm NXB
+                        <a asp-controller="Publisher" asp-action="Create" class="btn btn-warning">
+                            <i class="bi bi-plus-circle-fill me-1"></i> Thêm NXB
                         </a>
                     </div>
                 </div>
@@ -145,39 +171,45 @@
         </div>
     </div>
 
-    <!-- Quick Guide for Gifts -->
-    <div class="row">
+    <!-- Quick Stats -->
+    <div class="row g-4">
         <div class="col-12">
-            <div class="guide-card">
-                <div class="guide-header">
-                    <i class="bi bi-lightbulb-fill"></i>
-                    <h5>Hướng dẫn thêm Quà tặng</h5>
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-light py-3">
+                    <h5 class="mb-0">
+                        <i class="bi bi-bar-chart-fill me-2 text-primary"></i>Thống Kê Nhanh
+                    </h5>
                 </div>
-                <div class="guide-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h6 class="fw-bold text-success mb-3"><i class="bi bi-1-circle-fill"></i> Thêm sản phẩm mới</h6>
-                            <ol class="guide-list">
-                                <li>Click nút <strong>"Thêm sách mới"</strong> ở phần Quản lý Sách</li>
-                                <li>Điền đầy đủ thông tin sản phẩm</li>
-                                <li>Tại dropdown <strong>Category</strong>, chọn <code>Gift</code> hoặc <code>Quà tặng</code></li>
-                                <li>Click <strong>Save</strong> để hoàn tất</li>
-                            </ol>
+                <div class="card-body p-4">
+                    <div class="row text-center">
+                        <div class="col-md-3 col-6 mb-3">
+                            <div class="p-3">
+                                <i class="bi bi-book text-primary fs-1 mb-2"></i>
+                                <h4 class="fw-bold">@(ViewBag.TotalBooks ?? 0)</h4>
+                                <p class="text-muted mb-0">Sách</p>
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <h6 class="fw-bold text-info mb-3"><i class="bi bi-2-circle-fill"></i> Chuyển sản phẩm cũ thành Gift</h6>
-                            <ol class="guide-list">
-                                <li>Vào <strong>Quản lý Sách</strong> → Danh sách</li>
-                                <li>Tìm sản phẩm cần chuyển</li>
-                                <li>Click nút <span class="badge bg-primary">Edit</span></li>
-                                <li>Đổi <strong>Category</strong> thành <code>Gift</code></li>
-                                <li>Lưu lại</li>
-                            </ol>
+                        <div class="col-md-3 col-6 mb-3">
+                            <div class="p-3">
+                                <i class="bi bi-gift text-success fs-1 mb-2"></i>
+                                <h4 class="fw-bold">@(ViewBag.TotalGifts ?? 0)</h4>
+                                <p class="text-muted mb-0">Quà Tặng</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="alert alert-info mt-3 mb-0">
-                        <i class="bi bi-info-circle-fill"></i>
-                        <strong>Lưu ý:</strong> Nếu chưa có Category "Gift", vui lòng vào <strong>Quản lý Danh mục</strong> để tạo mới.
+                        <div class="col-md-3 col-6 mb-3">
+                            <div class="p-3">
+                                <i class="bi bi-grid text-info fs-1 mb-2"></i>
+                                <h4 class="fw-bold">@(ViewBag.TotalCategories ?? 0)</h4>
+                                <p class="text-muted mb-0">Danh Mục</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6 mb-3">
+                            <div class="p-3">
+                                <i class="bi bi-building text-warning fs-1 mb-2"></i>
+                                <h4 class="fw-bold">@(ViewBag.TotalPublishers ?? 0)</h4>
+                                <p class="text-muted mb-0">Nhà XB</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -185,3 +217,62 @@
     </div>
 </div>
 
+<style>
+    /* Stat cards hover */
+    .stat-card {
+        transition: all 0.3s ease;
+        border-radius: 12px !important;
+    }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1) !important;
+        }
+
+    /* Action cards hover */
+    .action-card {
+        transition: all 0.3s ease;
+        border-radius: 12px !important;
+    }
+
+        .action-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15) !important;
+        }
+
+    /* Stat icon animation */
+    .stat-icon {
+        width: 70px;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s ease;
+    }
+
+    .stat-card:hover .stat-icon {
+        transform: scale(1.1);
+    }
+
+    /* Card header */
+    .card-header h5 {
+        font-weight: 600;
+    }
+
+    /* Gradient header */
+    .bg-gradient {
+        position: relative;
+        overflow: hidden;
+    }
+
+        .bg-gradient::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255,255,255,0.1);
+            transform: rotate(45deg);
+        }
+</style>

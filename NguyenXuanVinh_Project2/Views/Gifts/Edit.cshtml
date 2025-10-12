@@ -1,26 +1,36 @@
 ﻿@model NguyenXuanVinh_Project2.Models.Gift
-
 @{
-    ViewData["Title"] = "Thêm Quà Tặng Mới";
+    ViewData["Title"] = "Chỉnh sửa quà tặng";
 }
 
 <div class="container my-4">
     <div class="row justify-content-center">
         <div class="col-lg-8">
             <div class="card shadow-sm border-0 rounded-4">
-                <div class="card-header bg-success text-white py-3">
+                <div class="card-header bg-primary text-white py-3">
                     <h3 class="mb-0">
-                        <i class="bi bi-gift-fill me-2"></i>Thêm Quà Tặng Mới
+                        <i class="bi bi-pencil-square me-2"></i>Chỉnh Sửa Quà Tặng
                     </h3>
                 </div>
                 <div class="card-body p-4">
                     <!-- Validation Summary -->
                     <div asp-validation-summary="All" class="alert alert-danger"></div>
 
-                    <form asp-action="Create" method="post">
+                    <form asp-action="Edit" method="post">
+                        <input type="hidden" asp-for="GiftId" />
+
                         <div class="row g-3">
+                            <!-- GiftId (Read-only) -->
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">
+                                    <i class="bi bi-hash me-1"></i>Mã Quà Tặng
+                                </label>
+                                <input value="@Model.GiftId" class="form-control" disabled />
+                                <small class="text-muted">Không thể thay đổi mã quà tặng</small>
+                            </div>
+
                             <!-- GiftName -->
-                            <div class="col-12">
+                            <div class="col-md-6">
                                 <label asp-for="GiftName" class="form-label fw-bold">
                                     <i class="bi bi-tag me-1"></i>Tên Quà Tặng
                                 </label>
@@ -71,20 +81,38 @@
 
                         <!-- Preview Section -->
                         <div class="mt-4 p-3 bg-light rounded-3">
-                            <h6 class="fw-bold mb-2">
+                            <h6 class="fw-bold mb-3">
                                 <i class="bi bi-eye me-1"></i>Preview
                             </h6>
-                            <div class="row g-2">
+                            <div class="row g-3">
                                 <div class="col-auto">
-                                    <div class="border rounded p-2 bg-white" style="width: 100px; height: 100px;">
-                                        <img id="imagePreview" src="/images/gifts/no-gift.jpg"
-                                             class="w-100 h-100" style="object-fit: cover;" />
+                                    <div class="border rounded-3 bg-white shadow-sm position-relative" style="width: 120px; height: 120px;">
+                                        <img id="imagePreview"
+                                             src="/images/gifts/@(Model.Picture ?? "no-gift.jpg")"
+                                             class="w-100 h-100 rounded-3"
+                                             style="object-fit: cover;" />
+                                        <span class="badge bg-danger position-absolute top-0 end-0 m-1">
+                                            <i class="bi bi-gift"></i>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <p class="mb-1"><strong id="namePreview">Tên quà tặng</strong></p>
-                                    <p class="text-success mb-1"><strong id="pricePreview">0đ</strong></p>
-                                    <p class="text-muted small mb-0" id="descPreview">Mô tả...</p>
+                                    <h6 class="fw-bold mb-2" id="namePreview">@Model.GiftName</h6>
+                                    <p class="text-success fw-bold fs-5 mb-2">
+                                        <i class="bi bi-cash-stack me-1"></i>
+                                        <span id="pricePreview">@((Model.Price ?? 0).ToString("N0"))</span>đ
+                                    </p>
+                                    <p class="text-muted small mb-1">
+                                        <i class="bi bi-box-seam me-1"></i>
+                                        Còn lại: <span id="stockPreview">@Model.Stock</span> sản phẩm
+                                    </p>
+                                    <p class="text-muted small mb-0" id="descPreview">
+                                        @{
+                                            var desc = Model.Description ?? "Chưa có mô tả";
+                                            var shortDesc = desc.Length > 80 ? desc.Substring(0, 80) + "..." : desc;
+                                        }
+                                        @shortDesc
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -94,8 +122,8 @@
                             <a asp-action="Index" class="btn btn-secondary px-4">
                                 <i class="bi bi-x-circle me-1"></i> Hủy
                             </a>
-                            <button type="submit" class="btn btn-success px-4">
-                                <i class="bi bi-check-circle me-1"></i> Lưu Quà Tặng
+                            <button type="submit" class="btn btn-primary px-4">
+                                <i class="bi bi-save me-1"></i> Cập Nhật
                             </button>
                         </div>
                     </form>
@@ -105,6 +133,27 @@
     </div>
 </div>
 
+<style>
+    /* Smooth transitions */
+    input, select, textarea {
+        transition: border-color 0.2s ease;
+    }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.1);
+        }
+
+    /* Preview image hover */
+    #imagePreview {
+        transition: transform 0.3s ease;
+    }
+
+        #imagePreview:hover {
+            transform: scale(1.05);
+        }
+</style>
+
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
@@ -112,26 +161,38 @@
 
     <script>
         $(function() {
-            // Live preview
+            // Live preview update
             function updatePreview() {
-                const name = $('input[name="GiftName"]').val() || 'Tên quà tặng';
-                const price = $('input[name="Price"]').val() || '0';
-                const desc = $('textarea[name="Description"]').val() || 'Mô tả...';
-                const picture = $('input[name="Picture"]').val() || 'no-gift.jpg';
+                const name = $('input[name="GiftName"]').val() || '@Model.GiftName';
+                const price = $('input[name="Price"]').val() || '@Model.Price';
+                const stock = $('input[name="Stock"]').val() || '@Model.Stock';
+                const desc = $('textarea[name="Description"]').val() || '@Model.Description';
+                const picture = $('input[name="Picture"]').val() || '@Model.Picture';
 
                 $('#namePreview').text(name);
-                $('#pricePreview').text(parseInt(price).toLocaleString('vi-VN') + 'đ');
+                $('#pricePreview').text(parseInt(price).toLocaleString('vi-VN'));
+                $('#stockPreview').text(stock);
                 $('#descPreview').text(desc.substring(0, 80) + (desc.length > 80 ? '...' : ''));
-                $('#imagePreview').attr('src', '/images/gifts/' + picture);
+
+                // Update image preview
+                const imgPath = '/images/gifts/' + picture;
+                $('#imagePreview').attr('src', imgPath);
             }
 
-            // Update preview on input
-            $('input[name="GiftName"], input[name="Price"], textarea[name="Description"], input[name="Picture"]')
+            // Update on input change
+            $('input[name="GiftName"], input[name="Price"], input[name="Stock"], textarea[name="Description"], input[name="Picture"]')
                 .on('input blur', updatePreview);
 
             // Handle image error
             $('#imagePreview').on('error', function() {
                 $(this).attr('src', '/images/gifts/no-gift.jpg');
+            });
+
+            // Highlight changes
+            $('input, textarea, select').on('change', function() {
+                $(this).addClass('border-warning').delay(1000).queue(function() {
+                    $(this).removeClass('border-warning').dequeue();
+                });
             });
         });
     </script>

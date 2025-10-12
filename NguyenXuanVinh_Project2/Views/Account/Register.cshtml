@@ -1,52 +1,87 @@
-﻿@model NguyenXuanVinh_Project2.Models.RegisterViewModel
+﻿@model RegisterViewModel
 @{
-    ViewData["Title"] = "Đăng ký";
+    ViewData["Title"] = "Tạo tài khoản mới";
 }
 
+<style>
+    .password-wrapper {
+        position: relative;
+    }
+
+    .password-toggle-icon {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #6c757d;
+    }
+</style>
+
 <div class="d-flex align-items-center justify-content-center vh-100 bg-light">
-    <div class="card shadow-lg border-0 rounded-4 register-card" style="width: 400px;">
+    <div class="card shadow-lg border-0 rounded-4 register-card" style="width: 440px;">
         <div class="text-center mt-4">
             <div class="register-icon bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center">
-                <i class="bi bi-pencil-square fs-2"></i>
+                <i class="bi bi-person-plus-fill fs-1"></i>
             </div>
-            <h3 class="fw-bold text-success mt-2">Đăng ký</h3>
-            <p class="text-muted small">Tạo tài khoản mới để trải nghiệm website</p>
+            <h3 class="fw-bold text-success mt-2">Tạo tài khoản</h3>
+            <p class="text-muted small">Nhanh chóng và dễ dàng</p>
         </div>
 
-        <div class="card-body px-4 pb-4">
-            @if (TempData["Success"] != null)
-            {
-                <div class="alert alert-success text-center rounded-3 shadow-sm">@TempData["Success"]</div>
-            }
-
+        <div class="card-body p-4">
             <form asp-action="Register" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-2"></div>
+
                 <div class="mb-3">
                     <label asp-for="Username" class="form-label fw-semibold"></label>
-                    <input asp-for="Username" class="form-control rounded-3 shadow-sm" placeholder="Nhập tên đăng nhập" />
+                    <input asp-for="Username" class="form-control rounded-3 shadow-sm" placeholder="Tạo tên đăng nhập của bạn" />
                     <span asp-validation-for="Username" class="text-danger small"></span>
                 </div>
+
                 <div class="mb-3">
                     <label asp-for="Email" class="form-label fw-semibold"></label>
-                    <input asp-for="Email" type="email" class="form-control rounded-3 shadow-sm" placeholder="Nhập email" />
+                    <input asp-for="Email" class="form-control rounded-3 shadow-sm" placeholder="ví dụ: example@email.com" />
                     <span asp-validation-for="Email" class="text-danger small"></span>
                 </div>
+
                 <div class="mb-3">
                     <label asp-for="Password" class="form-label fw-semibold"></label>
-                    <input asp-for="Password" type="password" class="form-control rounded-3 shadow-sm" placeholder="••••••••" />
+                    <div class="password-wrapper">
+                        <input asp-for="Password" id="Password" class="form-control rounded-3 shadow-sm" placeholder="Tạo mật khẩu (ít nhất 6 ký tự)" />
+                        <span class="password-toggle-icon" onclick="togglePasswordVisibility('Password', this)">
+                            <i class="bi bi-eye-slash"></i>
+                        </span>
+                    </div>
                     <span asp-validation-for="Password" class="text-danger small"></span>
                 </div>
+
                 <div class="mb-3">
                     <label asp-for="ConfirmPassword" class="form-label fw-semibold"></label>
-                    <input asp-for="ConfirmPassword" type="password" class="form-control rounded-3 shadow-sm" placeholder="Xác nhận mật khẩu" />
+                    <div class="password-wrapper">
+                        <input asp-for="ConfirmPassword" id="ConfirmPassword" class="form-control rounded-3 shadow-sm" placeholder="Nhập lại mật khẩu của bạn" />
+                        <span class="password-toggle-icon" onclick="togglePasswordVisibility('ConfirmPassword', this)">
+                            <i class="bi bi-eye-slash"></i>
+                        </span>
+                    </div>
                     <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
                 </div>
-                <button type="submit" class="btn btn-success w-100 rounded-3 fw-bold shadow-sm">
-                    <i class="bi bi-person-plus"></i> Đăng ký
+
+                <div class="mb-3 form-check">
+                    <input asp-for="AgreeToTerms" class="form-check-input" />
+                    <label asp-for="AgreeToTerms" class="form-check-label small">
+                        Tôi đồng ý với các <a href="#" class="text-success fw-semibold">Điều khoản dịch vụ</a>
+                    </label>
+                    <div><span asp-validation-for="AgreeToTerms" class="text-danger small"></span></div>
+                </div>
+
+                <button type="submit" class="btn btn-success w-100 rounded-3 fw-bold shadow-sm p-2">
+                    <i class="bi bi-check-circle"></i> Đăng ký
                 </button>
             </form>
 
-            <div class="text-center mt-3">
-                <a asp-action="Login" class="text-success fw-semibold">← Quay lại đăng nhập</a>
+            <div class="text-center mt-3 border-top pt-3">
+                <span class="text-muted small">Đã có tài khoản?</span>
+                <a asp-action="Login" class="text-success fw-semibold">Đăng nhập tại đây</a>
             </div>
         </div>
     </div>
@@ -54,6 +89,22 @@
 
 @section Scripts {
     @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        <partial name="_ValidationScriptsPartial" />
     }
+    <script>
+        function togglePasswordVisibility(inputId, iconElement) {
+            const passwordInput = document.getElementById(inputId);
+            const icon = iconElement.querySelector('i');
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                icon.classList.remove("bi-eye-slash");
+                icon.classList.add("bi-eye");
+            } else {
+                passwordInput.type = "password";
+                icon.classList.remove("bi-eye");
+                icon.classList.add("bi-eye-slash");
+            }
+        }
+    </script>
 }

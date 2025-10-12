@@ -193,8 +193,84 @@
       "PackagePath": "staticwebassets\\images\\books\\yourlie.jpg"
     },
     {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\gifts\\anya.webp",
+      "PackagePath": "staticwebassets\\images\\gifts\\anya.webp"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\gifts\\aot.webp",
+      "PackagePath": "staticwebassets\\images\\gifts\\aot.webp"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\gifts\\chain.jpg",
+      "PackagePath": "staticwebassets\\images\\gifts\\chain.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\gifts\\eren.jpg",
+      "PackagePath": "staticwebassets\\images\\gifts\\eren.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\gifts\\fjjk.webp",
+      "PackagePath": "staticwebassets\\images\\gifts\\fjjk.webp"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\gifts\\gear5.webp",
+      "PackagePath": "staticwebassets\\images\\gifts\\gear5.webp"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\gifts\\gojo.jpg",
+      "PackagePath": "staticwebassets\\images\\gifts\\gojo.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\gifts\\hero.jpg",
+      "PackagePath": "staticwebassets\\images\\gifts\\hero.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\gifts\\jjk.webp",
+      "PackagePath": "staticwebassets\\images\\gifts\\jjk.webp"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\gifts\\keychain-levi.jpg",
+      "PackagePath": "staticwebassets\\images\\gifts\\keychain-levi.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\gifts\\kimetsu.jpg",
+      "PackagePath": "staticwebassets\\images\\gifts\\kimetsu.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\gifts\\luffy.png",
+      "PackagePath": "staticwebassets\\images\\gifts\\luffy.png"
+    },
+    {
       "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\gifts\\narutokey.webp",
       "PackagePath": "staticwebassets\\images\\gifts\\narutokey.webp"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\gifts\\nezuko.webp",
+      "PackagePath": "staticwebassets\\images\\gifts\\nezuko.webp"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\gifts\\op.jpg",
+      "PackagePath": "staticwebassets\\images\\gifts\\op.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\gifts\\spy.jpg",
+      "PackagePath": "staticwebassets\\images\\gifts\\spy.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\gifts\\sukuna.jpg",
+      "PackagePath": "staticwebassets\\images\\gifts\\sukuna.jpg"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\gifts\\tanjiro.webp",
+      "PackagePath": "staticwebassets\\images\\gifts\\tanjiro.webp"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\gifts\\tokyo.webp",
+      "PackagePath": "staticwebassets\\images\\gifts\\tokyo.webp"
+    },
+    {
+      "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\gifts\\zenitsu.jpg",
+      "PackagePath": "staticwebassets\\images\\gifts\\zenitsu.jpg"
     },
     {
       "Id": "D:\\NguyenXuanVinh_Project2\\NguyenXuanVinh_Project2\\wwwroot\\images\\home\\conan.jpg",

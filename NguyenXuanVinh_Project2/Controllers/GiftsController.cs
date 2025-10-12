@@ -58,6 +58,7 @@ namespace NguyenXuanVinh_Project2.Controllers
             {
                 _context.Add(gift);
                 await _context.SaveChangesAsync();
+                TempData["Success"] = "Thêm quà tặng thành công!";
                 return RedirectToAction(nameof(Index));
             }
             return View(gift);
