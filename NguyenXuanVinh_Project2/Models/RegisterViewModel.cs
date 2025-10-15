@@ -27,7 +27,6 @@ namespace NguyenXuanVinh_Project2.Models
         public string ConfirmPassword { get; set; } = string.Empty;
 
         // CẢI TIẾN: Thêm điều khoản dịch vụ
-        [Range(typeof(bool), "true", "true", ErrorMessage = "Bạn phải đồng ý với điều khoản dịch vụ.")]
         [Display(Name = "Tôi đồng ý với các điều khoản dịch vụ")]
         public bool AgreeToTerms { get; set; }
     }

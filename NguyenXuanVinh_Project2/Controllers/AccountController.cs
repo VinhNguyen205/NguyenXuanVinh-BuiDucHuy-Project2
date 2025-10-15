@@ -79,6 +79,7 @@ namespace NguyenXuanVinh_Project2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
+            ModelState.Remove("AgreeToTerms");
             if (ModelState.IsValid)
             {
                 if (await _context.Accounts.AnyAsync(a => a.Username == model.Username))
@@ -163,7 +164,7 @@ namespace NguyenXuanVinh_Project2.Controllers
                 return RedirectToAction("Index", "Admin"); // Quay về trang quản trị
             }
             return View(model);
-        }
+        }   
 
         // ===================== LOGOUT =====================
         [HttpGet]

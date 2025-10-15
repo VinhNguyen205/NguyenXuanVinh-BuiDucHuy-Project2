@@ -79,8 +79,8 @@
                                     <i class="bi bi-person-circle"></i> Tài Khoản
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end shadow">
-                                    <li><a class="dropdown-item" asp-controller="Account" asp-action="Login"><i class="bi bi-box-arrow-in-right"></i> Đăng nhập</a></li>
-                                    <li><a class="dropdown-item" asp-controller="Account" asp-action="Register"><i class="bi bi-person-plus"></i> Đăng ký</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Account" asp-action="Login"><i class="bi bi-box-arrow-in-right"></i> Đăng Nhập</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Account" asp-action="Register"><i class="bi bi-person-plus"></i> Đăng Ký</a></li>
                                 </ul>
                             }
                             else
@@ -91,10 +91,10 @@
                                 <ul class="dropdown-menu dropdown-menu-end shadow">
                                     @if (Context.Session.GetString("Role") == "Admin")
                                     {
-                                        <li><a class="dropdown-item" asp-controller="Admin" asp-action="Index"><i class="bi bi-speedometer2"></i> Trang quản trị</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Admin" asp-action="Index"><i class="bi bi-speedometer2"></i> Trang Quản Trị</a></li>
                                         <li><hr class="dropdown-divider" /></li>
                                     }
-                                    <li><a class="dropdown-item text-danger" asp-controller="Account" asp-action="Logout"><i class="bi bi-box-arrow-right"></i> Đăng xuất</a></li>
+                                    <li><a class="dropdown-item text-danger" asp-controller="Account" asp-action="Logout"><i class="bi bi-box-arrow-right"></i> Đăng Xuất</a></li>
                                 </ul>
                             }
                         </li>
