@@ -1,12 +1,12 @@
 ﻿@model NguyenXuanVinh_Project2.Models.CheckoutResult
 
-<h2 class="text-success mb-4">Thanh toán thành công 🎉</h2>
+<h2 class="text-success mb-4">Thanh Toán Thành Công 🎉</h2>
 
-<p>Cảm ơn <strong>@Model.CustomerName</strong> đã mua hàng!</p>
+<p>Cảm ơn <strong>@Model.CustomerName</strong> Đã Mua Hàng!</p>
 <p>Email: <strong>@Model.Email</strong></p>
 <p>Địa chỉ: <strong>@Model.Address</strong></p>
 
-<h4 class="mt-4">Danh sách sản phẩm:</h4>
+<h4 class="mt-4">Danh Sách Sản Shẩm:</h4>
 <table class="table table-bordered">
     <thead class="table-success">
         <tr>
@@ -31,4 +31,4 @@
 
 <h4 class="text-end text-success">Tổng cộng: @Model.Total.ToString("N0") đ</h4>
 
-<a href="@Url.Action("Index","Books")" class="btn btn-primary">Tiếp tục mua sắm</a>
+<a href="@Url.Action("Index","Books")" class="btn btn-primary">Tiếp Tục Mua Sắm</a>

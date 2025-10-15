@@ -139,9 +139,7 @@ a {
 
 /* ========== SEARCH BAR - FIXED ========== */
 .navbar .input-group {
-    display: flex;
-    width: 100%;
-    max-width: 500px;
+    display: flex; /* Giữ lại flex để input và button nằm cạnh nhau */
     height: 46px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     border-radius: var(--radius);
@@ -149,13 +147,13 @@ a {
 }
 
 .navbar .form-control {
+    flex: 1 1 auto !important; 
     border: 2px solid #e2e8f0;
     border-right: none;
     border-radius: var(--radius) 0 0 var(--radius);
     padding: 0.6rem 1rem;
     font-size: 0.95rem;
     background: #ffffff;
-    flex: 1;
     height: 46px;
     margin: 0;
     line-height: normal;
@@ -746,11 +744,6 @@ a {
     font-size: 1.05rem;
     margin-bottom: 0.4rem;
     display: block;
-}
-
-.input-group {
-    max-width: 130px;
-    margin: 0 auto;
 }
 
     .input-group input {

@@ -1,72 +1,226 @@
 ﻿@model NguyenXuanVinh_Project2.Models.Gift
 @using System.Net
-
 @{
-    ViewData["Title"] = "Chi tiết quà tặng";
+    ViewData["Title"] = "Chi tiết Quà Tặng";
+    var role = Context.Session.GetString("Role");
 }
 
 <div class="container my-5">
-    <div class="row">
-        <!-- Ảnh -->
-        <div class="col-md-5">
-            @{
-                var imgSrc = !string.IsNullOrEmpty(Model.Picture) &&
-                (Model.Picture.StartsWith("http://") || Model.Picture.StartsWith("https://"))
-                ? Model.Picture
-                : Url.Content("~/images/gifts/" + (Model.Picture ?? "no-gift.jpg"));
-            }
-            <img src="@imgSrc"
-                 alt="@Html.Raw(WebUtility.HtmlDecode(Model.GiftName ?? "Không rõ"))"
-                 class="img-fluid rounded shadow-sm"
-                 onerror="this.onerror=null; this.src='/images/gifts/no-gift.jpg';" />
+    <div class="row g-4">
+        <!-- Image Column -->
+        <div class="col-lg-4">
+            <div class="sticky-top" style="top: 100px;">
+                <div class="card border-0 shadow-sm">
+                    <div class="position-relative">
+                        @{
+                            var imgSrc = !string.IsNullOrEmpty(Model.Picture) &&
+                            (Model.Picture.StartsWith("http://") || Model.Picture.StartsWith("https://"))
+                            ? Model.Picture
+                            : Url.Content("~/images/gifts/" + (Model.Picture ?? "no-gift.jpg"));
+                        }
+                        <img src="@imgSrc"
+                             alt="@Html.Raw(WebUtility.HtmlDecode(Model.GiftName ?? "Không rõ"))"
+                             class="card-img-top"
+                             style="height: 400px; object-fit: cover;"
+                             onerror="this.onerror=null; this.src='/images/gifts/no-gift.jpg';" />
+
+                        <!-- Badge -->
+                        <span class="position-absolute top-0 end-0 badge bg-danger m-3">
+                            <i class="bi bi-gift"></i> Gift
+                        </span>
+                    </div>
+                    <div class="card-body p-4">
+                        <!-- Stock Info -->
+                        <div class="alert alert-info border-0 mb-3">
+                            <i class="bi bi-box-seam me-2"></i>
+                            Còn lại: <strong>@(Model.Stock ?? 0)</strong> sản phẩm
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="button" class="btn btn-success btn-lg add-gift"
+                                    data-id="@Model.GiftId">
+                                <i class="bi bi-cart-plus me-2"></i>Thêm Vào Giỏ
+                            </button>
+                            <a asp-action="Index" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left me-2"></i>Quay Lại
+                            </a>
+                            @if (role == "Admin")
+                            {
+                                <hr class="my-2">
+                                <a asp-action="Edit" asp-route-id="@Model.GiftId"
+                                   class="btn btn-outline-primary">
+                                    <i class="bi bi-pencil-square me-2"></i>Chỉnh Sửa
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Nội dung -->
-        <div class="col-md-7">
-            <h2 class="fw-bold text-success mb-3">
-                <i class="bi bi-gift-fill"></i>
-                @Html.Raw(WebUtility.HtmlDecode(Model.GiftName ?? "Không rõ"))
-            </h2>
+        <!-- Content Column -->
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body p-4">
+                    <!-- Title -->
+                    <h1 class="fw-bold mb-3">
+                        <i class="bi bi-gift-fill text-danger me-2"></i>
+                        @Html.Raw(WebUtility.HtmlDecode(Model.GiftName ?? "Không rõ"))
+                    </h1>
 
-            <p class="text-muted">
-                @Html.Raw(WebUtility.HtmlDecode(Model.Description ?? "Không có mô tả cho quà tặng này."))
-            </p>
+                    <!-- Price -->
+                    <div class="alert alert-success border-0 mb-4">
+                        <h3 class="mb-0">
+                            <i class="bi bi-cash-stack me-2"></i>
+                            <strong>@(Model.Price?.ToString("N0") ?? "0") đ</strong>
+                        </h3>
+                    </div>
 
-            <p class="fs-5 text-success fw-bold mb-3">
-                <i class="bi bi-cash-stack"></i>
-                @(Model.Price?.ToString("N0") ?? "0") đ
-            </p>
+                    <!-- Info Card -->
+                    <div class="card bg-light border-0 mb-4">
+                        <div class="card-body p-4">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <small class="text-muted d-block mb-1">
+                                        <i class="bi bi-hash me-1"></i>Mã Quà Tặng
+                                    </small>
+                                    <strong class="fs-5">#@Model.GiftId</strong>
+                                </div>
+                                <div class="col-md-6">
+                                    <small class="text-muted d-block mb-1">
+                                        <i class="bi bi-box-seam me-1"></i>Tồn Kho
+                                    </small>
+                                    <strong class="fs-5">@(Model.Stock ?? 0) SP</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-            <p class="text-muted mb-4">
-                <i class="bi bi-box-seam"></i>
-                Còn lại: @(Model.Stock ?? 0) sản phẩm
-            </p>
+                    <!-- Description -->
+                    <div class="mb-4">
+                        <h5 class="fw-bold mb-3">
+                            <i class="bi bi-card-text me-2 text-success"></i>Mô Tả Sản Phẩm
+                        </h5>
+                        <p class="text-muted lh-lg">
+                            @Html.Raw(WebUtility.HtmlDecode(Model.Description ?? "Chưa có mô tả cho quà tặng này."))
+                        </p>
+                    </div>
 
-            <div class="d-flex gap-2">
-                <button type="button" class="btn btn-outline-success add-to-cart" data-id="@Model.GiftId">
-                    <i class="bi bi-cart-plus"></i> Thêm vào giỏ
-                </button>
-                <a href="@Url.Action("Index", "Gifts")" class="btn btn-outline-secondary">
-                    <i class="bi bi-arrow-left"></i> Quay lại
-                </a>
+                    <!-- Features -->
+                    <div class="card bg-light border-0">
+                        <div class="card-body p-4">
+                            <h6 class="fw-bold mb-3">
+                                <i class="bi bi-check-circle me-2 text-success"></i>Đặc Điểm Nổi Bật
+                            </h6>
+                            <ul class="list-unstyled mb-0">
+                                <li class="mb-2">
+                                    <i class="bi bi-check2 text-success me-2"></i>
+                                    Sản phẩm chính hãng
+                                </li>
+                                <li class="mb-2">
+                                    <i class="bi bi-check2 text-success me-2"></i>
+                                    Chất lượng cao, bền đẹp
+                                </li>
+                                <li class="mb-2">
+                                    <i class="bi bi-check2 text-success me-2"></i>
+                                    Đóng gói cẩn thận khi giao hàng
+                                </li>
+                                <li class="mb-0">
+                                    <i class="bi bi-check2 text-success me-2"></i>
+                                    Hỗ trợ đổi trả trong 7 ngày
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other Gifts -->
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white py-3">
+                    <h5 class="mb-0">
+                        <i class="bi bi-gift me-2 text-danger"></i>Quà Tặng Khác
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted text-center py-3">
+                        Khám phá thêm các món quà độc đáo và ý nghĩa khác
+                    </p>
+                    <div class="text-center">
+                        <a asp-action="Index" class="btn btn-outline-success">
+                            <i class="bi bi-search me-2"></i>Xem Thêm Quà Tặng
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
+<!-- Toast -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 9999;">
+    <div id="giftToast" class="toast align-items-center border-0 shadow-lg" role="alert">
+        <div class="d-flex bg-success text-white rounded">
+            <div class="toast-body fw-semibold py-3">
+                <i class="bi bi-check-circle-fill me-2"></i> Đã thêm quà tặng vào giỏ hàng!
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 12px !important;
+    }
+
+    .card-img-top {
+        border-radius: 12px 12px 0 0 !important;
+    }
+
+    .badge {
+        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .list-unstyled li {
+        padding: 0.5rem 0;
+    }
+</style>
+
 @section Scripts {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(function () {
-            $(".add-to-cart").click(function () {
-                var id = $(this).data("id");
-                $.post('/Cart/AddToCart', { id: id })
+            $(".add-gift").click(function () {
+                var $btn = $(this);
+                var originalHtml = $btn.html();
+
+                $btn.prop('disabled', true).html('<i class="bi bi-hourglass-split"></i> Đang thêm...');
+
+                var id = $btn.data("id");
+                $.post('/Cart/AddGiftToCart', { id: id })
                     .done(function (res) {
-                        $("#cart-count").text(res.count);
-                        alert("Đã thêm quà tặng vào giỏ!");
+                        if (res && res.count !== undefined) {
+                            $("#cart-count").text(res.count);
+                            $("#mini-cart-count").text(res.count);
+                        }
+                        if (res && res.total !== undefined) {
+                            $("#mini-cart-total").text(res.total);
+                        }
+
+                        $btn.html('<i class="bi bi-check-lg"></i> Đã thêm!');
+
+                        const toast = new bootstrap.Toast(document.getElementById('giftToast'));
+                        toast.show();
+
+                        setTimeout(function() {
+                            $btn.html(originalHtml).prop('disabled', false);
+                        }, 2000);
                     })
                     .fail(function () {
                         alert("Không thể thêm vào giỏ.");
+                        $btn.html(originalHtml).prop('disabled', false);
                     });
             });
         });

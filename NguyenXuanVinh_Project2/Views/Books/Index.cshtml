@@ -10,99 +10,96 @@
 
 <div class="container my-4">
     <div class="row g-4">
-        <!-- ==== SIDEBAR ==== -->
         <div class="col-md-3">
             <div class="sidebar shadow-sm p-4 bg-white rounded-4 sticky-top" style="top: 100px;">
                 <h5 class="fw-bold text-success mb-4 d-flex align-items-center">
                     <i class="bi bi-funnel-fill me-2"></i> Bộ Lọc
                 </h5>
 
-                <!-- Danh mục -->
-                <h6 class="fw-bold text-dark mb-3">
-                    <i class="bi bi-grid-3x3-gap me-2"></i> Danh mục
-                </h6>
-                <ul class="list-group list-group-flush mb-4">
-                    <li class="list-group-item px-0 py-2 border-0">
-                        <a asp-controller="Books" asp-action="Index" class="text-decoration-none text-dark d-flex align-items-center category-link">
-                            <i class="bi bi-collection me-2"></i> Tất cả
-                        </a>
-                    </li>
-                    <li class="list-group-item px-0 py-2 border-0">
-                        <a asp-controller="Books" asp-action="Index" asp-route-category="Shounen" class="text-decoration-none text-dark d-flex align-items-center category-link">
-                            🔥 Shounen
-                        </a>
-                    </li>
-                    <li class="list-group-item px-0 py-2 border-0">
-                        <a asp-controller="Books" asp-action="Index" asp-route-category="Shoujo" class="text-decoration-none text-dark d-flex align-items-center category-link">
-                            💖 Shoujo
-                        </a>
-                    </li>
-                    <li class="list-group-item px-0 py-2 border-0">
-                        <a asp-controller="Books" asp-action="Index" asp-route-category="Seinen" class="text-decoration-none text-dark d-flex align-items-center category-link">
-                            ⚡ Seinen
-                        </a>
-                    </li>
-                    <li class="list-group-item px-0 py-2 border-0">
-                        <a asp-controller="Books" asp-action="Index" asp-route-category="Isekai" class="text-decoration-none text-dark d-flex align-items-center category-link">
-                            🎭 Isekai
-                        </a>
-                    </li>
-                    <li class="list-group-item px-0 py-2 border-0">
-                        <a asp-controller="Books" asp-action="Index" asp-route-category="Fantasy" class="text-decoration-none text-dark d-flex align-items-center category-link">
-                            ✨ Fantasy
-                        </a>
-                    </li>
-                    <li class="list-group-item px-0 py-2 border-0">
-                        <a asp-controller="Books" asp-action="Index" asp-route-category="Action" class="text-decoration-none text-dark d-flex align-items-center category-link">
-                            ⚔️ Action
-                        </a>
-                    </li>
-                    <li class="list-group-item px-0 py-2 border-0">
-                        <a asp-controller="Books" asp-action="Index" asp-route-category="Adventure" class="text-decoration-none text-dark d-flex align-items-center category-link">
-                            🗺️ Adventure
-                        </a>
-                    </li>
-                    <li class="list-group-item px-0 py-2 border-0">
-                        <a asp-controller="Books" asp-action="Index" asp-route-category="LightNovel" class="text-decoration-none text-dark d-flex align-items-center category-link">
-                            ✍️ Light Novel
-                        </a>
-                    </li>
-                </ul>
+                <div class="sidebar-content-scroll">
+                    <h6 class="fw-bold text-dark mb-3">
+                        <i class="bi bi-grid-3x3-gap me-2"></i> Danh Mục
+                    </h6>
+                    <ul class="list-group list-group-flush mb-4">
+                        <li class="list-group-item px-0 py-2 border-0">
+                            <a asp-controller="Books" asp-action="Index" class="text-decoration-none text-dark d-flex align-items-center category-link">
+                                <i class="bi bi-collection me-2"></i> Tất Cả
+                            </a>
+                        </li>
+                        <li class="list-group-item px-0 py-2 border-0">
+                            <a asp-controller="Books" asp-action="Index" asp-route-category="Shounen" class="text-decoration-none text-dark d-flex align-items-center category-link">
+                                🔥 Shounen
+                            </a>
+                        </li>
+                        <li class="list-group-item px-0 py-2 border-0">
+                            <a asp-controller="Books" asp-action="Index" asp-route-category="Shoujo" class="text-decoration-none text-dark d-flex align-items-center category-link">
+                                💖 Shoujo
+                            </a>
+                        </li>
+                        <li class="list-group-item px-0 py-2 border-0">
+                            <a asp-controller="Books" asp-action="Index" asp-route-category="Seinen" class="text-decoration-none text-dark d-flex align-items-center category-link">
+                                ⚡ Seinen
+                            </a>
+                        </li>
+                        <li class="list-group-item px-0 py-2 border-0">
+                            <a asp-controller="Books" asp-action="Index" asp-route-category="Isekai" class="text-decoration-none text-dark d-flex align-items-center category-link">
+                                🎭 Isekai
+                            </a>
+                        </li>
+                        <li class="list-group-item px-0 py-2 border-0">
+                            <a asp-controller="Books" asp-action="Index" asp-route-category="Fantasy" class="text-decoration-none text-dark d-flex align-items-center category-link">
+                                ✨ Fantasy
+                            </a>
+                        </li>
+                        <li class="list-group-item px-0 py-2 border-0">
+                            <a asp-controller="Books" asp-action="Index" asp-route-category="Action" class="text-decoration-none text-dark d-flex align-items-center category-link">
+                                ⚔️ Action
+                            </a>
+                        </li>
+                        <li class="list-group-item px-0 py-2 border-0">
+                            <a asp-controller="Books" asp-action="Index" asp-route-category="Adventure" class="text-decoration-none text-dark d-flex align-items-center category-link">
+                                🗺️ Adventure
+                            </a>
+                        </li>
+                        <li class="list-group-item px-0 py-2 border-0">
+                            <a asp-controller="Books" asp-action="Index" asp-route-category="LightNovel" class="text-decoration-none text-dark d-flex align-items-center category-link">
+                                ✍️ Light Novel
+                            </a>
+                        </li>
+                    </ul>
 
-                <hr class="my-4">
+                    <hr class="my-4">
 
-                <!-- Bộ lọc giá -->
-                <h6 class="fw-bold text-dark mb-3">
-                    <i class="bi bi-cash-stack me-2"></i> Khoảng giá
-                </h6>
-                <form method="get" asp-action="Index">
-                    <div class="form-check mb-2">
-                        <input type="radio" class="form-check-input" name="price" value="1" id="p1" onchange="this.form.submit()">
-                        <label class="form-check-label" for="p1">Dưới 50.000đ</label>
-                    </div>
-                    <div class="form-check mb-2">
-                        <input type="radio" class="form-check-input" name="price" value="2" id="p2" onchange="this.form.submit()">
-                        <label class="form-check-label" for="p2">50k - 100k</label>
-                    </div>
-                    <div class="form-check mb-2">
-                        <input type="radio" class="form-check-input" name="price" value="3" id="p3" onchange="this.form.submit()">
-                        <label class="form-check-label" for="p3">100k - 200k</label>
-                    </div>
-                    <div class="form-check mb-2">
-                        <input type="radio" class="form-check-input" name="price" value="4" id="p4" onchange="this.form.submit()">
-                        <label class="form-check-label" for="p4">200k - 300k</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" name="price" value="5" id="p5" onchange="this.form.submit()">
-                        <label class="form-check-label" for="p5">Trên 300.000đ</label>
-                    </div>
-                </form>
+                    <h6 class="fw-bold text-dark mb-3">
+                        <i class="bi bi-cash-stack me-2"></i> Khoảng Giá
+                    </h6>
+                    <form method="get" asp-action="Index">
+                        <div class="form-check mb-2">
+                            <input type="radio" class="form-check-input" name="price" value="1" id="p1" onchange="this.form.submit()">
+                            <label class="form-check-label" for="p1">Dưới 50.000đ</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input type="radio" class="form-check-input" name="price" value="2" id="p2" onchange="this.form.submit()">
+                            <label class="form-check-label" for="p2">50k - 100k</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input type="radio" class="form-check-input" name="price" value="3" id="p3" onchange="this.form.submit()">
+                            <label class="form-check-label" for="p3">100k - 200k</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input type="radio" class="form-check-input" name="price" value="4" id="p4" onchange="this.form.submit()">
+                            <label class="form-check-label" for="p4">200k - 300k</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" name="price" value="5" id="p5" onchange="this.form.submit()">
+                            <label class="form-check-label" for="p5">Trên 300.000đ</label>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
 
-        <!-- ==== MAIN CONTENT ==== -->
         <div class="col-md-9">
-            <!-- Header -->
             <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
                 <div>
                     <h2 class="fw-bold text-dark mb-1">
@@ -115,7 +112,7 @@
                 {
                     <div class="btn-group shadow-sm">
                         <a href="@Url.Action("Create","Books")" class="btn btn-success">
-                            <i class="bi bi-plus-circle me-1"></i> Thêm mới
+                            <i class="bi bi-plus-circle me-1"></i> Thêm Mới
                         </a>
                         <a href="@Url.Action("Index","Admin")" class="btn btn-outline-success">
                             <i class="bi bi-gear-fill me-1"></i> Quản Trị
@@ -124,7 +121,6 @@
                 }
             </div>
 
-            <!-- ==== MESSAGE / ALERT ==== -->
             @if (TempData["Message"] != null)
             {
                 <div class="alert alert-info alert-dismissible fade show text-center fade-alert shadow-sm" role="alert">
@@ -144,11 +140,10 @@
             {
                 <div class="alert alert-success text-center fade-alert border-0 shadow-sm bg-success bg-opacity-10">
                     <i class="bi bi-check-circle text-success me-2"></i>
-                    Tìm thấy <strong class="text-success">@Model.Count()</strong> truyện phù hợp!
+                    Tìm thấy <strong class="text-success">@Model.Count()</strong> truyện Phù Hợp!
                 </div>
             }
 
-            <!-- ==== BOOKS GRID ==== -->
             @if (Model != null && Model.Any())
             {
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
@@ -156,7 +151,6 @@
                     {
                         <div class="col">
                             <div class="card h-100 border-0 shadow-sm product-card">
-                                <!-- Image with badge -->
                                 <div class="position-relative overflow-hidden" style="height: 350px;">
                                     @{
                                         var imgSrc = !string.IsNullOrEmpty(item.Picture) &&
@@ -170,10 +164,9 @@
                                          style="object-fit: cover; transition: transform 0.3s ease;"
                                          onerror="this.onerror=null; this.src='/images/books/no-cover.jpg';" />
 
-                                    <!-- Quick view overlay -->
                                     <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 d-flex align-items-center justify-content-center opacity-0 quick-view">
                                         <a href="@Url.Action("Details", new { id = item.BookId })" class="btn btn-light rounded-pill px-4">
-                                            <i class="bi bi-eye me-2"></i> Xem chi tiết
+                                            <i class="bi bi-eye me-2"></i> Xem Chi Tiết
                                         </a>
                                     </div>
                                 </div>
@@ -224,7 +217,6 @@
     </div>
 </div>
 
-<!-- Bootstrap Toast -->
 <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 9999;">
     <div id="cartToast" class="toast align-items-center border-0 shadow-lg" role="alert">
         <div class="d-flex bg-success text-white rounded">
@@ -237,6 +229,32 @@
 </div>
 
 <style>
+    /* CSS MỚI CHO SIDEBAR SCROLLER */
+    .sidebar-content-scroll {
+        max-height: calc(100vh - 220px);
+        overflow-y: auto;
+        padding-right: 10px;
+        margin-right: -10px;
+    }
+
+        .sidebar-content-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar-content-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .sidebar-content-scroll::-webkit-scrollbar-thumb {
+            background: #cccccc;
+            border-radius: 10px;
+        }
+
+            .sidebar-content-scroll::-webkit-scrollbar-thumb:hover {
+                background: #a8a8a8;
+            }
+
     /* Sidebar sticky */
     .sidebar {
         transition: box-shadow 0.3s ease;

@@ -1,43 +1,205 @@
 ﻿@model NguyenXuanVinh_Project2.Models.Book
-
+@using System.Net
 @{
     ViewData["Title"] = "Chi tiết Truyện";
+    var role = Context.Session.GetString("Role");
 }
 
-<h1>Chi tiết Truyện</h1>
+<div class="container my-5">
+    <div class="row g-4">
+        <!-- Image Column -->
+        <div class="col-lg-4">
+            <div class="sticky-top" style="top: 100px;">
+                <div class="card border-0 shadow-sm">
+                    <div class="position-relative">
+                        @{
+                            var imgSrc = !string.IsNullOrEmpty(Model.Picture) &&
+                            (Model.Picture.StartsWith("http://") || Model.Picture.StartsWith("https://"))
+                            ? Model.Picture
+                            : Url.Content("~/images/books/" + (Model.Picture ?? "no-cover.jpg"));
+                        }
+                        <img src="@imgSrc"
+                             alt="@Html.Raw(WebUtility.HtmlDecode(Model.Title ?? "Không rõ"))"
+                             class="card-img-top"
+                             style="height: 500px; object-fit: cover;"
+                             onerror="this.onerror=null; this.src='/images/books/no-cover.jpg';" />
 
-<div>
-    <h4>@Model.Title</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">Mã</dt>
-        <dd class="col-sm-10">@Model.BookId</dd>
+                        <!-- Badge -->
+                        <span class="position-absolute top-0 end-0 badge bg-success m-3">
+                            @Model.Category?.CategoryName
+                        </span>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="d-grid gap-2">
+                            <button type="button" class="btn btn-success btn-lg add-to-cart"
+                                    data-id="@Model.BookId">
+                                <i class="bi bi-cart-plus me-2"></i>Thêm Vào Giỏ
+                            </button>
+                            <a asp-action="Index" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left me-2"></i>Quay Lại
+                            </a>
+                            @if (role == "Admin")
+                            {
+                                <hr class="my-2">
+                                <a asp-action="Edit" asp-route-id="@Model.BookId"
+                                   class="btn btn-outline-primary">
+                                    <i class="bi bi-pencil-square me-2"></i>Chỉnh Sửa
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <dt class="col-sm-2">Tác giả</dt>
-        <dd class="col-sm-10">@Model.Author</dd>
+        <!-- Content Column -->
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body p-4">
+                    <!-- Title -->
+                    <h1 class="fw-bold mb-3">
+                        @Html.Raw(WebUtility.HtmlDecode(Model.Title ?? "Không rõ"))
+                    </h1>
 
-        <dt class="col-sm-2">Ngày phát hành</dt>
-        <dd class="col-sm-10">
-            @(Model.Release.HasValue ? Model.Release.Value.ToString() : "Chưa rõ")
-        </dd>
+                    <!-- Author -->
+                    <p class="text-muted fs-5 mb-4">
+                        <i class="bi bi-person-circle me-2"></i>
+                        <strong>Tác giả:</strong> @Html.Raw(WebUtility.HtmlDecode(Model.Author ?? "Không rõ"))
+                    </p>
 
-        <dt class="col-sm-2">Giá</dt>
-        <dd class="col-sm-10">
-            @(Model.Price.HasValue ? Model.Price.Value.ToString("N0") : "Chưa rõ") VNĐ
-        </dd>
+                    <!-- Price -->
+                    <div class="alert alert-success border-0 mb-4">
+                        <h3 class="mb-0">
+                            <i class="bi bi-cash-stack me-2"></i>
+                            <strong>@(Model.Price?.ToString("N0") ?? "0") đ</strong>
+                        </h3>
+                    </div>
 
-        <dt class="col-sm-2">Thể loại</dt>
-        <dd class="col-sm-10">@Model.Category?.CategoryName</dd>
+                    <!-- Info Grid -->
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <div class="p-3 bg-light rounded">
+                                <small class="text-muted d-block mb-1">Mã Sách</small>
+                                <strong>@Model.BookId</strong>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 bg-light rounded">
+                                <small class="text-muted d-block mb-1">Năm Phát Hành</small>
+                                <strong>@(Model.Release?.ToString() ?? "Chưa rõ")</strong>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 bg-light rounded">
+                                <small class="text-muted d-block mb-1">Thể Loại</small>
+                                <strong>@Model.Category?.CategoryName</strong>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 bg-light rounded">
+                                <small class="text-muted d-block mb-1">Nhà Xuất Bản</small>
+                                <strong>@Model.Publisher?.PublisherName</strong>
+                            </div>
+                        </div>
+                    </div>
 
-        <dt class="col-sm-2">Nhà xuất bản</dt>
-        <dd class="col-sm-10">@Model.Publisher?.PublisherName</dd>
+                    <!-- Description -->
+                    <div class="mb-3">
+                        <h5 class="fw-bold mb-3">
+                            <i class="bi bi-card-text me-2 text-success"></i>Giới Thiệu
+                        </h5>
+                        <p class="text-muted lh-lg">
+                            @Html.Raw(WebUtility.HtmlDecode(Model.Description ?? "Chưa có mô tả cho cuốn sách này."))
+                        </p>
+                    </div>
+                </div>
+            </div>
 
-        <dt class="col-sm-2">Mô tả</dt>
-        <dd class="col-sm-10">@Model.Description</dd>
-    </dl>
+            <!-- Related Books (Optional) -->
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white py-3">
+                    <h5 class="mb-0">
+                        <i class="bi bi-collection me-2 text-success"></i>Có Thể Bạn Quan Tâm
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted text-center py-3">
+                        Khám phá thêm các đầu sách khác trong thể loại <strong>@Model.Category?.CategoryName</strong>
+                    </p>
+                    <div class="text-center">
+                        <a asp-action="Index" asp-route-category="@Model.Category?.CategoryName"
+                           class="btn btn-outline-success">
+                            <i class="bi bi-search me-2"></i>Xem Thêm
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.BookId" class="btn btn-primary">Sửa</a>
-    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+<!-- Toast -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 9999;">
+    <div id="cartToast" class="toast align-items-center border-0 shadow-lg" role="alert">
+        <div class="d-flex bg-success text-white rounded">
+            <div class="toast-body fw-semibold py-3">
+                <i class="bi bi-check-circle-fill me-2"></i> Đã thêm vào giỏ hàng!
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+        </div>
+    </div>
 </div>
+
+<style>
+    .card {
+        border-radius: 12px !important;
+    }
+
+    .card-img-top {
+        border-radius: 12px 12px 0 0 !important;
+    }
+
+    .badge {
+        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
+    }
+</style>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function () {
+            $(".add-to-cart").click(function () {
+                var $btn = $(this);
+                var originalHtml = $btn.html();
+
+                $btn.prop('disabled', true).html('<i class="bi bi-hourglass-split"></i> Đang thêm...');
+
+                var id = $btn.data("id");
+                $.post('/Cart/AddToCart', { id: id })
+                    .done(function (res) {
+                        if (res && res.count !== undefined) {
+                            $("#cart-count").text(res.count);
+                            $("#mini-cart-count").text(res.count);
+                        }
+                        if (res && res.total !== undefined) {
+                            $("#mini-cart-total").text(res.total);
+                        }
+
+                        $btn.html('<i class="bi bi-check-lg"></i> Đã thêm!');
+
+                        const toast = new bootstrap.Toast(document.getElementById('cartToast'));
+                        toast.show();
+
+                        setTimeout(function() {
+                            $btn.html(originalHtml).prop('disabled', false);
+                        }, 2000);
+                    })
+                    .fail(function () {
+                        alert("Không thể thêm vào giỏ.");
+                        $btn.html(originalHtml).prop('disabled', false);
+                    });
+            });
+        });
+    </script>
+}
